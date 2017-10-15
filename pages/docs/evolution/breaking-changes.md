@@ -461,6 +461,7 @@ function checkOrdering(groups) {
     
     if (currentSec.length > lastSec.length + 1) {
         reportError(currentSecText, lastSecText)
+        result = false;
     }
     
     for (level = 0; level < Math.max(currentSec.length, lastSec.length); level++) {
@@ -471,8 +472,12 @@ function checkOrdering(groups) {
     result = true;
         
     for (level = 0; level < currentSec.length; level++) {
+        if (lastSec[level] < currentSec[level] - 1) {
+            reportError(currentSecText, lastSecText);
+            result = false;
+        }
         if (lastSec[level] < currentSec[level]) break;
-        if (lastSec[level] > currentSec[level]) {
+        if ((lastSec[level] > currentSec[level])) {
             reportError(currentSecText, lastSecText);
             result = false;
         }       
