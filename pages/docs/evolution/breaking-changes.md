@@ -244,11 +244,12 @@ we refer to the existing [versioning policy](../reference/compatibility.html).
 `5.6.11` kotlin-script-runtime - until it graduates
     from the experimental status.
 
-## `5.11` Examples: issues & non-issues
+
+## Appendix `A`. Examples: issues & non-issues
 
 Notation: NC — new compiler, OC — old compiler.
 
-### `5.12` Binary Change, issues
+### `A.1` Binary Change, issues
 
 `5.12.1` A binary produced from unchanged code with NC
     fails where the one produced by OC worked.
@@ -313,7 +314,7 @@ classes/interfaces.
     stdlib at runtime.
 
 
-### `5.18` Performance changes
+### `A.18` Performance changes
 
 We recognize that runtime performance and bytecode size are important
 metrics, and will make reasonable effort to keep them in a good shape,
@@ -321,15 +322,15 @@ but we don't consider every slowdown (e.g. in edge cases or in very cold
 code) and every extra byte in the classfile a breaking change.
 
 
-## `6` Examples of subtle issues
+## Appendix `B` Examples of subtle issues
 
 Banishing the changes listed in this section may pose significant
 problems for language evolution.
 
-`6.1` Changes in type inference and overload
+`B.1` Changes in type inference and overload
     resolution algorithms.
 
-`6.1.1` It's reasonable to assume that overloads of
+`B.1.1` It's reasonable to assume that overloads of
     the same function are generally intended to do the same thing. So,
     though undesirable, a change in overload resolution that causes a
     different overload to be selected, may be acceptable. We encourage
@@ -407,14 +408,21 @@ function reportError(text, lastSecText) {
     
 lastSec = [];
 lastSecText = "";
+appendixBase = 0;
 function checkOrdering(groups) {
     currentSec = [];
     for (j = 1; j < groups.length && groups[j]; j += 2) {        
         level = (j / 2) | 0;              
-        currentValue = Number.parseInt(groups[j]);
+        group = groups[j];
+        currentValue = Number.parseInt(group);
+        if (Number.isNaN(currentValue))
+            currentValue = appendixBase + group.charCodeAt(0) - "A".charCodeAt(0) + 1; 
+          else if (level == 0) {
+              appendixBase = currentValue;
+          }
         currentSec[level] = currentValue;        
     }
-    currentSecText = currentSec.join(".");
+    currentSecText = groups[0];
     
     if (currentSec.length > lastSec.length + 1) {
         reportError(currentSecText, lastSecText)
@@ -452,7 +460,7 @@ for (i = 0; i < sections.length; i++) {
     sec = sections[i];
     text = sec.innerText;
     
-    groups = text.match("^([0-9]+)(\.([0-9]+))?(\.([0-9]+))?(\.([0-9]+))?$");
+    groups = text.match("^([0-9ABC]+)(\.([0-9]+))?(\.([0-9]+))?(\.([0-9]+))?$");
     if (!groups) continue;
     
     correct = checkOrdering(groups);
