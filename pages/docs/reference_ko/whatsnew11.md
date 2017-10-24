@@ -133,9 +133,9 @@ fun main(args: Array<String>) {
 다 자세한 내용은 [문서](type-aliases.html)와 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/type-aliases.md)을 참고한다.
 
 
-### Bound 호출가능 참조
+### 객체에 묶인 callable 참조
 
-이제 `::` 연산자를 이용해서 특정 객체 인스턴의 메서드나 프로퍼티를 가리키는 [멤버 참조](reflection.html#function-references)를 구할 수 있다.
+이제 `::` 연산자를 이용해서 특정 객체 인스턴스의 메서드나 프로퍼티를 가리키는 [멤버 참조](reflection.html#function-references)를 구할 수 있다.
 이전 버전에서는 람다에서만 표현할 수 있었다.
 다음은 예이다:
 
@@ -484,7 +484,7 @@ fun Block.copy() = Block().also {
 }
 //sampleEnd
 
-// using 'apply' instead
+// 대신 'apply' 사용
 fun Block.copy1() = Block().apply {
     this.content = this@copy1.content
 }
@@ -553,7 +553,7 @@ fun main(args: Array<String>) {
 
 ### groupingBy()
 
-키를 이용해서 콜렙션을 그룹으로 나누고 동시에 그룹을 접을(fold) 때 이 API를 사용할 수 있다.
+키를 이용해서 콜렉션을 그룹으로 나누고 동시에 그룹을 접을(fold) 때 이 API를 사용할 수 있다.
 예를 들어, 다음과 같이 이 API를 이용해서 각 글자로 시작하는 단어의 수를 셀 수 있다:     
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
@@ -566,8 +566,8 @@ fun main(args: Array<String>) {
 //sampleEnd
     println("Counting first letters: $frequencies.")
 
-    // The alternative way that uses 'groupBy' and 'mapValues' creates an intermediate map, 
-    // while 'groupingBy' way counts on the fly.
+    // 'groupBy'와 'mapValues'를 사용하는 방법은 중간 맵을 만든다.
+    // 반면에 'groupingBy'는 처리 중에 개수를 센다.
     val groupBy = words.groupBy { it.first() }.mapValues { (_, list) -> list.size }
     println("Comparing the result with using 'groupBy': ${groupBy == frequencies}.")
 }
@@ -587,8 +587,8 @@ class ImmutablePropertyBag(map: Map<String, Any>) {
 ### Map.minus(key)
 
 `plus` 연산자는 읽기 전용 맵에 키값 쌍을 추가해서 새로운 맵을 생성하는 방법을 제공하는데, 반대 기능은 간단한 방법이 없었다.
-맵에서 키를 삭제하려면 `Map.filter()`이나 `Map.filterKeys()`와 같이 덜 직적접직인 방법을 사용해야 했다.
-이제 `minus` 연산자를 사용하면 된다. 한 개 키 삭제, 키 콜렉션 삭제, 키의 시퀀스로 삭제 키워 배열로 삭제하는 4개의 연산자를 사용할 수 있다. 
+맵에서 키를 삭제하려면 `Map.filter()`나 `Map.filterKeys()`와 같이 직접적이지 않은 방법을 사용해야 했다.
+이제는 `minus` 연산자를 사용하면 된다. 한 개 키 삭제, 키 콜렉션 삭제, 키의 시퀀스로 삭제, 키 배열로 삭제하는 4개의 연산자를 사용할 수 있다. 
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
 
@@ -677,13 +677,13 @@ fun main(args: Array<String>) {
 ### 추상 콜렉션
 
 코틀린 콜렉션 클래스를 구현할 때 추상 클래스를 기반 클래스로 사용할 수 있다.
-읽기 전용 콜렉션을 구현할 때에는 `AbstractCollection`, `AbstractList`, `AbstractSet` 그리고 `AbstractMap`를 사용하며,
-수정 가능 콜렉션은 `AbstractMutableCollection`, `AbstractMutableList`, `AbstractMutableSet`, `AbstractMutableMap`를 사용한다.
-JVM에서 이들 수정 가능한 추상 콜렉션은 JDK의 추상 콜렉션에서 대부분 기능을 상속한다.
+읽기 전용 콜렉션을 구현할 때에는 `AbstractCollection`, `AbstractList`, `AbstractSet`, `AbstractMap`을 사용하며,
+수정 가능 콜렉션은 `AbstractMutableCollection`, `AbstractMutableList`, `AbstractMutableSet`, `AbstractMutableMap`을 사용한다.
+JVM에서 이들 수정 가능한 추상 콜렉션은 JDK의 추상 콜렉션의 대부분 기능을 상속한다.
 
 ### 배열 조작 함수
 
-이제 표준 라이브러리로 배열에 대한 요소간 연산을 위한 함수 집합을 제공한다. 이 연산에는 비교(`contentEquals`와 `contentDeepEquals`),
+이제 표준 라이브러리로 배열의 요소간 연산을 위한 함수를 제공한다. 이 연산에는 비교(`contentEquals`와 `contentDeepEquals`),
 해시 코드 계산(`contentHashCode`와 `contentDeepHashCode`), 문자열로 변환(`contentToString`와 `contentDeepToString`)이 있다.
 JVM(`java.util.Arrays`에 대응하는 함수에 대한 별칭으로 동작)과 JS(코틀린 표준 라이브러리가 구현을 제공)에서 모두 지원한다.
 
@@ -704,15 +704,16 @@ fun main(args: Array<String>) {
 
 ### 자바 8 바이트코드 지원
 
-이제 코틀린을 자바 8 바이트코드 생성 옵션을 제공한다(`-jvm-target 1.8` 명령행 옵션이나 대응하는 And/메이븐/그레이들 옵션).
-현재는 이 옵션이 바이트코드의 세만틱을 변경하지 않지만(특히 인터페이스의 디폴트 메서드와 람다를 코틀린 1.0처럼 생성한다), 향후에 이를 사용하도록 만들 계획이다.
+이제 자바 8 바이트코드 생성 옵션(`-jvm-target 1.8` 명령행 옵션이나 대응하는 앤트/메이븐/그레이들 옵션)을 제공한다.
+현재는 이 옵션이 바이트코드의 세만틱을 변경하지 않지만(특히 인터페이스의 디폴트 메서드와 람다를 코틀린 1.0처럼 생성한다),
+향후에 이를 더 사용할 계획이다.
 
 
 ### 자바 8 표준 라이브러리 지원
 
-이제 자바 7과 8에 추가된 새로운 JDK API를 지원하는 표준 라이브러리 버전이 따로 존재한다. 새 API에 접근하려면 표준 `kotlin-stdlib` 대신에
+이제 자바 7과 8에 추가된 새로운 JDK API를 지원하는 표준 라이브러리 버전을 따로 제공한다. 새 API에 접근하려면 표준 `kotlin-stdlib` 대신에
 `kotlin-stdlib-jre7`와 `kotlin-stdlib-jre8` 메이븐 아티팩트를 사용하면 된다.
-이 아티팩트는 `kotlin-stdlib`를 일부 확장한 것으로 의존성 전이를 통해 `kotlin-stdlib`가 포함된다. 
+이 아티팩트는 `kotlin-stdlib`를 일부 확장한 것으로 의존성 전이로 `kotlin-stdlib`를 포함한다. 
 
 
 ### 바이트코드의 파라미터 이름
@@ -720,12 +721,12 @@ fun main(args: Array<String>) {
 이제 바이트코드의 파라미터 이름 저장을 지원한다. `-java-parameters` 명령행 옵션을 사용해서 활성화할 수 있다.
 
 
-### 상수 인라인Constant inlining
+### 상수 인라인
 
 컴파일러는 이제 `const val` 프로퍼티의 값을 상수 사용 위치에 인라인한다.
 
 
-### 수정가능한 클로저 변수 Mutable closure variables
+### 수정가능 클로저 변수
 
 람다에서 수정가능 클로저 변수를 캡처하기 위해 사용한 박스 클래스는 더 이상 volatile 필드를 갖지 않는다.
 이 변화는 성능을 향상시키지만, 매우 드물게 새로운 경쟁 조건(race condition)을 유발할 수 있다.
@@ -734,7 +735,7 @@ fun main(args: Array<String>) {
 
 ### javax.script 지원
 
-코틀린은 이제 [javax.script API](https://docs.oracle.com/javase/8/docs/api/javax/script/package-summary.html) (JSR-223)와의 통합을 지원한다.
+코틀린은 이제 [javax.script API](https://docs.oracle.com/javase/8/docs/api/javax/script/package-summary.html)(JSR-223)와의 통합을 지원한다.
 이 API를 사용하면 런타임에 코드를 평가할 수 있다:
 
 ``` kotlin
@@ -758,20 +759,20 @@ println(engine.eval("x + 2"))  // 5를 출력
 
 ### 표준 라이브러리 통합
 
-코틀린 표준 라이브러리의 더 많은 부분을 자바스크립트로 컴파일한 코드에서 사용할 수 있다.
-콜렉션(`ArrayList`, `HashMap` 등), 익셉션(`IllegalArgumentException`), 몇 가지 다른 것(`StringBuilder`, `Comparator`) 등 핵심 클래스는
+자바스크립트로 컴파일한 코드에서 코틀린 표준 라이브러리의 더 많은 부분을 사용할 수 있다.
+콜렉션(`ArrayList`, `HashMap` 등), 익셉션(`IllegalArgumentException`), 몇 가지 다른 것(`StringBuilder`, `Comparator`) 등의 핵심 클래스가
 이제 `kotlin` 패키지 아래에 정의되어 있다.
 JVM에서 이들 이름은 대응하는 JDK 클래스에 대한 타입 별칭이며 JS의 경우 코틀린 표준 라이브러리에 클래스를 구현했다.
 
 ### 더 나아진 코드 생성
 
-자바스크립트 백엔드는 이제 더욱 정적인 검사 가능한 코드를 생성하며, 이는 minifier나 최적화 linter 등의 JS 코드 처리 도구에 친화적이다.
+자바스크립트 백엔드는 이제 더욱 정적인 검사 가능한 코드를 생성하며, minifier나 최적화 linter 등의 JS 코드 처리 도구에 친화적이다.
 
 ### `external` 수식어
 
 타입에 안전한 방법으로 자바스크립트로 정의한 클래스를 코틀린에서 접근하고 싶다면,
 `external` 수식어를 사용해서 코틀린 선언을 작성할 수 있다. (코틀린 1.0에서는 `@native` 애노테이션을 사용했다.)
-JVM 타겟과 달리 JS 타겟은 클래스와 프로퍼티에 `external` 수식어를 사용하는 것을 허용한다.
+JVM 대상과 달리 JS 대상은 클래스와 프로퍼티에 `external` 수식어를 사용하는 것을 허용한다.
 예를 들어 다음은 DOM `Node` 클래스에 선언한 예를 보여준다:
 
 ``` kotlin
@@ -793,7 +794,7 @@ external 선언에 `@JsModule("<module-name>")` 애노테이션을 추가하면,
 예를 들어 CommonJS를 사용하면 `require(...)` 함수로 선언을 임포트한다.
 추가로 모듈이나 글로벌 자바스크립트 객체로 선언을 임포트하고 싶다면 `@JsNonModule` 애노테이션을 사용한다.
 
-예를 들어 다음은 JQuery를 코틀린 모듈로 임포트한 예를 보여준다:
+다음은 JQuery를 코틀린 모듈로 임포트한 예를 보여준다:
 
 ``` kotlin
 external interface JQuery {
