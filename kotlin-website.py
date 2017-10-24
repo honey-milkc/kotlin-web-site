@@ -20,6 +20,7 @@ from src.grammar import get_grammar
 from src.markdown.makrdown import jinja_aware_markdown
 from src.pages.MyFlatPages import MyFlatPages
 from src.pdf import generate_pdf
+from src.pdf_ko import generate_pdf_ko
 from src.processors.processors import process_code_blocks
 from src.search import build_search_indices
 from src.sitemap import generate_sitemap
@@ -66,7 +67,7 @@ site_data = get_site_data()
 
 
 def get_nav():
-    with open(path.join(data_folder, "_nav.yml")) as stream:
+    with open(path.join(data_folder, "_nav.yml"), encoding="UTF-8") as stream:
         return process_nav(yaml.load(stream))
 
 
@@ -99,6 +100,7 @@ def add_data_to_context():
         'data': site_data,
         'site': {
             'pdf_url': app.config['PDF_URL'],
+            'pdf_ko_url': app.config['PDF_KO_URL'],
             'forum_url': app.config['FORUM_URL'],
             'site_github_url': app.config['SITE_GITHUB_URL'],
             'data': site_data,
@@ -153,6 +155,11 @@ def books_page():
 @app.route('/docs/kotlin-docs.pdf')
 def pdf():
     return send_file(generate_pdf(pages, get_nav()['reference']))
+
+
+@app.route('/docs/kotlin-docs-ko.pdf')
+def pdf_ko():
+    return send_file(generate_pdf_ko(pages, get_nav()['reference_ko']))
 
 
 @app.route('/docs/resources.html')
