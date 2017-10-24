@@ -16,7 +16,7 @@ title: "코틀린 1.1의 새로운 점"
 
 ## 자바스크립트
 
-코틀린 1.1부터 자바스크립트 대상은 더 이상 실험단계가 아니다. 모든 언어 특징을 지원하고 프론트엔드 개발 환경과 통합을 위한
+코틀린 1.1부터 자바스크립트 대상(target)은 더 이상 실험단계가 아니다. 모든 언어 특징을 지원하고 프론트엔드 개발 환경과 통합을 위한
 많은 새 도구를 제공한다. 자세한 변경 목록은 [아래](#javascript-backend)에서 확인할 수 있다.
 
 ## 코루틴 (실험)
@@ -26,8 +26,8 @@ title: "코틀린 1.1의 새로운 점"
 이는 코루틴이 특정 프로그래밍 패러다임이나 병행 라이브러리에 묶이지 않도록 한다.
 
 코루틴은 효과적인 경량 쓰레드로 나중에 중지나 재시작할 수 있다.
-[*suspending functions*](coroutines.html#suspending-functions)를 통해 코루틴을 지원한다.
-이 함수를 호출하면 코루틴을 잠재적으로 지연할 수 있고, 새로운 코루틴을 시작하기 위해 임의의 지연 함수(예, 지연 람다)를 사용한다.
+[*서스펜딩 함수*](coroutines.html#suspending-functions)를 통해 코루틴을 지원한다.
+이 함수를 호출하면 코루틴을 잠재적으로 지연할 수 있고, 익명 지연 함수(예, 지연 람다)를 사용하면 새로운 코루틴을 시작할 수 있다.
 
 외부 라이브러리인 [kotlinx.coroutines](https://github.com/kotlin/kotlinx.coroutines)로 구현한 `async`/`await`를 보자: 
 
@@ -51,10 +51,10 @@ launch(UI) {
 ```
 
 여기서 `async { ... }`는 코루틴을 시작하고, `await()`를 사용하면 대기하는 오퍼레이션을 실행하는 동안 코루틴 실행을 지연하고,  
-대기중인 오퍼레이션이 끝날 때 (아마도 다른 쓰레드에서) 재개한다. 
+(아마도 다른 쓰레드에서) 대기중인 오퍼레이션이 끝날 때 실행을 재개한다. 
 
 표준 라이브러리는 `yield`와 `yieldAll` 함수를 사용해서 *시퀀스 지연 생성*을 지원하기 위해 코루틴을 사용한다. 
-그 시퀀스에서 시퀀스 요소를 리턴하는 코드 블럭은 각 요소를 읽어온 이후에 멈추고
+그 시퀀스에서, 시퀀스 요소를 리턴하는 코드 블럭은 각 요소를 읽어온 이후에 멈추고
 다음 요소를 요청할 때 재개한다. 다음은 예이다: 
 
 
@@ -84,10 +84,10 @@ fun main(args: Array<String>) {
 
 위 코드를 실행하고 결과를 보자. 마음껏 수정해서 실행해보자!
 
-[코루틴 문서](/docs/reference/coroutines.html)와 [튜토리얼](/docs/tutorials/coroutines-basic-jvm.html)에서
+[코루틴 문서](/docs/reference_ko/coroutines.html)와 [튜토리얼](/docs/tutorials/coroutines-basic-jvm.html)에서
 더 많은 정보를 참고할 수 있다.
 
-코루틴은 현재 **실험적인 특징*이며 코틀린 팀은 최종 1.1 버전 이후에 이 특징의 하위호환성을 지원하지 않을 수도 있다.
+코루틴은 현재 **실험적인 특징*으로, 코틀린 팀은 최종 1.1 버전 이후에 코루틴의 하위호환성을 지원하지 않을 수도 있다.
 
 
 ## 다른 언어 특징
@@ -95,7 +95,7 @@ fun main(args: Array<String>) {
 ### 타입 별칭
 
 타입 별칭을 사용하면 기존 타입을 다른 이름으로 정의할 수 있다.
-함수 타입이나 이는 콜렉션이나 같은 지네릭 타입에 매우 유용하다. 다음은 예이다.
+이는 함수 타입이나 콜렉션과 같은 지네릭 타입에 매우 유용하다. 다음은 예이다.
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
 
@@ -133,7 +133,7 @@ fun main(args: Array<String>) {
 다 자세한 내용은 [문서](type-aliases.html)와 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/type-aliases.md)을 참고한다.
 
 
-### Bound callable 레퍼런스
+### Bound 호출가능 참조
 
 이제 `::` 연산자를 이용해서 특정 객체 인스턴의 메서드나 프로퍼티를 가리키는 [멤버 참조](reflection.html#function-references)를 구할 수 있다.
 이전 버전에서는 람다에서만 표현할 수 있었다.
@@ -157,12 +157,12 @@ fun main(args: Array<String>) {
 다 자세한 내용은 [문서](reflection.html#bound-function-and-property-references-since-11)와 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/bound-callable-references.md)을 참고한다.
 
 
-### sealed와 data 클래스
+### 실드(sealed)와 데이터 클래스
 
-코틀린 1.1은 1.0 버전에 있는 sealed와 data 클래스의 일부 제약을 없앴다.
-이제 최상위 sealed 클래스의 하위클래스를 sealed class의 중첩 클래스뿐만 아니라 같은 파일에 정의할 수 있다.
-data 클래스가 다른 클래스를 상속할 수 있다.
-이를 사용하면 식 클래스의 게층을 멋지고 깔끔하게 정의할 수 있다:
+코틀린 1.1은 1.0 버전에 있는 실드(sealed)와 데이터(data) 클래스의 일부 제약을 없앴다.
+이제 최상위 실드 클래스의 하위클래스를 실드 클래스의 중첩 클래스뿐만 아니라 같은 파일에 정의할 수 있다.
+데이터 클래스가 다른 클래스를 상속할 수 있다.
+이를 사용하면 식(expression) 클래스의 계층을 멋지고 깔끔하게 정의할 수 있다:
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
 
@@ -188,14 +188,14 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-자세한 내용은 [문서](sealed-classes.html) 또는
-[sealed class](https://github.com/Kotlin/KEEP/blob/master/proposals/sealed-class-inheritance.md) KEEP 그리고
-[data class](https://github.com/Kotlin/KEEP/blob/master/proposals/data-class-inheritance.md) KEEP을 참고한다.
+자세한 내용은 [문서](sealed-classes.html),
+[실드 클래스](https://github.com/Kotlin/KEEP/blob/master/proposals/sealed-class-inheritance.md) KEEP 또는
+[데이터 클래스](https://github.com/Kotlin/KEEP/blob/master/proposals/data-class-inheritance.md) KEEP을 참고한다.
 
 
-### 람다에서의 destructuring
+### 람다에서의 분리 선언
 
-이제 람다에 인자를 전달할 때 [destructuring declaration](multi-declarations.html) 구문을 사용할 수 있다. 다음은 예이다:
+이제 람다에 인자를 전달할 때 [분리 선언](multi-declarations.html) 구문을 사용할 수 있다. 다음은 예이다:
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
 
@@ -218,7 +218,7 @@ fun main(args: Array<String>) {
 더 자세한 내용은 [문서](multi-declarations.html#destructuring-in-lambdas-since-11)와 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md)을 참고한다.
 
 
-### 비사용 파라미터를 위한 밑줄
+### 사용하지 않는 파라미터를 위한 밑줄
 
 여러 파라미터를 갖는 람다에 대해, 사용하지 않는 파라미터 자리에 이름 대신에 `_` 글자를 사용할 수 있다:   
 
@@ -235,7 +235,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-이는 또한 [destructuring declarations](multi-declarations.html)에서도 동작한다:
+이는 또한 [분리 선언](multi-declarations.html)에서도 동작한다:
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
 
@@ -258,7 +258,7 @@ fun main(args: Array<String>) {
 
 ### 숫자 리터럴에서의 밑줄
 
-자바 7에서처럼 코틀린도 이제 숫자를 그룹으로 나누기 위해 숫자 리터럴에서 밑줄을 사용할 수 있다.
+자바 7처럼 코틀린도 숫자를 그룹으로 나누기 위해 숫자 리터럴에서 밑줄을 사용할 수 있다.
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
 
@@ -282,15 +282,14 @@ fun main(args: Array<String>) {
 
 ### 프로퍼티를 위한 짧은 구문
 
-식 몸체로 정의한 getter를 가진 프로퍼티는 프로퍼티 타입을 생략할 수 있다:
-For properties with the getter defined as an expression body, the property type can now be omitted:
+프로퍼티의 getter를 식 몸체로 정의한 경우, 프로퍼티 타입을 생략할 수 있다:
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 //sampleStart
 data class Person(val name: String, val age: Int) {
-    val isAdult get() = age >= 20 // 프로퍼티 타입을 'Boolean'으로 유추
+    val isAdult get() = age >= 20 // 프로퍼티 타입을 'Boolean'으로 추론
 }
 //sampleEnd
 
@@ -301,7 +300,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-### 인라인 프로퍼티 접근자(accessor)
+### 인라인 프로퍼티 접근자
 
 프러퍼티가 backing 필드를 갖지 않으면 프로퍼티 접근자에 `inline` 수식어를 붙일 수 있다.
 이 접근자는 [인라인 함수](inline-functions.html)와 동일한 방법으로 컴파일된다.
@@ -327,9 +326,9 @@ fun main(args: Array<String>) {
 자세한 내용은 [문서](inline-functions.html#inline-properties)와 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/inline-properties.md)을 참고한다.
 
 
-### 로컬 위임 프로퍼티(Local delegated properties)
+### 로컬 위임 프로퍼티
 
-이제 로컬 변수에서 [위임 프로퍼티](delegated-properties.html) 구문을 사용할 수 있다.
+이제 로컬 변수에 [위임 프로퍼티](delegated-properties.html) 구문을 사용할 수 있다.
 한 가지 가능한 사용은 지연 평가되는 로컬 변수를 정의하는 것이다:
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
@@ -361,7 +360,7 @@ fun main(args: Array<String>) {
 
 ### 위임 프로퍼티 바인딩 인터셉션
 
-[delegated properties](delegated-properties.html)에 대해 `provideDelegate` 연산자를 사용해서 프로퍼티 바인딩에 대한 위임을 가로챌 수 있다. 
+[위임 프로퍼티](delegated-properties.html)에 대해 `provideDelegate` 연산자를 사용해서 프로퍼티 바인딩에 대한 위임을 가로챌 수 있다. 
 예를 들어 바인딩 전에 프로퍼티 이름을 검사하고 싶다면 다음과 같이 작성할 수 있다:
 
 ``` kotlin
@@ -382,13 +381,13 @@ class MyUI {
 }
 ```
 
-`MyUI` 인스턴ㅅ를 생성하는 동안 각 프로퍼티에 대해 `provideDelegate` 메서드를 호출하고,
+`MyUI` 인스턴스를 생성하는 동안 각 프로퍼티에 대해 `provideDelegate` 메서드를 호출하고,
 바로 필요한 검증을 수행할 수 있다.
 
 자세한 내용은 [문서](delegated-properties.html#providing-a-delegate-since-11)를 참고한다.
 
 
-### 지네릭 열거 값 접근
+### 지네릭 enum 값 접근
 
 이제 지네릭 방식으로 enum 클래스의 값을 차례로 열거할 수 있다.
 
@@ -409,10 +408,10 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-### DSL에서 implicit receivers를 위한 범위 제어 Scope control for implicit receivers in DSLs
+### DSL에서 implicit 리시버를 위한 범위 제어
 
-[`@DslMarker`](/api/latest/jvm/stdlib/kotlin/-dsl-marker/index.html) 애노테이션은 DSL 컨텍스트의 바깥 범위에서 리시버의 사용을 제한한다
-canonical한 [HTML 빌더 예제](type-safe-builders.html)를 보자:
+[`@DslMarker`](/api/latest/jvm/stdlib/kotlin/-dsl-marker/index.html) 애노테이션은 DSL 컨텍스트의 바깥 범위에서 리시버 사용을 제한한다
+기준이 되는 [HTML 빌더 예제](type-safe-builders.html)를 보자:
 
 ``` kotlin
 table {
@@ -422,8 +421,8 @@ table {
 }
 ```
 
-코틀린 1.0에서 `td`에 전달한 람다에 있는 코드는 세 개의 implicit 리시버에 접근한다:
-`table`에 전달된 것이고, `tr`에 전달된 것, `td`에 전달된 것, 이렇게 세 개이다. 이는 컨텍스트에서 의미없는 메서드를 호출할 수 있게 허용한다.
+코틀린 1.0에서 `td`에 전달한 람다에 있는 코드는 `table`에 전달된 것, `tr`에 전달된 것, `td`에 전달된 것
+이렇게 세 개의 implicit 리시버에 접근한다. 이는 컨텍스트에서 의미없는 메서드를 호출할 수 있게 허용한다.
 예를 들어 `td` 안에서 `tr`을 호출해서 `<td>`에 `<tr>` 태그를 넣는 것이 가능하다.
 
 코틀린 1.1에서는 `td`의 implicit 리서버에 정의된 메서드는 오직 `td`에 전달된 람다에서만 접근할 수 있게 제한할 수 있다.
@@ -434,7 +433,7 @@ table {
 
 ### `rem` 연산자
 
-`mod` 연산자를 디프리케이트했고 대신 `rem`을 사용한다. [이슈](https://youtrack.jetbrains.com/issue/KT-14650)에 바꾼 동기가 있다.
+`mod` 연산자를 디프리케이트했고 대신 `rem`을 사용한다. 이렇게 바꾼 동기는 [이슈](https://youtrack.jetbrains.com/issue/KT-14650)에서 확인할 수 있다.
 
 ## 표준 라이브러리
 
@@ -448,13 +447,14 @@ val port = System.getenv("PORT")?.toIntOrNull() ?: 80
 ```
 
 또한 `Int.toString()`, `String.toInt()`, `String.toIntOrNull()`과 같은 정수 변환 함수도
-`radix` 파라미터를 가진 오버로드를 갖는다. 이 함수는 변환의 진수(2에서 36)를 지정할 수 있도록 한다.
+`radix` 파라미터를 가진 오버로딩한 함수를 갖는다. 이 함수는 변환의 진수(2에서 36)를 지정할 수 있다.
 
 ### onEach()
 
-`onEach`는 작지만 유용한 콜렉션과 시퀀스의 확장 함수로, 오퍼레이션 체인에서 콜렉션/시퀀스의 각 요소에 대해 어떤 액션-아마도 부수효과를 가진-을 수행할 수 있게 한다. 
-Iterable에 대해 이는 `forEach`처럼 동작하지만, 이어지는 Iterable 인스턴스를 리턴한다.
-시퀀스에서 이는 래핑한 시퀀스를 리턴하며, 이는 요소를 반복할 때 주어진 액션을 지연시켜 적용한다.
+`onEach`는 콜렉션과 시퀀스의 확장 함수로 작지만 유용하다., 
+이 함수는 오퍼레이션 체인에서 콜렉션/시퀀스의 각 요소에 대해 어떤 액션-아마도 부수효과를 가진-을 수행할 수 있게 한다. 
+Iterable에 대해 이 확장함수는 `forEach`처럼 동작하지만, 이어지는 Iterable 인스턴스를 리턴한다.
+시퀀스의 경우 이 확장함수는 래핑한 시퀀스를 리턴하며, 요소를 반복할 때 주어진 액션을 지연시켜 적용한다.
 
 ``` kotlin
 inputDir.walk()
@@ -467,9 +467,9 @@ inputDir.walk()
 
 모든 리시버에 적용할 수 있는 범용 목적의 확장 함수 세 개가 있다.
 
-`also`는 `apply`와 유사하다: 리서버를 받고, 리시버에 어떤 행위를 하고, 리시버를 리턴한다.
-차이는 `apply` 안의 블록에서 리시버를 `this`로 접근 가능한데 반해 `also`의 블록에서는 `it`으로 접근 가능하다는 것이다(그리고 원한다면 다른 이름을 줄 수도 있다).
-이는 바깥 범위의 `this`를 감추고 싶지 않을 때 쓸모가 있다:
+`also`는 `apply`와 유사하다. 리서버를 받고, 리시버에 어떤 행위를 하고, 리시버를 리턴한다.
+차이는 `apply` 안의 블록에서는 리시버를 `this`로 접근 가능한데 반해 `also`의 블록에서는 `it`으로 접근 가능하다는 것이다(원한다면 다른 이름을 줄 수도 있다).
+이는 바깥 범위의 `this`를 감추고 싶지 않을 때 쓸모 있다:
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
 
@@ -498,8 +498,8 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-`takeIf`는 단일 값에 대해서 `filter`와 유사하다. 리시버가 조건을 충족하는 검사하고 충족하면 리시버를 리턴하고 그렇지 않으면 `null`을 리턴한다
-엘비스-연산자 및 이른 리턴과 조합하면 다음과 같은 다음과 같은 구성이 가능하다:
+`takeIf`는 단일 값에 대해서 `filter`와 유사하다. 리시버가 조건을 충족하는지 검사하고 충족하면 리시버를 리턴하고 그렇지 않으면 `null`을 리턴한다
+엘비스-연산자, 이른 리턴과 조합하면 다음과 같은 구성이 가능하다:
 
 ``` kotlin
 val outDirFile = File(outputDir.path).takeIf { it.exists() } ?: return false

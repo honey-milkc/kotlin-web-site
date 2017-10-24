@@ -233,17 +233,17 @@ reference:
 # ====================
 reference_ko:
   content:
-    - title: Overview
-      description: Overview of Kotlin
+    - title: 개요
+      description: 코틀린 개요
       content:
         - url: /docs/reference_ko/server-overview.html
-          title: Kotlin for Server Side
+          title: 서버 사이드를 위한 코틀린
         - url: /docs/reference_ko/android-overview.html
-          title: Kotlin for Android
+          title: 안드로이드를 위한 코틀린
         - url: /docs/reference_ko/js-overview.html
-          title: Kotlin for JavaScript
+          title: 자바스크립트를 위한 코틀린
         - url: /docs/reference_ko/whatsnew11.html
-          title: What's New in 1.1
+          title: 코틀린 1.1의 새로운 점
 
     - title: Getting Started
       description: Get familiar with the basics of Kotlin including operations, coding conventions and idioms.
