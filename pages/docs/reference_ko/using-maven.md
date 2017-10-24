@@ -167,8 +167,8 @@ JDK 7이나 JDK 8을 `kotlin-stdlib-jre7` 또는 `kotlin-stdlib-jre8`을 사용�
 
 ## Jar file
 
-To create a small Jar file containing just the code from your module, include the following under `build->plugins` in your Maven pom.xml file,
-where `main.class` is defined as a property and points to the main Kotlin or Java class:
+모듈의 코드만 포함하는 작은 Jar 파일을 만들려면 메이븐 pom.xml 파일의 `build->plugins`에 다음 설정을 포함한다.
+`main.class` 프로퍼티는 코틀린이나 자바 메인 클래스를 가리킨다.
 
 ``` xml
 <plugin>
@@ -186,10 +186,10 @@ where `main.class` is defined as a property and points to the main Kotlin or Jav
 </plugin>
 ```
 
-## Self-contained Jar file
+## 독립(Self-contained) Jar 파일
 
-To create a self-contained Jar file containing the code from your module along with dependencies, include the following under `build->plugins` in your Maven pom.xml file,
-where `main.class` is defined as a property and points to the main Kotlin or Java class:
+모듈의 코드와 의존을 포함한 독립 Jar 파일을 만드려면 메이븐 pom.xml 파일의 `build->plugins`에 다음 설정을 포함한다.
+`main.class` 프로퍼티는 코틀린이나 자바 메인 클래스를 가리킨다.
 
 ``` xml
 <plugin>
@@ -216,15 +216,15 @@ where `main.class` is defined as a property and points to the main Kotlin or Jav
 </plugin>
 ```
 
-This self-contained jar file can be passed directly to a JRE to run your application:
+이 독립 jar 파일을 JRE에 바로 전달하면 어플맄이션을 실행할 수 있다:
 
 ``` bash
 java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
 
-## Targeting JavaScript
+## 자바스크립트 대상
 
-In order to compile JavaScript code, you need to use the `js` and `test-js` goals for the `compile` execution:
+자바스크립트 코드를 컴파일하려면 `compile` 실행의 goal로 `js`와 `test-js`를 사용해야 한다:
 
 ``` xml
 <plugin>
@@ -250,7 +250,7 @@ In order to compile JavaScript code, you need to use the `js` and `test-js` goal
 </plugin>
 ```
 
-You also need to change the standard library dependency:
+또한 표준 라이브러리 의존을 변경해야 한다:
 
 ``` xml
 <groupId>org.jetbrains.kotlin</groupId>
@@ -258,15 +258,15 @@ You also need to change the standard library dependency:
 <version>${kotlin.version}</version>
 ```
 
-For unit testing support, you also need to add a dependency on the `kotlin-test-js` artifact.
+단위 테스팅을 지원하려면 `kotlin-test-js`를 의존으로 추가한다.
 
-See the [Getting Started with Kotlin and JavaScript with Maven](/docs/tutorials/javascript/getting-started-maven/getting-started-with-maven.html)
-tutorial for more information.
+더 많은 정보는 
+[Getting Started with Kotlin and JavaScript with Maven](/docs/tutorials/javascript/getting-started-maven/getting-started-with-maven.html)
+튜토리얼을 참고한다.
 
-## Specifying compiler options
+## 컴파일러 옵션 지정
 
-Additional options for the compiler can be specified as tags under the `<configuration>` element of the
-Maven plugin node:
+컴파일러를 위한 추가 옵션을 메이븐 플러그인 노트의 `<configuration>` 요소에 태그로 지정할 수 있다:
 
 ``` xml
 <plugin>
@@ -275,12 +275,12 @@ Maven plugin node:
     <version>${kotlin.version}</version>
     <executions>...</executions>
     <configuration>
-        <nowarn>true</nowarn>  <!-- Disable warnings -->
+        <nowarn>true</nowarn>  <!-- 경고 비활성화 -->
     </configuration>
 </plugin>
 ```
 
-Many of the options can also be configured through properties:
+프로퍼티를 통해 다양한 옵션을 설정할 수 있다:
 
 ``` xml
 <project ...>
@@ -290,51 +290,50 @@ Many of the options can also be configured through properties:
 </project>
 ```
 
-The following attributes are supported:
+다음 속성을 지원한다:
 
 ### Attributes common for JVM and JS
 
-| Name | Property name | Description | Possible values |Default value |
+| 이름 | 프로퍼티 이름 | 설명 | 가능한 값 |기본 값 |
 |------|---------------|-------------|-----------------|--------------|
-| nowarn | | Generate no warnings | true, false | false |
-| languageVersion | kotlin.compiler.languageVersion | Provide source compatibility with specified language version | "1.0", "1.1" | "1.1"
-| apiVersion | kotlin.compiler.apiVersion | Allow to use declarations only from the specified version of bundled libraries | "1.0", "1.1" | "1.1"
-| sourceDirs | | The directories containing the source files to compile | | The project source roots
-| compilerPlugins | | Enabled [compiler plugins](compiler-plugins.html)  | | []
-| pluginOptions | | Options for compiler plugins  | | []
-| args | | Additional compiler arguments | | []
+| nowarn | | 경고를 생성하지 않음 | true, false | false |
+| languageVersion | kotlin.compiler.languageVersion | 소스 호환성을 지정한 언어 버전으로 지정함 | "1.0", "1.1" | "1.1"
+| apiVersion | kotlin.compiler.apiVersion | 지정한 버전의 번들 라이브러리에서만 선언 사용을 허용함 | "1.0", "1.1" | "1.1"
+| sourceDirs | | 컴파일할 소스 파일을 포함한 폴더목록 | | 프로젝트 소스 루트
+| compilerPlugins | | 활성화함 [컴파일러 플러그인](compiler-plugins.html)  | | []
+| pluginOptions | | 컴파일러 플러그인을 위한 옵션 | | []
+| args | | 추가 컴파일러 인자 | | []
 
 
-### Attributes specific for JVM
+### JVM 전용 속성
 
-| Name | Property name | Description | Possible values |Default value |
+| 이름 | 프로퍼티 이름 | 설명 | 가능한 값 |기본 값 |
 |------|---------------|-------------|-----------------|--------------|
-| jvmTarget | kotlin.compiler.jvmTarget | Target version of the generated JVM bytecode | "1.6", "1.8" | "1.6" |
-| jdkHome | kotlin.compiler.jdkHome |  	Path to JDK home directory to include into classpath, if differs from default JAVA_HOME | | |
+| jvmTarget | kotlin.compiler.jvmTarget | 생성할 JVM 바이트코드의 대상 버전 | "1.6", "1.8" | "1.6" |
+| jdkHome | kotlin.compiler.jdkHome |  	클래스패스로 포함할 JDK 홈 디렉톨 경로(기본 JAVA_HOME과 다른 경우) | | |
 
-### Attributes specific for JS
+### JS 전용 속성
 
-| Name | Property name | Description | Possible values |Default value |
+| 이름 | 프로퍼티 이름 | 설명 | 가능한 값 |기본 값 |
 |------|---------------|-------------|-----------------|--------------|
-| outputFile | | Output file path | | |
-| metaInfo |  | Generate .meta.js and .kjsm files with metadata. Use to create a library | true, false | true
-| sourceMap | | Generate source map | true, false | false
-| sourceMapEmbedSources | | Embed source files into source map | "never", "always", "inlining" | "inlining" |
-| sourceMapPrefix | | Prefix for paths in a source map |  |  |
-| moduleKind | | Kind of a module generated by compiler | "plain", "amd", "commonjs", "umd" | "plain"
+| outputFile | | 출력 파일 경로 | | |
+| metaInfo |  | 메타데이털르 가진 .meta.js와 .kjsm 파일 생성 여부. 라이브러리를 만들 때 사용함 | true, false | true
+| sourceMap | | 소스맵 생성 여부 | true, false | false
+| sourceMapEmbedSources | | 소스 파일을 소스맵에 삽입할지 여부 | "never", "always", "inlining" | "inlining" |
+| sourceMapPrefix | | 소스맵에 경로에 대한 접두사 |  |  |
+| moduleKind | | 컴파일러가 생성할 모듈의 종류 | "plain", "amd", "commonjs", "umd" | "plain"
 
-## Generating documentation
+## 문서 생성
 
-The standard JavaDoc generation plugin (`maven-javadoc-plugin`) does not support Kotlin code.
-To generate documentation for Kotlin projects, use [Dokka](https://github.com/Kotlin/dokka);
-please refer to the [Dokka README](https://github.com/Kotlin/dokka/blob/master/README.md#using-the-maven-plugin)
-for configuration instructions. Dokka supports mixed-language projects and can generate output in multiple
-formats, including standard JavaDoc.
+표준 JavaDoc 생성 플러그인(`maven-javadoc-plugin`)은 코틀린 코드를 지원하지 않는다.
+코틀린 프로젝트를 위한 문서를 생성하려면 [Dokka](https://github.com/Kotlin/dokka)를 사용한다.
+설정 명령어는 [Dokka README](https://github.com/Kotlin/dokka/blob/master/README.md#using-the-gradle-plugin) 문서를 참고한다.
+Dokka는 언어를 함께 사용하는 프로젝트를 지원하며 표준 JavaDoc을 포함한 다양한 형식으로 출력할 수 있다.
 
 ## OSGi
 
-For OSGi support see the [Kotlin OSGi page](kotlin-osgi.html).
+OSGi 지원은 [코틀린 OSGi 페이지](kotlin-osgi.html)를 참고한다.
 
-## Examples
+## 예제
 
-An example Maven project can be [downloaded directly from the GitHub repository](https://github.com/JetBrains/kotlin-examples/archive/master/maven.zip)
+메이븐 예제 프로젝트는 [깃헙 리포지토리에서 바로 다운로드](https://github.com/JetBrains/kotlin-examples/archive/master/maven.zip)받을 수 있다.

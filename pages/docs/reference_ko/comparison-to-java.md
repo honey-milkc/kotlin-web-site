@@ -2,46 +2,46 @@
 type: doc
 layout: reference
 category: FAQ
-title: "Comparison to Java"
+title: "자바와 비교"
 ---
 
-# Comparison to Java Programming Language
+# 자바 프로그래밍 언어와 비교
 
-## Some Java issues addressed in Kotlin
+## 코틀린에서 해결한 몇 가지 자바 이슈
 
-Kotlin fixes a series of issues that Java suffers from:
+코틀린은 자바에서 겪는 몇 가지 이슈를 고쳤다:
 
-* Null references are [controlled by the type system](null-safety.html).
-* [No raw types](java-interop.html)
-* Arrays in Kotlin are [invariant](basic-types.html#arrays)
-* Kotlin has proper [function types](lambdas.html#function-types), as opposed to Java's SAM-conversions
-* [Use-site variance](generics.html#use-site-variance-type-projections) without wildcards
-* Kotlin does not have checked [exceptions](exceptions.html)
+* 널 레퍼런스는 [타입 시스템으로 제어](null-safety.html)함
+* [raw 타입 없음](java-interop.html)
+* 코틀린 배열은 [공변](basic-types.html#arrays)임
+* 자바의 SAM 변환과 달리 코틀린에는 제대로 된 [함수 타입](lambdas.html#function-types)이 있음
+* 와일드카드 없은 [사용 위치 가변성](generics.html#use-site-variance-type-projections) without wildcards
+* 코틀린에는 checked [익셉션](exceptions.html)이 없음
 
-## What Java has that Kotlin does not
+## 자바에는 있는데 코틀린에는 없는 것
 
-* [Checked exceptions](exceptions.html)
-* [Primitive types](basic-types.html) that are not classes
-* [Static members](classes.html)
-* [Non-private fields](properties.html)
-* [Wildcard-types](generics.html)
+* [Checked 익셉션](exceptions.html)
+* 클래스가 아닌 [기본 타입](basic-types.html)
+* [정적 멤버](classes.html)
+* [private 아닌 필드](properties.html)
+* [와일드카드 타입](generics.html)
 
-## What Kotlin has that Java does not
+## 자바에는 없는데 코틀린에 있는 것
 
-* [Lambda expressions](lambdas.html) + [Inline functions](inline-functions.html) = performant custom control structures
-* [Extension functions](extensions.html)
-* [Null-safety](null-safety.html)
-* [Smart casts](typecasts.html)
-* [String templates](basic-types.html#strings)
-* [Properties](properties.html)
-* [Primary constructors](classes.html)
-* [First-class delegation](delegation.html)
-* [Type inference for variable and property types](basic-types.html)
-* [Singletons](object-declarations.html)
-* [Declaration-site variance & Type projections](generics.html)
-* [Range expressions](ranges.html)
-* [Operator overloading](operator-overloading.html)
-* [Companion objects](classes.html#companion-objects)
-* [Data classes](data-classes.html)
-* [Separate interfaces for read-only and mutable collections](collections.html)
-* [Coroutines](coroutines.html)
+* [람다 식](lambdas.html) + [인라인 함수](inline-functions.html) = 더 효율적인 커스텀 제어 구조
+* [확장 함수](extensions.html)
+* [Null-안정성](null-safety.html)
+* [스마트 변환](typecasts.html)
+* [문자열 템플릿](basic-types.html#strings)
+* [프로퍼티](properties.html)
+* [주요 생성자](classes.html)
+* [1급 위임](delegation.html)
+* [변수와 프로퍼티 타입에 대한 타입 추론](basic-types.html)
+* [싱글톤](object-declarations.html)
+* [선언 위치 가변성과 타입 프로젝션](generics.html)
+* [범위 식](ranges.html)
+* [연산자 오버로딩](operator-overloading.html)
+* [컴페니언 오브젝트](classes.html#companion-objects)
+* [데이터 클래스](data-classes.html)
+* [읽기 전용과 변경 가능 콜렉션의 인터페이스 분리](collections.html)
+* [코루](coroutines.html)

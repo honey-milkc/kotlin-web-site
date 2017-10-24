@@ -1,5 +1,5 @@
 ---
-layout: reference_ko
+layout: reference
 title: "Reference"
 ---
 
@@ -18,5 +18,5 @@ If you are not sure how to solve a Koan, or you're looking for a more elegant so
 
 
 ### Browse offline
-You can download the entire reference documentation as a single [PDF file]({{ site.pdf_ko_url }}).
+You can download the entire reference documentation as a single [PDF file]({{ site.pdf_url }}).
 

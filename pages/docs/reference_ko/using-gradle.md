@@ -270,13 +270,13 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 
 ### JVM과 JS의 공통 속성
 
-| Name | Description | Possible values |Default value |
+| 이름 | 설명 | 가능한 값 |기본 값|
 |------|-------------|-----------------|--------------|
-| `apiVersion` | Allow to use declarations only from the specified version of bundled libraries | "1.0", "1.1" | "1.1" |
-| `languageVersion` | Provide source compatibility with specified language version | "1.0", "1.1" | "1.1" |
-| `suppressWarnings` | Generate no warnings |  | false |
-| `verbose` | Enable verbose logging output |  | false |
-| `freeCompilerArgs` | A list of additional compiler arguments |  | [] |
+| `apiVersion` | 지정한 버전의 번들 라이브러리에서만 선언 사용을 허용함 | "1.0", "1.1" | "1.1" |
+| `languageVersion` | 소스 호환성을 지정한 언어 버전으로 지정함 | "1.0", "1.1" | "1.1" |
+| `suppressWarnings` | 경고를 생성하지 않음 |  | false |
+| `verbose` | Enable verbose 로깅 출력을 활성화 |  | false |
+| `freeCompilerArgs` | 추가 컴파일러 인자 목록 |  | [] |
 
 ### JVM 전용 속성
 
@@ -310,7 +310,7 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 
 코틀린 프로젝트의 문서를 생성하려면 [Dokka](https://github.com/Kotlin/dokka)를 사용한다.
 설정 명령어는 [Dokka README](https://github.com/Kotlin/dokka/blob/master/README.md#using-the-gradle-plugin) 문서를 참고한다.
- Dokka는 언어를 함께 사용하는 프로젝트를 지원하며 표준 JavaDoc을 포함한 다양한 형식으로 출력할 수 있다.
+Dokka는 언어를 함께 사용하는 프로젝트를 지원하며 표준 JavaDoc을 포함한 다양한 형식으로 출력할 수 있다.
 
 ## OSGi
 

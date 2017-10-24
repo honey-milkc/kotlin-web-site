@@ -1,24 +1,26 @@
 ---
 type: doc
 layout: reference
-title: "Compiler Plugins"
+title: "컴파일러 플러그인"
 ---
 
-# Compiler Plugins
+# 컴파일러 플러그인
 
-## All-open compiler plugin
+## all-open 컴파일러 플러그인
 
-Kotlin has classes and their members `final` by default, which makes it inconvenient to use frameworks and libraries such as Spring AOP that require classes to be `open`. 
-The `all-open` compiler plugin adapts Kotlin to the requirements of those frameworks and makes classes annotated with a specific annotation and their members open without the explicit `open` keyword.
-For instance, when you use Spring, you don't need all the classes to be open, but only classes annotated with specific annotations like `@Configuration` or `@Service`.
-The `all-open` plugin allows to specify these annotations.
+코틀린은 기본적으로 클래스와 멤버가 `final`이다. 이는 `open`인 클래스를 요구하는 스프링 AOP와 같은 프레임워크나 라이브러리 사용을 불편하게 만든다.
+`all-open` 컴파일러 플러그인은 그런 프레임워크의 요구에 코틀린을 맞추고
+`open` 키워드를 직접 사용하지 않아도 클래스에 특정 애노테이션을 붙이고 멤버를 open으로 만든다.    
+예를 들어 스프링을 사용할 때 모든 클래스를 open으로 만들 필요가 없다.
+단지 클래스에 `@Configuration`나 `@Service`와 같은 특정 애노테이션만 붙이면 된다.
+`all-open` 플러그인은 이 애노테이션을 지정하는 것을 허용한다.
 
-We provide all-open plugin support both for Gradle and Maven, as well as the IDE integration.
-For Spring you can use the `kotlin-spring` compiler plugin ([see below](compiler-plugins.html#kotlin-spring-compiler-plugin)).
+그레이들과 메이븐 또한 IDE를 위한 all-open 플러그인 지원을 제공한다.
+스프링의 경우 `kotlin-spring` 컴파일러 플러그인을 사용한다([아래 참고](compiler-plugins.html#kotlin-spring-compiler-plugin)).
 
-### How to use all-open plugin
+### all-open 플러그인을 사용하는 방법
 
-Add the plugin in `build.gradle`: 
+`build.gradle`에 플러그인을 추가한다: 
 
 ``` groovy
 buildscript {
@@ -29,7 +31,8 @@ buildscript {
 
 apply plugin: "kotlin-allopen"
 ```
-Or, if you use the Gradle plugins DSL, add it to the `plugins` block:
+
+또는 그레이들 플러그인 DSL을 사용한다면 `plugins` 블록에 all-open을 추가한다:
 
 ```groovy
 plugins {
@@ -37,7 +40,7 @@ plugins {
 }
 ```
 
-Then specify the annotations that will make the class open:
+그리고 클래스를 open으로 만들 애노테이션을 지정한다:
 
 ```groovy
 allOpen {
@@ -45,21 +48,22 @@ allOpen {
 }
 ```
 
-If the class (or any of its superclasses) is annotated with `com.my.Annotation`, the class itself and all its members will become open. 
+클래스(또는 그 상위타입)에 `com.my.Annotation`이 붙이면, 클래스 그 자체와 클래스의 모든 멤버가 open이 된다.
 
-It also works with meta-annotations:
+또한 메타-애노테이션에도 동작한다:
 
 ``` kotlin
 @com.my.Annotation
 annotation class MyFrameworkAnnotation
 
 @MyFrameworkAnnotation
-class MyClass // will be all-open
+class MyClass // 모드 open이 된다
 ```
 
-`MyFrameworkAnnotation` is also the annotation that makes the class open, because it's annotated with `com.my.Annotation`. 
+`MyFrameworkAnnotation`에 `com.my.Annotation`을 붙였으므로
+이 애노테이션 또한 클래스를 open으로 만든다. 
 
-Here's how to use all-open with Maven:
+다음은 메이븐에서 all-open을 사용하는 방법이다:
 
 ``` xml
 <plugin>
@@ -69,12 +73,12 @@ Here's how to use all-open with Maven:
 
     <configuration>
         <compilerPlugins>
-            <!-- Or "spring" for the Spring support -->
+            <!-- 또는 스프링 지원은 "spring" -->
             <plugin>all-open</plugin>
         </compilerPlugins>
 
         <pluginOptions>
-            <!-- Each annotation is placed on its own line -->
+            <!-- 각 줄에 애노테이션이 위치 -->
             <option>all-open:annotation=com.my.Annotation</option>
             <option>all-open:annotation=com.their.AnotherAnnotation</option>
         </pluginOptions>
@@ -91,9 +95,10 @@ Here's how to use all-open with Maven:
 ```
 
 
-### Kotlin-spring compiler plugin
- 
-You don't need to specify Spring annotations by hand, you can use the `kotlin-spring` plugin, which automatically configures the all-open plugin according to the requirements of Spring:
+### kotlin-spring 컴파일러 플러그인 Kotlin-spring compiler plugin
+
+스프링 애노테이션을 손으로 지정할 필요는 없다.
+`kotlin-spring` 플러그인을 사용하면 자동으로 스프링의 요구에 맞게 all-open 플러그인을 설정한다:
 
 ``` groovy
 buildscript {
@@ -105,7 +110,7 @@ buildscript {
 apply plugin: "kotlin-spring"
 ```
 
-Or using the Gradle plugins DSL:
+또는 그레이들 플러그인 DSL을 사용한다:
 
 ```groovy
 plugins {
@@ -113,27 +118,36 @@ plugins {
 }
 ```
 
-The Maven example is similar to the one above.
+메이븐 예제는 위와 유사하다.
 
-The plugin specifies the following annotations: 
-[`@Component`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html), [`@Async`](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/Async.html), [`@Transactional`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html), [`@Cacheable`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/cache/annotation/Cacheable.html). Thanks to meta-annotations support classes annotated with `@Configuration`, `@Controller`, `@RestController`, `@Service` or `@Repository` are automatically opened since these annotations are meta-annotated with `@Component`.
+플러그인은 다음 애노테이션을 지정한다. 
+[`@Component`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html), 
+[`@Async`](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/Async.html), 
+[`@Transactional`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html), 
+[`@Cacheable`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/cache/annotation/Cacheable.html). 
+메타 애노테이션 지원 덕에 `@Configuration`, `@Controller`, `@RestController`, `@Service`, `@Repository`를 
+붙인 클래스는 자동으로 open이 된다. 왜냐면 이들 애노테이션이 `@Component`를 가진 메타 애노테이션이기 때문이다.
+
+물론, 한 프로젝트에서 `kotlin-allopen`과 `kotlin-spring`를 사용할 수 있다.
+[start.spring.io](http://start.spring.io/#!language=kotlin)를 사용하면
+`kotlin-spring` 플러그인이 기본으로 활성화된다.
+
+
+### no-arg 컴파일러 플러그인
+
+no-arg 플러그인은 지정한 애노테이션을 가진 클래스에 인자 없는 생성자를 추가로 생성한다.
+생성한 생성자는 조작했기(synthetic) 때문에 자바나 코틀린에서 직접 호출할 수 없지만
+리플레션으로 호출할 수는 있다.
+코틀린이나 자바 관점에서 `data` 클래스는 인자 없는 생성자가 없지만 
+JPA에서 `data` 클래스의 인스턴스를 생성할 수 있다([아래의](compiler-plugins.html#kotlin-jpa-compiler-plugin)
+`kotlin-jpa` 설명을 보자).
  
-Of course, you can use both `kotlin-allopen` and `kotlin-spring` in the same project.
-Note that if you use [start.spring.io](http://start.spring.io/#!language=kotlin) the `kotlin-spring` plugin will be enabled by default.
+### no-arg 플러그인을 사용하는 방법
 
+사용법은 all-open과 매우 유사하다.
+플러그인을 추가하고 인자 없는 생성자를 생성하고 싶은 애노테이션 목록을 지정한다.
 
-## No-arg compiler plugin
-
-The no-arg compiler plugin generates an additional zero-argument constructor for classes with a specific annotation. 
-The generated constructor is synthetic so it can’t be directly called from Java or Kotlin, but it can be called using reflection. 
-This allows the Java Persistence API (JPA) to instantiate the `data` class although it doesn't have the no-arg constructor from Kotlin or Java point of view (see the description of `kotlin-jpa` plugin [below](compiler-plugins.html#kotlin-jpa-compiler-plugin)).
- 
-### How to use no-arg plugin
-
-The usage is pretty similar to all-open.
-You add the plugin and specify the list of annotations that must lead to generating a no-arg constructor for the annotated classes.
-
-How to use no-arg in Gradle:
+다음은 그레이들에서의 no-arg 사용법이다. 
 
 ``` groovy
 buildscript {
@@ -145,7 +159,7 @@ buildscript {
 apply plugin: "kotlin-noarg"
 ```
 
-Or using the Gradle plugins DSL:
+또는 그레이들 플러그인 DSL을 사용한다:
 
 ```groovy
 plugins {
@@ -153,7 +167,7 @@ plugins {
 }
 ```
 
-Then specify the annotation types:
+인자 없는 생성자를 생성할 애노테이션 타입을 지정한다:
 
 ```groovy
 noArg {
@@ -161,7 +175,11 @@ noArg {
 }
 ```
 
-Enable `invokeInitializers` option if you want the plugin to run the initialization logic from the synthetic constructor. Starting from Kotlin 1.1.3-2, it is disabled by default because of [`KT-18667`](https://youtrack.jetbrains.com/issue/KT-18667) and [`KT-18668`](https://youtrack.jetbrains.com/issue/KT-18668) which will be addressed in the future:
+플러그인이 생성하는 인자 없는 생성자가 초기화 로직을 수행하도록 하려면 `invokeInitializers` 옵션을 활성화한다.
+코틀린 1.1.3-2부터 앞으로 해결할
+[`KT-18667`](https://youtrack.jetbrains.com/issue/KT-18667)와 
+[`KT-18668`](https://youtrack.jetbrains.com/issue/KT-18668) 때문에
+기본으로 비활성화되었다:
 
 ```groovy
 noArg {
@@ -169,7 +187,7 @@ noArg {
 }
 ```
 
-How to use no-arg in Maven:
+다음은 메이븐에서의 no-arg 사용법이다:
 
 ``` xml
 <plugin>
@@ -200,13 +218,13 @@ How to use no-arg in Maven:
 </plugin>
 ```
 
-### Kotlin-jpa compiler plugin
+### kotlin-jpa 컴파일러 플러그인
 
-The plugin specifies 
-[`@Entity`](http://docs.oracle.com/javaee/7/api/javax/persistence/Entity.html) 
-and [`@Embeddable`](http://docs.oracle.com/javaee/7/api/javax/persistence/Embeddable.html) 
-annotations as markers that no-arg constructor should be generated for a class.
-That's how you add the plugin in Gradle: 
+이 플러그인은 
+[`@Entity`](http://docs.oracle.com/javaee/7/api/javax/persistence/Entity.html)와 
+[`@Embeddable`](http://docs.oracle.com/javaee/7/api/javax/persistence/Embeddable.html)을
+클래스에 대해 인자없는 생성자를 생성해야 할 마커로 사용한다.
+그레이들에서 플러그인을 추가하는 방법은 다음과 같다: 
 
 ``` groovy
 buildscript {
@@ -218,7 +236,7 @@ buildscript {
 apply plugin: "kotlin-jpa"
 ```
 
-Or using the Gradle plugins DSL:
+또는 그레이들 플러그인 DSL을 사용해도 된다:
 
 ```groovy
 plugins {
@@ -226,4 +244,4 @@ plugins {
 }
 ```
 
-The Maven example is similar to the one above.
+메이븐 예제는 위 설정과 유사하다.
