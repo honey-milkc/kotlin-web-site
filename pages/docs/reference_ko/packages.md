@@ -48,7 +48,7 @@ class Goo {}
 
 ## 임포트
 
-디폴트 임포트에 추가로 각 파일은 자신만의 import 디렉토리를 포함할 수 있다.
+디폴트 임포트에 추가로 각 파일은 자신만의 import 디렉티브를 포함할 수 있다.
 import 문법은 [문법](grammar.html#import)에서 설명한다.
 
 한 개 이름을 임포트하는 예:
@@ -63,7 +63,7 @@ import foo.Bar // 완전한 이름이 아닌 Bar로 접근 가능
 import foo.* // 'foo'의 모든 것에 접근 가능
 ```
 
-이름 충돌이 발생하면, *as*{: .keyword } 키워드를 사용해서 충돌하는 대상에 다른 이름을 부여해서 모호함을 없앨 수 있다:
+이름 충돌이 발생하면, *as*{: .keyword } 키워드로 충돌하는 대상에 다른 이름을 부여해서 모호함을 없앨 수 있다:
 
 ``` kotlin
 import foo.Bar // Bar로 접근 가능
@@ -81,4 +81,4 @@ import bar.Bar as bBar // bBar로 'bar.Bar'에 접근 가능
 
 ## 최상위 선언의 가시성
 
-최상위 선언을 *private*{: .keyword }로 선언한 경우, 선언된 파일에 대해 private 이다.([가시성 수식어](visibility-modifiers.html)를 보자).
+최상위 선언을 *private*{: .keyword }로 선언한 경우, 선언된 파일에 대해 private 이다([가시성 수식어](visibility-modifiers.html)를 보자).

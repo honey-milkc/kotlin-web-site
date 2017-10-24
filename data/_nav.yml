@@ -261,7 +261,7 @@ reference_ko:
         - url: /docs/reference_ko/basic-types.html
           title: 기본 타입
         - url: /docs/reference_ko/packages.html
-          title: Packages and Imports
+          title: 패키지와 임포트
         - url: /docs/reference_ko/control-flow.html
           title: Control Flow
         - url: /docs/reference_ko/returns.html
