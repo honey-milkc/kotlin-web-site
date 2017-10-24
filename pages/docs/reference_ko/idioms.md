@@ -7,8 +7,8 @@ title: "이디엄"
 
 # 이디엄
 
-코틀린에서 종종 사용되는 이디엄 집합을 정리했다.
-선호하는 이디엄이 있다면 풀리퀘스를 날려 기여해보자.
+코틀린에서 종종 사용되는 이디엄을 정리했다.
+선호하는 이디엄이 있다면 풀리퀘스트를 날려 기여해보자.
 
 ### DTO 생성 (POJO/POCO)
 
@@ -60,7 +60,7 @@ when (x) {
 }
 ```
 
-### 페어(쌍)으로 맵이나 목록 탐색
+### 쌍으로 맵이나 목록 탐색
 
 ``` kotlin
 for ((k, v) in map) {
@@ -146,7 +146,7 @@ val values = ...
 val email = values["email"] ?: throw IllegalStateException("Email is missing!")
 ```
 
-### Execute if not null
+### null이 아니면 실행
 
 ``` kotlin
 val value = ...
@@ -156,7 +156,7 @@ value?.let {
 }
 ```
 
-### null이 아니면 nullable 값 매핑
+### null이 아니면 null 가능 값 매핑
 
 ``` kotlin
 val value = ...
@@ -228,7 +228,7 @@ fun theAnswer(): Int {
 }
 ```
 
-이는 효과적으로 다른 이디엄과 쓸 수 있으며 코드를 더 짧게 만들어준다.
+단일 식 함수는 효과적으로 다른 이디엄과 쓸 수 있으며 코드를 더 짧게 만들어준다.
 예를 들어, 다음은 *when*{: .keyword } 식과 함께 사용하는 코드이다:
 
 ``` kotlin
@@ -240,7 +240,7 @@ fun transform(color: String): Int = when (color) {
 }
 ```
 
-### 객체 인스턴스의 메서드 여러 번 호출('with')
+### 객체 인스턴스의 메서드를 여러 번 호출('with')
 
 ``` kotlin
 class Turtle {
@@ -261,7 +261,7 @@ with(myTurtle) { //100 pix 사각형 그리기
 }
 ```
 
-### 자바 7의 try with 자원
+### 자바 7의 자원을 사용한 try
 
 ``` kotlin
 val stream = Files.newInputStream(Paths.get("/some/file.txt"))
@@ -281,7 +281,7 @@ stream.buffered().reader().use { reader ->
 inline fun <reified T: Any> Gson.fromJson(json: JsonElement): T = this.fromJson(json, T::class.java)
 ```
 
-### nullable Boolean 사용
+### null 가능 Boolean 사용
 
 ``` kotlin
 val b: Boolean? = ...
