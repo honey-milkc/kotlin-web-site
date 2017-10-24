@@ -43,7 +43,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-식 몸체(expression body)를 사용하고 리턴 타입 추론:
+식 몸체(expression body)를 사용하고 리턴 타입을 추론:
 
 <div class="sample" markdown="1">
 
@@ -96,7 +96,7 @@ fun main(args: Array<String>) {
 
 ## 로컬 변수 정의
 
-한번 할당(읽기 전용) 로컬 변수:
+한번만 할당 가능한(읽기 전용) 로컬 변수:
 
 <div class="sample" markdown="1">
 
@@ -106,7 +106,7 @@ fun main(args: Array<String>) {
     val a: Int = 1  // 특시 할당
     val b = 2   // `Int` 타입으로 추론
     val c: Int  // 초기화를 하지 않으면 타입 필요
-    c = 3       // 할당 연기
+    c = 3       // 나중에 할당
 //sampleEnd
     println("a = $a, b = $b, c = $c")
 }
@@ -128,12 +128,12 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-또한 [프로퍼티오 필드](properties.html)를 참고하자.
+또한 [프로퍼티 필드](properties.html)를 참고하자.
 
 
 ## 주석
 
-자바나 자바스크립트 마찬가지로 코틀린은 주석 블록과 줄 주석을 지원한다,
+자바나 자바스크립트와 마찬가지로 코틀린은 주석 블록과 줄 주석을 지원한다.
 
 ``` kotlin
 // 이는 줄 주석
@@ -208,9 +208,9 @@ fun main(args: Array<String>) {
 
 [*if*{: .keyword }-식](control-flow.html#if-expression)을 참고한다.
 
-## nullable 값 사용과 *null*{: .keyword } 검사
+## null 가능 값 사용과 *null*{: .keyword } 검사
 
-*null*{: .keyword } 값이 가능할 때 반드시 레퍼런스를 명시적으로 nullable로 표시해야 한다.
+*null*{: .keyword } 값이 가능할 때 반드시 레퍼런스를 명시적으로 null 가능으로 표시해야 한다.
 
 아래 코드가 `str`이 정수를 갖지 않으면 *null*{: .keyword }을 리턴한다고 할 때: 
 
@@ -220,7 +220,7 @@ fun parseInt(str: String): Int? {
 }
 ```
 
-nullable 값을 리턴하는 함수를 다음과 같이 사용한다:
+null 가능 값을 리턴하는 함수는 다음과 같이 사용한다:
 
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
@@ -237,7 +237,7 @@ fun printProduct(arg1: String, arg2: String) {
 
     // `x * y` 코드는 에러를 발생하는데, 이유는 null을 가질 수 있기 때문이다.
     if (x != null && y != null) {
-        // null 검사 이후에 x와 y를 자동으로 non-nullable로 변환
+        // null 검사 이후에 x와 y를 자동으로 null 불가로 변환
         println(x * y)
     }
     else {
@@ -256,7 +256,6 @@ fun main(args: Array<String>) {
 </div>
 
 또는
-
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
 
@@ -280,7 +279,7 @@ fun printProduct(arg1: String, arg2: String) {
         return
     }
 
-    // null 검사 이후에 x와 y를 자동으로 non-nullable로 변환
+    // null 검사 이후에 x와 y를 자동으로 null 불가로 변환
     println(x * y)
 //sampleEnd
 }
@@ -298,7 +297,7 @@ fun main(args: Array<String>) {
 ## 타입 검사와 자동 변환 사용
 
 *is*{: .keyword } 연산자는 식이 타입 인스턴스인지 검사한다.
-불변 로컬 변수나 프로퍼티를 특정 타입에 대해 검사할 경우 명시적으로 타입 변환할 필요가 없다:
+불변 로컬 변수나 프로퍼티가 특정 타입인지 검사할 경우 명시적으로 타입을 변환할 필요가 없다:
 
 
 <div class="sample" markdown="1">
@@ -361,7 +360,7 @@ fun main(args: Array<String>) {
 ``` kotlin
 //sampleStart
 fun getStringLength(obj: Any): Int? {
-    // 우측의 `&&`에서 `obj`를 자동으로 `String`으로 변환
+    // 우변의 `&&`에서 `obj`를 자동으로 `String`으로 변환
     if (obj is String && obj.length > 0) {
         return obj.length
     }
@@ -400,7 +399,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-or
+또는
 
 <div class="sample" markdown="1">
 
@@ -419,7 +418,7 @@ fun main(args: Array<String>) {
 
 [for 루프](control-flow.html#for-loops)를 참고한다.
 
-## `while` 루프 ㅅ용
+## `while` 루프 사용
 
 <div class="sample" markdown="1">
 
@@ -525,7 +524,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-또는 단순 범위 이상:
+또는 단순한 범위 이상:
 
 <div class="sample" markdown="1">
 
@@ -610,7 +609,7 @@ fun main(args: Array<String>) {
 ``` kotlin
 fun main(args: Array<String>) {
 //sampleStart
-    val rectangle = Rectangle(5.0, 2.0) //no 'new' keyword required
+    val rectangle = Rectangle(5.0, 2.0) // 'new' 키워드 필요하지 않음
     val triangle = Triangle(3.0, 4.0, 5.0)
 //sampleEnd
     println("Area of rectangle is ${rectangle.calculateArea()}, its perimeter is ${rectangle.perimeter}")
@@ -647,4 +646,4 @@ class Triangle(
 ```
 </div>
 
-[클래스](classes.html)와 [오브젝트와 인스턴스](object-declarations.html)를 참고한다.
+[클래스](classes.html), [오브젝트와 인스턴스](object-declarations.html)를 참고한다.

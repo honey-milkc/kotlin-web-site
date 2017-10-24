@@ -245,11 +245,11 @@ reference_ko:
         - url: /docs/reference_ko/whatsnew11.html
           title: 코틀린 1.1의 새로운 점
 
-    - title: Getting Started
-      description: Get familiar with the basics of Kotlin including operations, coding conventions and idioms.
+    - title: 시작하기
+      description: 오퍼레이션, 코딩 관례, 이디엄 등 코틸린 기초 익히기
       content:
         - url: /docs/reference_ko/basic-syntax.html
-          title: Basic Syntax
+          title: 기본 구문
         - url: /docs/reference_ko/idioms.html
           title: Idioms
         - url: /docs/reference_ko/coding-conventions.html
