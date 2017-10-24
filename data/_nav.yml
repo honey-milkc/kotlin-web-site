@@ -256,10 +256,10 @@ reference_ko:
           title: 코딩 관례
 
     - title: Basics
-      description: The Basics
+      description: 기초
       content:
         - url: /docs/reference_ko/basic-types.html
-          title: Basic Types
+          title: 기본 타입
         - url: /docs/reference_ko/packages.html
           title: Packages and Imports
         - url: /docs/reference_ko/control-flow.html
