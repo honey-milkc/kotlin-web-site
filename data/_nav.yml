@@ -253,7 +253,7 @@ reference_ko:
         - url: /docs/reference_ko/idioms.html
           title: 이디엄
         - url: /docs/reference_ko/coding-conventions.html
-          title: Coding Conventions
+          title: 코딩 관례
 
     - title: Basics
       description: The Basics
