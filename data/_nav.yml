@@ -251,7 +251,7 @@ reference_ko:
         - url: /docs/reference_ko/basic-syntax.html
           title: 기본 구문
         - url: /docs/reference_ko/idioms.html
-          title: Idioms
+          title: 이디엄
         - url: /docs/reference_ko/coding-conventions.html
           title: Coding Conventions
 

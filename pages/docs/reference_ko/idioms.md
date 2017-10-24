@@ -7,7 +7,7 @@ title: "이디엄"
 
 # 이디엄
 
-코틀린에서 종종 사용되는 이디엄 집합.
+코틀린에서 종종 사용되는 이디엄 집합을 정리했다.
 선호하는 이디엄이 있다면 풀리퀘스를 날려 기여해보자.
 
 ### DTO 생성 (POJO/POCO)
@@ -18,7 +18,7 @@ data class Customer(val name: String, val email: String)
 
 다음 기능을 가진 `Customer` 클래스를 제공한다:
 
-* 모든 프로퍼티에 대한 getter (그리고 *var*{: .keyword }의 경우 setter) for all properties
+* 모든 프로퍼티에 대한 getter (그리고 *var*{: .keyword }의 경우 setter)
 * `equals()`
 * `hashCode()`
 * `toString()`
@@ -44,7 +44,7 @@ val positives = list.filter { x -> x > 0 }
 val positives = list.filter { it > 0 }
 ```
 
-### 스프링 삽입
+### 스트링 삽입
 
 ``` kotlin
 println("Name $name")
@@ -60,7 +60,7 @@ when (x) {
 }
 ```
 
-### 페어 맵이나 목록 탐색
+### 페어(쌍)으로 맵이나 목록 탐색
 
 ``` kotlin
 for ((k, v) in map) {
@@ -68,7 +68,7 @@ for ((k, v) in map) {
 }
 ```
 
-`k`, `v`를 임의 이름으로 할 수 있다.
+`k`, `v` 대신 임의 이름을 사용할 수 있다.
 
 ### 범위 사용
 
