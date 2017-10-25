@@ -9,8 +9,8 @@ title: "흐름 제어: if, when, for, while"
 
 ## If 식
 
-코틀린에서 *if*{: .keyword }는 식(expression)으로, 예를 들어 값을 리턴한다.
-그래서 삼항 연산자가 없는데(condition ? then : else), 일반 *if*{: .keyword }로 동일하게 할 수 있기 때문이다.
+코틀린에서 *if*{: .keyword }는 식(expression)으로, 값을 리턴한다.
+그래서 삼항 연산자(condition ? then : else)가 없다. 일반 *if*{: .keyword }로 동일하게 할 수 있기 때문이다.
 
 ``` kotlin
 // 전통적인 용법
@@ -41,8 +41,8 @@ val max = if (a > b) {
 }
 ```
 
-식을 문장이 아닌 식으로 *if*{: .keyword }를 사용하면(예를 들어 식의 값을 리턴하거나 변수에 값을 할당),
-식은 `else` 브랜치를 가져야 한다. 
+문장이 아닌 식으로 *if*{: .keyword }를 사용하면(예를 들어 식의 값을 리턴하거나 변수에 값을 할당),
+`else` 브랜치를 가져야 한다. 
 
 [*if*{: .keyword } 문법](grammar.html#if)을 보자.
 
@@ -62,10 +62,10 @@ when (x) {
 
 *when*{: .keyword }은 특정 브랜치의 조건을 충족할 때까지 순차적으로 모든 브랜치의 인자가 일치하는지 확인한다.
 *when*{: .keyword }은 식이나 문장으로 사용할 수 있다. 식으로 사용하면 충족한 브랜치의 값이 전체 식의 값이 된다.
-문장으로 사용하면 개별 브랜츠의 값은 무시한다. (*if*{: .keyword }처럼 각 브랜치는 블록이 될 수 있으며, 블록의 마지막 식의 값이 브랜치의 값이 된다.)
+문장으로 사용하면 개별 브랜치의 값은 무시한다. (*if*{: .keyword }처럼 각 브랜치는 블록이 될 수 있으며, 블록의 마지막 식의 값이 브랜치의 값이 된다.)
 
 모든 *when*{: .keyword } 브랜치가 충족하지 않으면 *else*{: .keyword } 브랜치를 평가한다.
-*when*{: .keyword }을 식으로 사용할 경우, 모든 가능한 경우를 브랜치 조건으로 확인한 것을 컴파일러가 알 수 없는 경우
+*when*{: .keyword }을 식으로 사용할 때, 모든 가능한 경우를 브랜치 조건으로 확인했는지 컴파일러가 알 수 없는 경우
 *else*{: .keyword } 브랜치를 필수로 추가해야 한다.
 
 여러 경우를 동일한 방법으로 처리할 경우 브랜치 조건을 콤마로 묶을 수 있다:
@@ -123,7 +123,7 @@ when {
 
 ## for 루프
 
-*for*{: .keyword }는 이터레이터를 제공하는 모든 것에 대해 반복 수행한다. C#과 같은 언어의 `foreach` 루트와 동일하다.
+*for*{: .keyword }는 이터레이터를 제공하는 모든 것에 대해 반복을 수행한다. C#과 같은 언어의 `foreach` 루트와 동일하다.
 구문은 다음과 같다:
 
 ``` kotlin
@@ -156,7 +156,7 @@ for (i in array.indices) {
 }
 ```
 
-"범위에 대한 반복"은 최적화한 구현으로 컴파일해서 추가적인 객체 생성을 하지 않는다.
+"범위에 대한 반복"은 최적화한 구현으로 컴파일해서 객체를 추가로 생성하지 않는다.
 
 indices 대신 `withIndex` 라이브러리 함수를 사용해도 된다:
 
@@ -168,9 +168,9 @@ for ((index, value) in array.withIndex()) {
 
 [*for*{: .keyword } 문법](grammar.html#for)을 참고하자.
 
-## While 루트
+## While 루프
 
-*while*{: .keyword }와 *do*{: .keyword }..*while*{: .keyword } 예:
+*while*{: .keyword }과 *do*{: .keyword }..*while*{: .keyword } 예:
 
 ``` kotlin
 while (x > 0) {
@@ -179,14 +179,13 @@ while (x > 0) {
 
 do {
     val y = retrieveData()
-} while (y != null) // y is visible here!
+} while (y != null) // 여기서 y를 사용할 수 있다!
 ```
 
-[grammar for *while*{: .keyword } 문법](grammar.html#while)을 참고하자.
+[*while*{: .keyword } 문법](grammar.html#while)을 참고하자.
 
 ## 루프에서의 break와 continue
 
-코틀린은 *break*{: .keyword }와 *continue*{: .keyword }를 루프에서 지원한다.  
-Kotlin supports traditional *break*{: .keyword } and *continue*{: .keyword } operators in loops. 
+코틀린은 루프에서 전통적인 *break*{: .keyword }와 *continue*{: .keyword } 연산자를 지원한다.  
 [리턴과 점프](returns.html)를 참고한다.
 

@@ -263,7 +263,7 @@ reference_ko:
         - url: /docs/reference_ko/packages.html
           title: 패키지와 임포트
         - url: /docs/reference_ko/control-flow.html
-          title: Control Flow
+          title: 흐름 제어
         - url: /docs/reference_ko/returns.html
           title: Returns and Jumps
 
