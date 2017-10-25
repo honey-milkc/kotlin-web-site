@@ -275,7 +275,7 @@ reference_ko:
         - url: /docs/reference_ko/properties.html
           title: 프로퍼티와 필드
         - url: /docs/reference_ko/interfaces.html
-          title: Interfaces
+          title: 인터페이스
         - url: /docs/reference_ko/visibility-modifiers.html
           title: Visibility Modifiers
         - url: /docs/reference_ko/extensions.html
