@@ -273,7 +273,7 @@ reference_ko:
         - url: /docs/reference_ko/classes.html
           title: 클래스와 상속
         - url: /docs/reference_ko/properties.html
-          title: Properties and Fields
+          title: 프로퍼티와 필드
         - url: /docs/reference_ko/interfaces.html
           title: Interfaces
         - url: /docs/reference_ko/visibility-modifiers.html
