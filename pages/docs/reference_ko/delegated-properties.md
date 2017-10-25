@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "위임된 프로퍼티"
+title: "위임 프로퍼티"
 ---
 
 # 위임 프로퍼티
@@ -12,7 +12,7 @@ title: "위임된 프로퍼티"
 
 * lazy 프로퍼티: 처음 접근할 때 값을 계산한다.
 * observable 프로퍼티: 프로퍼티가 바뀔 때 리스너에 통지한다.
-* 맵에 저장할 프로퍼티: 각 프로퍼티를 위한 별도 필드를 갖는 대신 맵에 저장
+* 맵에 저장할 프로퍼티: 각 프로퍼티를 별도 필드에 저장하는 대신 맵에 저장
 
 이런 (그리고 다른) 경우를 다를 수 있도록 코틀린은 _위임 프로퍼티_를 지원한다:
 
@@ -42,7 +42,7 @@ class Delegate {
 }
 ```
 
-`Delegate`의 인스턴스에 위임한 `p`에서 읽을 때 `Delegate`의 `getValue()` 함수를 호출한다.    
+위 예제의 `p` 프로퍼티를 읽을 때, 위임한 `Delegate` 인스턴스의 `getValue()` 함수를 호출한다.    
 `getValue()`의 첫 번째 파라미터는 `p`를 포함한 객체이고,
 두 번째 파라미터는 `p` 자체에 대한 설명을 포함한다(예를 들어, 이름을 포함한다).
 다음 예를 보자.
@@ -114,9 +114,9 @@ Hello
 한 쓰레드에서만 값을 계산하고, 모든 쓰레드는 같은 값을 사용한다.
 위임 초기화에 동기화가 필요없으면  
 `lazy()` 함수에 파라미터로 `LazyThreadSafetyMode.PUBLICATION`를 전달해서
-동시에 여러 쓰레드가 초기화를 실행할 수 있다.
+동시에 여러 쓰레드가 초기화를 실행할 수 있게 허용할 수 있다.
 단일 쓰레드가 초기화를 할 거라 확신할 수 없다면 `LazyThreadSafetyMode.NONE` 모드를 사용한다.
-이는 쓰레드 안정성을 보장하지 않으며 관련된 부하를 발생하지 않는다.
+이는 쓰레드 안정성을 보장하지 않으며 관련 부하를 발생하지 않는다.
 
 
 ### Observable
@@ -213,18 +213,18 @@ fun example(computeFoo: () -> Foo) {
 
 아래 대리객체에 대한 요구사항을 요약했다.
 
-**read-only** 프로퍼티의 경우(예, *val*{:.keyword}), 위임 객체는 이름이 `getValue`이고 다음 파라미터를 갖는 함수를 제공해야 한다:
+**읽기 전용** 프로퍼티의 경우(예, *val*{:.keyword}), 위임 객체는 이름이 `getValue`이고 다음 파라미터를 갖는 함수를 제공해야 한다:
 
 * `thisRef` --- _프로퍼티 소유자_와 같거나 또는 상위 타입이어야 한다(확장 프로퍼티의 경우 --- 확장한 타입).
 * `property` --- `KProperty<*>` 타입 또는 그 상위타입이어야 한다.
  
  이 함수는 프로퍼티와 같은 타입(또는 하위 타입)을 리턴해야 한다.
  
-**mutable** 프로퍼티의 경우 (a *var*{:.keyword}), 위임 객체는 _추가로_ 이름이 `setValue`이고 다음 파라미터를 갖는 함수를 제공해야 한다:
+**변경 가능** 프로퍼티의 경우 (a *var*{:.keyword}), 위임 객체는 _추가로_ 이름이 `setValue`이고 다음 파라미터를 갖는 함수를 제공해야 한다:
  
 * `thisRef` --- `getValue()`와 동일
 * `property` --- `getValue()`와 동일
-* new value --- 프로퍼티와 같은 타입 또는 상위타입이어야 한다.
+* 새 값 --- 프로퍼티와 같은 타입 또는 상위타입이어야 한다.
  
 `getValue()`와 `setValue()` 함수는 위임 클래스의 멤버 함수나 확장 함수로도 제공할 수 있다.
 원래 이 함수를 제공하지 않는 객체에 위임 프로퍼티가 필요한 경우 확장 함수가 편하다. 
@@ -244,9 +244,9 @@ interface ReadWriteProperty<in R, T> {
 }
 ```
 
-### 변환 규칙 Translation Rules
+### 변환 규칙
 
-모든 위임 프로퍼티를 보면, 코틀린 컴파일러는 보조 프로퍼티를 생성하고 그 프로퍼티에 위임한다.
+모든 위임 프로퍼티에 대해, 코틀린 컴파일러는 보조 프로퍼티를 생성하고 그 프로퍼티에 위임한다.
 예를 들어, `prop` 프로퍼티에 대해 `prop$delegate`이라는 숨겨진 프로퍼티를 생성하고, 접근자 코드는 단순히 이 프로젝트에 위임한다:
 
 ``` kotlin
@@ -267,7 +267,7 @@ class C {
 첫 번째 인자 `this`는 외부 클래스인 `C`의 인스턴스를 참조하고,
 `this::prop`는 `prop` 자체를 설명하는 `KProperty` 타입의 리플레션 객체이다.
 
-코드에서 직접 [bound callable reference](reflection.html#bound-function-and-property-references-since-11)를
+코드에서 직접 [바운드 callable 레퍼런스](reflection.html#bound-function-and-property-references-since-11)를
 참조하는 `this::prop` 구문은 코틀린 1.1부터 사용 가능하다.  
 
 ### 위임객체 제공 (1.1부터)
@@ -278,7 +278,7 @@ class C {
 
 `provideDelegate`의 가능한 한 가지 용도는 프로퍼티의 getter나 setter뿐만 아니라 생성할 때 프로퍼티의 일관성을 검사하는 것이다.
 
-예를 들어, 값을 연결하기 전에 프로퍼티 이름을 검사하고 싶다면, 다음 코드를 이를 처리할 수 있다:
+예를 들어, 값을 연결하기 전에 프로퍼티 이름을 검사하고 싶다면, 다음 코드로 이를 처리할 수 있다:
 
 ``` kotlin
 class ResourceLoader<T>(id: ResourceID<T>) {

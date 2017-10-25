@@ -295,7 +295,7 @@ reference_ko:
         - url: /docs/reference_ko/delegation.html
           title: 위임
         - url: /docs/reference_ko/delegated-properties.html
-          title: Delegated Properties
+          title: 위임 프로퍼티
 
     - title: Functions and Lambdas
       description: All about functions
