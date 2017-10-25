@@ -297,11 +297,11 @@ reference_ko:
         - url: /docs/reference_ko/delegated-properties.html
           title: 위임 프로퍼티
 
-    - title: Functions and Lambdas
-      description: All about functions
+    - title: 함수와 람다
+      description: 함수에 대한 모든 것
       content:
         - url: /docs/reference_ko/functions.html
-          title: Functions
+          title: 함수
         - url: /docs/reference_ko/lambdas.html
           title: Lambdas
         - url: /docs/reference_ko/inline-functions.html
