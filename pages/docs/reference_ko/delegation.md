@@ -12,7 +12,7 @@ title: "위임"
 
 [위임 패턴](https://en.wikipedia.org/wiki/Delegation_pattern)은 구현 상속보다 좋은 대안임이 증명됐다.
 코틀린은 중복 코드없는 위임 패턴을 지원한다.
-`Derived` 클래스는 `Base` 인터페이스를 상속할 수 있으며,
+아래 코드에서 `Derived` 클래스는 `Base` 인터페이스를 상속할 수 있으며,
 모든 public 메서드를 지정한 객체로 위임한다:
 
 ``` kotlin

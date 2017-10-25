@@ -293,7 +293,7 @@ reference_ko:
         - url: /docs/reference_ko/object-declarations.html
           title: 오브젝트
         - url: /docs/reference_ko/delegation.html
-          title: Delegation
+          title: 위임
         - url: /docs/reference_ko/delegated-properties.html
           title: Delegated Properties
 
