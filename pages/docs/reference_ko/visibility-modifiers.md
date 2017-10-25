@@ -41,9 +41,9 @@ package foo
 private fun foo() {} // example.kt 안에서 접근 가능
 
 public var bar: Int = 5 // 모든 곳에서 접근 가능
-    private set         // setter는 example.kt에서만 접근 가능한
+    private set         // setter는 example.kt에서만 접근 가능
     
-internal val baz = 6    // 같은 모듈에 접근 가능
+internal val baz = 6    // 같은 모듈에서 접근 가능
 ```
 
 ## 클래스와 인터페이스
@@ -55,7 +55,7 @@ internal val baz = 6    // 같은 모듈에 접근 가능
 * `internal` --- 선언한 클래스를 볼 수 있는 *모듈 안의* 모든 클라이언트가 `internal` 멤버를 볼 수 있다.
 * `public` --- 선언한 클래스를 볼 수 있는 클라이언트가 `public` 멤버를 볼 수 있다.
 
-*노트* 자바 사용자를 위한: 코틀린에서 외부 클래스는 내부 클래스의 private 멤버를 볼 수 없다.
+*주의* 자바와 달리 코틀린에서 외부 클래스는 내부 클래스의 private 멤버를 볼 수 없다.
 
 `protected` 멤버를 오버라이딩할 때 가시성을 명시적으로 지정하지 않으면,
 오버라이딩한 멤버 또한 `protected` 가시성을 갖는다.
@@ -96,21 +96,17 @@ class C private constructor(a: Int) { ... }
 ```
 
 위 코드의 생성자는 private이다. 기본적으로 모든 생성자는 `public`이며
-이는 실질적으로 클래스를 접근할 수 있는 모든 곳에서 생성자에 접근할 수 있다.
+실질적으로 클래스를 접근할 수 있는 모든 곳에서 생성자에 접근할 수 있다.
 (예를 들어 `internal` 클래스의 생성자는 오직 같은 모듈에서만 보인다.)
-     
+
 ### 로컬 선언
 
-로컬 변수, 함수 클래스에는 가시성 수식어를 지정할 수 없다.
-
+로컬 변수, 로컬 함수, 로컬 클래스에는 가시성 수식어를 지정할 수 없다.
 
 ## 모듈
 
 `internal` 가시성 수식어는 같은 모듈에서 멤버에 접근할 수 있음을 의미한다.
-더 구첵적으로 모듈은 함께 컴파일되는 코틀린 파일 집합이다.  
-The `internal` visibility modifier means 
-that the member is visible within the same module. More specifically,
-a module is a set of Kotlin files compiled together:
+더 구체적으로 모듈은 함께 컴파일되는 코틀린 파일 집합이다.  
 
   * IntelliJ IDEA 모듈
   * 메이븐 프로젝트

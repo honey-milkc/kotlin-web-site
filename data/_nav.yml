@@ -277,7 +277,7 @@ reference_ko:
         - url: /docs/reference_ko/interfaces.html
           title: 인터페이스
         - url: /docs/reference_ko/visibility-modifiers.html
-          title: Visibility Modifiers
+          title: 가시성 수식어
         - url: /docs/reference_ko/extensions.html
           title: Extensions
         - url: /docs/reference_ko/data-classes.html
