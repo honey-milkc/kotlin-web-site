@@ -9,9 +9,9 @@ title: "리턴과 점프: break와 continue"
 
 코틀린에는 세 가지 구조의 점프 식이 있다.
 
-* *return*{: .keyword }. 기본으로 가장 가깝게 둘러싼 함수나 [임의 함수](lambdas.html#anonymous-functions)에서 리턴한다.
-* *break*{: .keyword }. 가장 가깝게 둘러싼 루프를 끝낸다.
-* *continue*{: .keyword }. 가장 가깝게 둘러싼 루프의 다음 단계를 진행한다.
+* *return*{: .keyword }: 기본으로 가장 가깝게 둘러싼 함수나 [익명 함수](lambdas.html#anonymous-functions)에서 리턴한다.
+* *break*{: .keyword }: 가장 가깝게 둘러싼 루프를 끝낸다.
+* *continue*{: .keyword }: 가장 가깝게 둘러싼 루프의 다음 단계를 진행한다.
 
 세 식 모두 더 큰 식의 일부로 사용할 수 있다:
 
@@ -19,13 +19,13 @@ title: "리턴과 점프: break와 continue"
 val s = person.name ?: return
 ```
 
-이 세 식의 타입은 [Nothing type](exceptions.html#the-nothing-type)이다.
+이 세 식의 타입은 [Nothing](exceptions.html#the-nothing-type)이다.
 
 ## break와 continue 라벨
 
 코틀린의 모든 식에 *label*{: .keyword }을 붙일 수 있다.
-라벨은 `@` 부호 뒤에 식별자가 붙는 형식으로 예를 들어 `abc@`, `fooBar@`는 유효한 라벨이다([문법](grammar.html#labelReference) 참고).
-식 앞에 라벨을 위치시켜서 라벨을 붙인다.
+라벨은 `@` 부호 뒤에 식별자가 붙는 형식으로, 예를 들어 `abc@`, `fooBar@`는 유효한 라벨이다([문법](grammar.html#labelReference) 참고).
+식 앞에 라벨을 위치시켜 라벨을 붙인다.
 
 ``` kotlin
 loop@ for (i in 1..100) {
@@ -64,7 +64,7 @@ fun foo() {
 
 *return*{: .keyword }-식은 가장 가깝게 둘러싼 함수(예, `foo`)에서 리턴한다.
 (이런 비로컬 리턴은 [인라인 함수](inline-functions.html))로 전달한 람다 식에서만 지원한다.)
-람다 식에서 리턴하고 싶다면 it 라벨을 붙여 *return*{: .keyword }을 한정해야 한다:
+람다 식에서 리턴하고 싶다면 담다 식에 라벨을 붙여 *return*{: .keyword }을 한정해야 한다:
 
 ``` kotlin
 fun foo() {
@@ -75,7 +75,7 @@ fun foo() {
 }
 ```
 
-이제 위 코드는 람다 식에서 리턴한다. 종종 기본 제공하는(implicit) 라벨을 사용하는 게 편리할 때가 있다.
+이제 위 코드는 람다 식에서 리턴한다. 종종 암묵적으로 제공하는 라벨을 사용하는 게 편리할 때가 있다.
 이런 라벨은 람다를 전달한 함수와 같은 이름을 갖는다. 
 
 ``` kotlin
@@ -87,13 +87,13 @@ fun foo() {
 }
 ```
 
-람다 식 대신 [임의 함수](lambdas.html#anonymous-functions)를 사용해도 된다.
-임의 함수에서 *return*{: .keyword } 문장은 임의 함수 자체에서 리턴한다.
+람다 식 대신 [익명 함수](lambdas.html#anonymous-functions)를 사용해도 된다.
+익명 함수에서 *return*{: .keyword } 문장은 익명 함수 자체에서 리턴한다.
 
 ``` kotlin
 fun foo() {
     ints.forEach(fun(value: Int) {
-        if (value == 0) return  // 임의 함수 호출에 대한 로컬 리턴. 예, forEach 루프로 리턴
+        if (value == 0) return  // 익명 함수 호출에 대한 로컬 리턴. 예, forEach 루프로 리턴
         print(value)
     })
 }
