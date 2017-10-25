@@ -23,10 +23,7 @@ val demo = Outer.Nested().foo() // == 2
 ## 내부 클래스
 
 *inner*{: .keyword }로 지정한 클래스는 외부 클래스의 멤버에 접근할 수 있다.
-외부 클래스의 객체는 내부 클래스에 대한 레퍼런스를 갖는다:
-A class may be marked as *inner*{: .keyword } 
-to be able to access members of outer class. 
-Inner classes carry a reference to an object of an outer class:
+내부 클래스는 외부 클래스의 객체에 대한 레퍼런스를 갖는다:
 
 ``` kotlin
 class Outer {
@@ -40,12 +37,12 @@ val demo = Outer().Inner().foo() // == 1
 ```
 
 내부 클래스에서 *this*{: .keyword }에 대한 모호함에 대한 것은
-[한정된 *this*{: .keyword } 식](this-expressions.html)를 참고한다.
+[한정된 *this*{: .keyword } 식](this-expressions.html)을 참고한다.
 
-## 임의 내부 클래스
+## 익명 내부 클래스
 
 [object 식](object-declarations.html#object-expressions)을 사용해서
-임의 내부 클래스를 생성할 수 있다:
+익명 내부 클래스를 생성할 수 있다:
                                                       
 ``` kotlin
 window.addMouseListener(object: MouseAdapter() {
@@ -60,7 +57,7 @@ window.addMouseListener(object: MouseAdapter() {
 ```
 
 객체가 함수형 자바 인터페이스의 인스턴스라면(예를 들어 한 개의 추상 메서드를 가진 자바 인터페이스),
-인터페이스 타입을 접두어로 갖는 람다 식을 사용해서 임의 내부 객체를 생성할 수 있다: 
+인터페이스 타입을 접두어로 갖는 람다 식을 사용해서 익명 내부 객체를 생성할 수 있다: 
 
 ``` kotlin
 val listener = ActionListener { println("clicked") }

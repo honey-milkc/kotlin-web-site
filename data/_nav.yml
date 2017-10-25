@@ -285,9 +285,9 @@ reference_ko:
         - url: /docs/reference_ko/sealed-classes.html
           title: 실드 클래스
         - url: /docs/reference_ko/generics.html
-          title: Generics
+          title: 지네릭
         - url: /docs/reference_ko/nested-classes.html
-          title: Nested Classes
+          title: 중첩 클래스
         - url: /docs/reference_ko/enum-classes.html
           title: Enum Classes
         - url: /docs/reference_ko/object-declarations.html
