@@ -38,7 +38,7 @@ data class User(val name: String, val age: Int)
   상위타입 함수의 시그너처가 호환되지 않거나 final이어서 오버라이딩할 수 없는 경우 에러를 발생한다. 
 * `componentN()`과 `copy()` 함수를 직접 구현하는 것은 허용하지 않는다.
   
-1.1부터, 데이터 클래스가 다른 클래스를 상속할 수 있다([Sealed 클래스](sealed-classes.html)에서 예를 볼 수 있다).
+1.1부터, 데이터 클래스가 다른 클래스를 상속할 수 있다([실드 클래스](sealed-classes.html)에서 예를 볼 수 있다).
 
 JVM에서 생성한 클래스에 파라미터 없는 생성자가 필요하면 모든 프로퍼티에 기본 값을 지정해야 한다([생성자](classes.html#constructors) 참고).
 
@@ -62,9 +62,9 @@ val jack = User(name = "Jack", age = 1)
 val olderJack = jack.copy(age = 2)
 ```
 
-## 데이터 클래스와 분리(Destructuring) 선언
+## 데이터 클래스와 분리 선언
 
-데이터 클래스에 생성되는 _컴포넌트 함수는 [분리 선언](multi-declarations.html)에 데이터 클래스를 사용할 수 있게 한다.
+데이터 클래스에 생성되는 _컴포넌트 함수_는 [분리 선언](multi-declarations.html)에 데이터 클래스를 사용할 수 있게 한다.
 
 ``` kotlin
 val jane = User("Jane", 35) 

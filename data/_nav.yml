@@ -281,7 +281,7 @@ reference_ko:
         - url: /docs/reference_ko/extensions.html
           title: 확장
         - url: /docs/reference_ko/data-classes.html
-          title: Data Classes
+          title: 데이터 클래스
         - url: /docs/reference_ko/sealed-classes.html
           title: Sealed Classes
         - url: /docs/reference_ko/generics.html
