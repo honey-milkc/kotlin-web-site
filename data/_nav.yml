@@ -303,7 +303,7 @@ reference_ko:
         - url: /docs/reference_ko/functions.html
           title: 함수
         - url: /docs/reference_ko/lambdas.html
-          title: Lambdas
+          title: 람다
         - url: /docs/reference_ko/inline-functions.html
           title: Inline Functions
         - url: /docs/reference_ko/coroutines.html
