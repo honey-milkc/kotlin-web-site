@@ -305,9 +305,9 @@ reference_ko:
         - url: /docs/reference_ko/lambdas.html
           title: 람다
         - url: /docs/reference_ko/inline-functions.html
-          title: Inline Functions
+          title: 인라인 함수
         - url: /docs/reference_ko/coroutines.html
-          title: Coroutines
+          title: 코루틴
 
     - title: Other
       description: Various bits and bobs
