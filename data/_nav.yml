@@ -291,7 +291,7 @@ reference_ko:
         - url: /docs/reference_ko/enum-classes.html
           title: Enum 클래스
         - url: /docs/reference_ko/object-declarations.html
-          title: Objects
+          title: 오브젝트
         - url: /docs/reference_ko/delegation.html
           title: Delegation
         - url: /docs/reference_ko/delegated-properties.html
