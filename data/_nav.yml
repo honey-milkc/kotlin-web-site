@@ -267,11 +267,11 @@ reference_ko:
         - url: /docs/reference_ko/returns.html
           title: 리턴과 점프
 
-    - title: Classes and Objects
-      description: All about objects
+    - title: 클래스와 오브젝트
+      description: 객체애 대한 모든 것
       content:
         - url: /docs/reference_ko/classes.html
-          title: Classes and Inheritance
+          title: 클래스와 상속
         - url: /docs/reference_ko/properties.html
           title: Properties and Fields
         - url: /docs/reference_ko/interfaces.html

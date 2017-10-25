@@ -30,7 +30,7 @@ class Empty
 
 ### 생성자
 
-코틀린 클래스는 **주요 생성자**와 한 개 이상의 **보조 생성자*를 가질 수 있다.
+코틀린 클래스는 **주요(primary) 생성자**와 한 개 이상의 **보조(secondary) 생성자*를 가질 수 있다.
 주요 생성자는 클래스 헤더의 한 부분으로 클래스 이름(그리고 필요에 따라 타입 파라미터) 뒤에 위치한다.
 
 ``` kotlin
@@ -45,7 +45,7 @@ class Person(firstName: String) {
 }
 ```
 
-주요 생성자는 어떤 코드도 포함할 수 없다. **초기화 블록** 블록에 초기화 코드가 위치할 수 있다.
+주요 생성자는 어떤 코드도 포함할 수 없다. **초기화 블록**에 초기화 코드가 위치할 수 있다.
 초기화 블록에는 *init*{: .keyword } 키워드를 접두사로 붙인다:    
 
 ``` kotlin
@@ -66,9 +66,6 @@ class Customer(name: String) {
 ```
 
 사실 코틀린은 주요 생성자에서 프로퍼티를 선언하고 초기화할 수 있는 간결한 구문을 제공한다:
-In fact, for declaring properties and initializing them from the primary constructor, 
-Kotlin has a concise syntax:
-
 
 ``` kotlin
 class Person(val firstName: String, val lastName: String, var age: Int) {
@@ -90,7 +87,7 @@ class Customer public @Inject constructor(name: String) { ... }
 
 #### 보조 생성자
 
-클래스를 **secondary constructors** 생성자를 선언할 수 있다. 보조 생성자는 *constructor*{: .keyword }를 접두사로 붙인다:
+클래스는 **보조 생성자**를 선언할 수 있다. 보조 생성자는 *constructor*{: .keyword }를 접두사로 붙인다:
 
 ``` kotlin
 class Person {
@@ -120,7 +117,7 @@ class DontCreateMe private constructor () {
 ```
 
 > **주의**: JVM에서 주요 생성자의 모든 파라미터가 기본 값을 가지면, 컴파일러는 추가로 파라미터가 없는 생성자를 생성한다. 이 생성자는 기본 값을 사용하는 주요 생성자를 사용한다.
-> 이는 Jackson이나 JPA처럼 파라미터없는 생성자를 사용해서 인스턴스를 생성하는 라이브러리에서 코틀린을 쉽게 사용할 수 있게 해준다.
+> 이는 Jackson이나 JPA처럼 파라미터가 없는 생성자를 사용해서 인스턴스를 생성하는 라이브러리에서 코틀린을 쉽게 사용할 수 있게 해준다.
 >
 > ``` kotlin
 > class Customer(val customerName: String = "")
@@ -139,7 +136,7 @@ val customer = Customer("Joe Smith")
 
 코틀린에는 *new*{: .keyword } 키워드가 없음에 유의하자.
 
-중첩된, 내부 또는 임의 내부 클래스의 생성은 [중첩](nested-classes.html)를 참고한다.
+중첩된, 내부 또는 임의 내부 클래스의 생성은 [중첩 클래스](nested-classes.html)을 참고한다.
 
 ### 클래스 멤버
 
@@ -154,7 +151,7 @@ val customer = Customer("Joe Smith")
 
 ## 상속
 
-코틀린의 모든 클래스는 공통의 최상위 클래스 `Any`를 상속한다. 상위 타입을 선언하지 않으면 `Any`가 기본 상위 타입이다:
+코틀린의 모든 클래스는 공통의 최상위 클래스인 `Any`를 상속한다. 상위 타입을 선언하지 않으면 `Any`가 기본 상위 타입이다:
 
 ``` kotlin
 class Example // 기본으로 Any를 상속한다
@@ -164,7 +161,7 @@ class Example // 기본으로 Any를 상속한다
 특히 `Any`는 `equals()`, `hashCode()`, `toString()` 외에 다른 멤버를 갖지 않는다.
 더 자세한 내용은 [자바 상호운용성](java-interop.html#object-methods)을 참고한다.
 
-상위타입을 직접 선언하러면 클래스 헤더에 콜론 뒤에 타입을 위치시킨다:
+상위타입을 직접 선언하러면 클래스 헤더에서 콜론 뒤에 타입을 위치시킨다:
 
 ``` kotlin
 open class Base(p: Int)
@@ -192,7 +189,7 @@ Item 17: *Design and document for inheritance or else prohibit it*를 따른 것
 
 ### 메서드 오버라이딩
 
-코틀린에서 메서드 오버라이딩을 명시적으로 해야 한다. 자바와 달리 코틀린에서는 오버라이딩 가능한 멤버에 
+코틀린은 메서드 오버라이딩을 명시적으로 해야 한다. 자바와 달리 코틀린에서는 오버라이딩 가능한 멤버에 
 (*open*) 애노테이션을 명시적으로 설정해야 한다:
 
 
@@ -206,7 +203,7 @@ class Derived() : Base() {
 }
 ```
 
-`Derived.v()`에는 *override*{: .keyword } 애노테이션이 필요하다. 이를 빼먹으면 컴파일러에 실패한다.
+`Derived.v()`에는 *override*{: .keyword } 애노테이션이 필요하다. 이를 누락하면 컴파일에 실패한다.
 `Base.nv()`처럼 *open*{: .keyword } 애노테이션이 없는 경우,
 *override*{: .keyword }를 사용하든 안 하든 하위클래스에서 동일 시그너처를 갖는 메서드를 선언할 수 없다.
 final 클래스(예, *open*{: .keyword } 애노테이션이 없는 클래스)는 open 멤버를 가질 수 없다.
@@ -292,12 +289,12 @@ class Bar : Foo() {
 }
 ```
 
-### 규책 오버라이딩
+### 오버라이딩 규칙
 
-코틀린은 구현 상속은 다음 규칙에 따라 제한된다:
-클래스가 바로 위의 상위 클래스에서 같은 멤버의 구현을 여러개 상속받으면,
-반드시 멤버를 오버라이딩하고 자신의 구현을 제공해야 한다(아마도, 상속한 것 중 하나를 사용하는 코드).
-어떤 상위타입의 구현을 사용할지 선택하려면 꺽쇠 괄호 안에 상위 타입의 이름을 붙인 *super*{: .keyword }를 사용한다.  
+코틀린의 구현 상속은 다음 규칙에 따라 제한된다:
+클래스가 바로 위의 상위 클래스에서 같은 멤버의 구현을 여러 개 상속받으면,
+반드시 멤버를 오버라이딩하고 자신의 구현(아마도, 상속한 것 중 하나를 사용하는 코드)를 제공해야 한다.
+어떤 상위타입의 구현을 사용할지 선택하려면 홑화살괄호 안에 상위 타입의 이름을 붙인 *super*{: .keyword }를 사용한다.  
 
 ``` kotlin
 open class A {
@@ -345,7 +342,7 @@ abstract class Derived : Base() {
 코틀린은 자바나 C#과 달리 클래스에 정적 메서드가 없다. 많은 경우 간단하게 패키지 수준의 함수를 대신 사용할 것을 권한다.
 
 클래스 인스턴스없이 클래스의 내부에 접근해야 하는 함수를 작성해야 한다면(예를 들어, 팩토리 메서드),
-그 클래스에 [오브젝트 선언](object-declarations.html)의 멤버로 함수를 작성할 수 있다.
+그 클래스에 속한 [오브젝트 선언](object-declarations.html)의 멤버로 함수를 작성할 수 있다.
 
 더 구체적으로 [컴페니언 오브젝트](object-declarations.html#companion-objects)를 클래스 안에 선언하면,
 한정자로 클래스 이름을 사용해서 자바나 C#의 정적 메서드를 호출하는 것과 동일 구문으로 컴페니언 오브젝트의 멤버를 호출할 수 있다.
