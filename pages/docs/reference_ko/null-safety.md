@@ -7,13 +7,13 @@ title: "Null 안전성"
 
 # Null 안정성
 
-## Nullable 타입과 Non-Null 타입
+## Null 가능 타입과 Not-null 타입
 
 코틀린 타입 시스템은 [10억 달러 실수](http://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions)라고 알려진,
 코드에서 null을 참조하는 위험을 없애는데 도움을 준다.
 
 자바를 포함한 많은 프로그래밍 언어에서 공통으로 발견되는 실수 중 하나는 null 레퍼런스의 멤버를 참조해서
-null 참조 익셉션이 발생하는 것이다. 자바에서는 `NullPointerException`, 줄여서 NPE에 해당한다.
+null 참조 익셉션이 발생하는 것이다. 자바에서는 `NullPointerException`, 줄여서 NPE이 이에 해당한다.
 
 코틀린 타입 시스템은 코드에서 `NullPointerException`을 제거하는데 도움을 준다.
 NPE는 다음 상황에서만 가능하다:
@@ -21,7 +21,7 @@ NPE는 다음 상황에서만 가능하다:
 * `throw NullPointerException()`를 명시적으로 실행
 * 뒤에서 설명한 `!!` 연산자 사용
 * NPE를 발생하는 외부의 자바 코드 사용
-* 초기화와 관련해서 데이터의 일관성이 깨졌을 때(생성자 언디가에서 초기화되지 않은 *this*를 사용할 수 있음)
+* 초기화와 관련해서 데이터의 일관성이 깨졌을 때(생성자 어딘가에서 초기화되지 않은 *this*를 사용할 수 있음)
 
 코틀린 타입 시스템은 *null*{: .keyword }을 가질 수 있는 레퍼런스(nullable 레퍼런스)와 가질 수 없는 레퍼런스(non-null 레퍼런스)를 구분한다.
 예를 들어, `String` 타입 변수는 *null*{: .keyword }을 가질 수 없다:
@@ -31,7 +31,7 @@ var a: String = "abc"
 a = null // 컴파일 에러
 ```
 
-null을 가질 수 있으려면 `String?`와 같이 변수를 nullable String으로 선언해야 한다:
+null을 가질 수 있으려면 `String?`와 같이 변수를 null 가능 String으로 선언해야 한다:
 
 ``` kotlin
 var b: String? = "abc"
@@ -44,13 +44,13 @@ b = null // ok
 val l = a.length
 ```
 
-하지만, `b`의 동일한 프로퍼티에 접근시도를 하면 안전하지 않으므로 컴파일러가 에러를 발생한다:
+하지만, `b`의 동일한 프로퍼티에 접근시도를 하면 안전하지 않으므로 컴파일러 에러가 발생한다:
 
 ``` kotlin
 val l = b.length // 에러: 변수 'b'는 null일 수 있다
 ```
 
-하지만, 우리는 그 프로젝트에 접근해야 한다. 이를 위한 몇 가지 방법이 있다.
+하지만, 여전히 그 프로퍼티에 접근해야 한다면, 이를 위한 몇 가지 방법이 있다.
 
 ## 조건으로 *null*{: .keyword } 검사하기
 
@@ -72,7 +72,7 @@ if (b != null && b.length > 0) {
 ```
 
 이 코드는 `b`가 불변인 경우에만 작동한다(예를 들어, null 검사와 사용 사이에 수정할 수 없는 로컬 변수나 
-backing 필드가 있고 오버라이딩할 수 없는 *val*{: .keyword } 멤버인 경우).
+지원 필드가 있고 오버라이딩할 수 없는 *val*{: .keyword } 멤버인 경우).
 왜냐면, 그렇지 않을 경우 검사 이후에 `b`를 *null*{: .keyword }로 바꿀 수 있기 때문이다.
 
 ## 안전한 호출
@@ -147,18 +147,18 @@ val l = b!!.length
 따라서 NPE를 원한다면 그것을 사용할 수 있다.
 하지만, NPE는 명시적으로 사용해야 하고 뜻밖인 곳에서 나타나지 않도록 한다.
 
-## 안전한 형변환
+## 안전한 타입 변환
 
-일반 형변환은 객체가 지정한 타입이 아니면 `ClassCastException`을 발생한다.
-다른 옵션은 형변화에 실패하면 *null*{: .keyword }을 리턴하는 안전한 형변환을 사용하는 것이다:
+일반 타입 변환은 객체가 지정한 타입이 아니면 `ClassCastException`을 발생한다.
+다른 옵션은 타입 변화에 실패하면 *null*{: .keyword }을 리턴하는 안전한 타입 변환을 사용하는 것이다:
 
 ``` kotlin
 val aInt: Int? = a as? Int
 ```
 
-## nullable 타입의 콜렉션
+## null가능 타입의 콜렉션
 
-nullable 타입의 요소를 갖는 콜렉션에서 null이 아닌 요소를 걸러내고 싶다면, `filterNotNull`를 사용한다:
+null 가능 타입의 요소를 갖는 콜렉션에서 null이 아닌 요소를 걸러내고 싶다면, `filterNotNull`를 사용한다:
 
 ``` kotlin
 val nullableList: List<Int?> = listOf(1, 2, null, 4)
