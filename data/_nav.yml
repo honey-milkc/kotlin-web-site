@@ -329,7 +329,7 @@ reference_ko:
         - url: /docs/reference_ko/null-safety.html
           title: Null 안정성
         - url: /docs/reference_ko/exceptions.html
-          title: Exceptions
+          title: 익셉션
         - url: /docs/reference_ko/annotations.html
           title: Annotations
         - url: /docs/reference_ko/reflection.html
