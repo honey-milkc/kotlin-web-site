@@ -29,9 +29,9 @@ val name = person.component1()
 val age = person.component2()
 ```
 
-`component1()`과  `component2()`함수는 코틀린에서 광범위하게 사용하는 _관습 법칙(principle of conventions)_의 
-예다(`+`와 `*`, *for*{: .keyword }-루트 등의 연산자를 보자).
-필요한 개수의 component 함수를 호출할수만 있으면 무엇이든 분리 선언의 오른쪽에 위치할 수 있다. 
+`component1()`과  `component2()` 함수는 코틀린에서 광범위하게 사용하는 _관례 법칙(principle of conventions)_ 
+예다(`+`와 `*`, *for*{: .keyword }-루프 등의 연산자를 보자).
+필요한 개수의 component 함수를 호출할 수만 있으면 무엇이든 분리 선언의 오른쪽에 위치할 수 있다. 
 물론 `component3()`과 `component4()` 등이 존재할 수 있다.
 
 `componentN()` 함수에 `operator` 키워드를 붙여야 분리 선언에서 그 함수를 사용할 수 있다.
@@ -42,7 +42,7 @@ val age = person.component2()
 for ((a, b) in collection) { ... }
 ```
 
-변수 `a`와 `b`는 콜렉션 요소의 `component1()`와 `component2()` 함수가 리턴한 값을 구한다.
+변수 `a`와 `b`는 콜렉션 요소의 `component1()`과 `component2()` 함수가 리턴한 값을 구한다.
 
 ## 에제: 함수에 두 값 리턴하기
 

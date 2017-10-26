@@ -309,11 +309,11 @@ reference_ko:
         - url: /docs/reference_ko/coroutines.html
           title: 코루틴
 
-    - title: Other
-      description: Various bits and bobs
+    - title: 여러 특징
+      description: 다양한 특징
       content:
         - url: /docs/reference_ko/multi-declarations.html
-          title: Destructuring Declarations
+          title: 분리 선언
         - url: /docs/reference_ko/collections.html
           title: Collections
         - url: /docs/reference_ko/ranges.html
