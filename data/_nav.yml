@@ -325,7 +325,7 @@ reference_ko:
         - url: /docs/reference_ko/equality.html
           title: 동등성(Equality)
         - url: /docs/reference_ko/operator-overloading.html
-          title: Operator overloading
+          title: 연산자 오버로딩
         - url: /docs/reference_ko/null-safety.html
           title: Null Safety
         - url: /docs/reference_ko/exceptions.html

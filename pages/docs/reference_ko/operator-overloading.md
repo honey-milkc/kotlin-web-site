@@ -13,8 +13,7 @@ category: "Syntax"
 해당 타입에 제공한다. 이 타입은 이항 연산자의 왼쪽 타입이고 단항 연산자의 인자 타입이다.
 연산자를 오버로딩한 함수는 `operator` 수식어를 붙여야 한다.
 
-이어서 다른 연산자를 위한 연산자 오버로딩을 규정하는 규칙을 살펴보자. 
-Further we describe the conventions that regulate operator overloading for different operators.
+이어서 다른 연산자를 위한 연산자 오버로딩을 규정하는 관례를 살펴보자. 
 
 ## 단항 연산자
 
@@ -29,7 +28,7 @@ Further we describe the conventions that regulate operator overloading for diffe
 이 표는 컴파일러가 다음 절차에 따라 처리한다는 것을 보여준다(예로 `+a`를 사용했다):
 
 * `a`의 타입을 결정한다. 타입을 `T`라고 해 보자.
-* 리시버 `T`에 대해 파라미터가 없고 `operator`인 이름이 `unaryPlus()`인 멤버 함수나 확장 함수를 찾는다.  
+* 리시버 `T`에 대해 파라미터가 없고 `operator`이고 이름이 `unaryPlus()`인 멤버 함수나 확장 함수를 찾는다.  
 * 함수가 없거나 모호하면 컴파일 에러가 발생한다.
 * 함수가 존재하고 리턴 타입이 `R`이면 `+a`식의 타입은 `R`이다.
 
@@ -98,7 +97,7 @@ println(-point)  // "(-10, -20)" 출력
 
 #### 예제
 
-아래 Counter 클래스 예제는 주어진 값으로 시작해서 오버로딩한 `+` 연산자를 사용해서 증가시킬 수 있다.
+아래 Counter 클래스 예제는 주어진 값으로 시작하고 오버로딩한 `+` 연산자를 사용해서 증가시킬 수 있다.
 
 ``` kotlin
 data class Counter(val dayIndex: Int) {
@@ -118,7 +117,7 @@ data class Counter(val dayIndex: Int) {
 | `a in b` | `b.contains(a)` |
 | `a !in b` | `!b.contains(a)` |
 
-`in`과 `!in`의 절차는 동일하다. 인자의 순서만 역순이다.
+`in`과 `!in`의 절차는 동일하다. 인자의 순서만 반대이다.
 
 {:#indexed}
 
