@@ -335,7 +335,7 @@ reference_ko:
         - url: /docs/reference_ko/reflection.html
           title: Reflection
         - url: /docs/reference_ko/type-safe-builders.html
-          title: Type-Safe Builders
+          title: 타입에 안전한 빌더
         - url: /docs/reference_ko/type-aliases.html
           title: Type Aliases
 #        - url: /docs/reference_ko/multiplatform.html
