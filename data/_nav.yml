@@ -319,7 +319,7 @@ reference_ko:
         - url: /docs/reference_ko/ranges.html
           title: 범위
         - url: /docs/reference_ko/typecasts.html
-          title: Type Checks and Casts
+          title: 타입 검사와 변환
         - url: /docs/reference_ko/this-expressions.html
           title: This expressions
         - url: /docs/reference_ko/equality.html
