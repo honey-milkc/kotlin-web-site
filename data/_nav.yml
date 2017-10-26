@@ -331,7 +331,7 @@ reference_ko:
         - url: /docs/reference_ko/exceptions.html
           title: 익셉션
         - url: /docs/reference_ko/annotations.html
-          title: Annotations
+          title: 애노테이션
         - url: /docs/reference_ko/reflection.html
           title: Reflection
         - url: /docs/reference_ko/type-safe-builders.html
