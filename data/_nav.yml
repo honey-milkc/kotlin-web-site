@@ -315,7 +315,7 @@ reference_ko:
         - url: /docs/reference_ko/multi-declarations.html
           title: 분리 선언
         - url: /docs/reference_ko/collections.html
-          title: Collections
+          title: 콜렉션
         - url: /docs/reference_ko/ranges.html
           title: Ranges
         - url: /docs/reference_ko/typecasts.html
