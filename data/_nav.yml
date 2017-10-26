@@ -337,7 +337,7 @@ reference_ko:
         - url: /docs/reference_ko/type-safe-builders.html
           title: 타입에 안전한 빌더
         - url: /docs/reference_ko/type-aliases.html
-          title: Type Aliases
+          title: 타입 별칭
 #        - url: /docs/reference_ko/multiplatform.html
 #          title: Multiplatform Projects (preview)
 
