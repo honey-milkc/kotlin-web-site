@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "리플렉션"
 ---
@@ -18,6 +18,7 @@ title: "리플렉션"
 {:.note}
 
 ## 클래스 레퍼런스
+{:#class-references}
 
 가장 기본적인 리플렉션 특징은 코틀린 클래스에 대한 런타임 레퍼런스를 구하는 것이다. 정적으로 알려진 코틀린 클래스에 대한
 레퍼런스를 얻으려면 _class 리터럴_ 구문을 사용하면 된다:
@@ -44,6 +45,7 @@ assert(widget is GoodWidget) { "Bad widget: ${widget::class.qualifiedName}" }
 레퍼런스를 구한다.  
 
 ## 함수 레퍼런스
+{:#function-references}
 
 다음과 같이 이름 가진 함수를 선언했다고 하자:
 
@@ -198,6 +200,8 @@ Foo 클래스의 인자없는 생성자인 `::Foo`를 사용하면 다음과 같
 ``` kotlin
 function(::Foo)
 ```
+
+{:#bound-function-and-property-references-since-11}
 
 ## 바운드(Bound) 함수 레퍼런스와 바운드 프로퍼티 레퍼런스 (1.1부터)
 

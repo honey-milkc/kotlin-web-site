@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "타입 검사와타입 변환: 'is'와 'as'"
 ---
@@ -8,6 +8,7 @@ title: "타입 검사와타입 변환: 'is'와 'as'"
 # 타입 검사와 변환: 'is'와 'as'
 
 ## `is`와 `!is` 연산자
+{:#is-and-is-operators}
 
 `is` 연산자를 사용하면 런타임에 객체가 특정 타입을 따르는지 검사할 수 있다. `!is` 연산자는 반대를 검사한다:
 
@@ -23,6 +24,8 @@ else {
     print(obj.length)
 }
 ```
+
+{:#smart-casts}
 
 ## 스마트 타입 변환
 
@@ -80,6 +83,7 @@ when (x) {
 
 
 ## "불안전" 타입 변환 연산자
+{:#unsafe-cast-operator}
 
 보통 타입 변환 연산자는 타입 변환이 불가능하면 익셉션을 발생한다. 따라서 이를 *불안전*하다고 한다.
 코틀린에서 불안전 타입 변환은 중위 연산자인 *as*{: .keyword }로 수행한다([연산자 우선순위](grammar.html#precedence)를 보자):
@@ -97,6 +101,7 @@ val x: String? = y as String?
 ```
 
 ## "안전한" (nullable) 타입 변환 연산자
+{:#safe-nullable-cast-operator}
 
 익셉션이 발생하는 것을 피하려면 *안전한* 타입 변환 연산자인 *as?*{: .keyword }를 사용할 수 있다.
 이 연산자는 실패시 *null*{: .keyword }을 리턴한다.

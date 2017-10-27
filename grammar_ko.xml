@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tokens>
    <set file-name="notation.grm">
-      <doc><![CDATA[# Notation
+      <doc><![CDATA[# 기호
 
-This section informally explains the grammar notation used below.
+이 절에서는 아래 사용할 문법 기호를 격식없이 설명한다.
 
-## Symbols and naming
+## 심볼과 명명
 
-_Terminal symbol_ names start with an uppercase letter, e.g. **SimpleName**.<br>
-_Nonterminal symbol_ names start with lowercase letter, e.g. **kotlinFile**.<br>
-Each _production_ starts with a colon (**:**).<br>
-_Symbol definitions_ may have many productions and are terminated by a semicolon (**;**).<br>
-Symbol definitions may be prepended with _attributes_, e.g. `start` attribute denotes a start symbol.
+_터미널 심볼_ 이름은 **SimpleName**와 같이 대문자로 시작한다.<br>
+_논터미널 심볼_ 이름은 **kotlinFile**와 같이 소문자로 시작한다.<br>
+각 _생성_은 콜론(**:**)으로 시작한다.<br>
+_심볼 정의_는 여러 생성을 가질 수 있고 세미콜론(**;**)으로 끝난다.<br>
+심볼 정의는 _속성_이 앞에 올 수 있다. 예를 들어, `start` 속성은 시작 심볼을 표시한다.
 
-## EBNF expressions
+## EBNF 식
 
-Operator `|` denotes _alternative_.<br>
-Operator `*` denotes _iteration_ (zero or more).<br>
-Operator `+` denotes _iteration_ (one or more).<br>
-Operator `?` denotes _option_ (zero or one).<br>
-alpha`{`beta`}` denotes a nonempty _beta_-separated list of _alpha_'s. <br>
-Operator `++` means that no space or comment allowed between operands.
+`|` 연산자는 _선택_을 표시한다.<br>
+`*` 연산자는 _반복_ (0 또는 이상)을 표시한다.<br>
+`+` 연산자는 _반복_ (한 번 또는 이상)을 표시한다.<br>
+`?` 연산자는 _옵션_ (없거나 1개)을 표시한다.<br>
+알파`{`베타`}`는 비지 않은 _베타_로 구분한 _알파_ 목록을 표시한다. <br>
+`++` 연산자는 피연산자 사이에 공백이나 주석을 허용하지 않는다는 것을 의미한다.
 
-# Semicolons
+# 세미콜론
 
-Kotlin provides "semicolon inference": syntactically, subsentences (e.g., statements, declarations etc) are separated by
-the pseudo-token [SEMI](#SEMI), which stands for "semicolon or newline". In most cases, there's no need for semicolons in
-Kotlin code.]]></doc>
+코틀린은 "세미콜론 추론"을 제공한다. 구문적으로, 부분문장(예, 문장, 선언 등)은 "세미콜론 또는 뉴라인"을 뜻하는 슈도 토큰 [SEMI](#SEMI)로 구분한다.
+많은 경우에 코틀린 코드에서 세미콜론은 필요 없다.]]></doc>
       <other/>
       <crlf/>
    </set>
    <set file-name="toplevel.grm">
-      <doc><![CDATA[# Syntax
+      <doc><![CDATA[# 구문
 
-Relevant pages: [Packages](packages.html)]]></doc>
+관련 페이지: [패키지](packages.html)]]></doc>
       <item>
          <annotation>start</annotation>
          <declaration name="kotlinFile"/>
@@ -199,7 +198,7 @@ Relevant pages: [Packages](packages.html)]]></doc>
             <other/>
          </description>
       </item>
-      <doc><![CDATA[See [Packages](packages.html)]]></doc>
+      <doc><![CDATA[[패키지](packages.html) 참고]]></doc>
       <item>
          <declaration name="import">
             <usages>
@@ -244,7 +243,7 @@ Relevant pages: [Packages](packages.html)]]></doc>
             <other/>
          </description>
       </item>
-      <doc><![CDATA[See [Imports](packages.html#imports)]]></doc>
+      <doc><![CDATA[[임포트](packages.html#imports) 참고]]></doc>
       <item>
          <declaration name="topLevelObject">
             <usages>
@@ -325,9 +324,9 @@ Relevant pages: [Packages](packages.html)]]></doc>
       </item>
    </set>
    <set file-name="class.grm">
-      <doc><![CDATA[## Classes
+      <doc><![CDATA[## 클래스
 
-See [Classes and Inheritance](classes.html)]]></doc>
+[클래스와 상속](classes.html) 참고]]></doc>
       <item>
          <declaration name="class">
             <usages>
@@ -617,7 +616,7 @@ See [Classes and Inheritance](classes.html)]]></doc>
             <other/>
          </description>
       </item>
-      <doc><![CDATA[See [Generic classes](generics.html)]]></doc>
+      <doc><![CDATA[[지네릭 클래스](generics.html) 참고]]></doc>
       <item>
          <declaration name="typeConstraints">
             <usages>
@@ -675,10 +674,10 @@ See [Classes and Inheritance](classes.html)]]></doc>
             <other/>
          </description>
       </item>
-      <doc><![CDATA[See [Generic constraints](generics.html#generic-constraints)]]></doc>
+      <doc><![CDATA[[지네릭 제약](generics.html#generic-constraints) 참고]]></doc>
    </set>
    <set file-name="class_members.grm">
-      <doc><![CDATA[### Class members]]></doc>
+      <doc><![CDATA[### 클래스 멤버]]></doc>
       <item>
          <declaration name="memberDeclaration">
             <usages>
@@ -1162,7 +1161,7 @@ See [Classes and Inheritance](classes.html)]]></doc>
             <other/>
          </description>
       </item>
-      <doc><![CDATA[See [Properties and Fields](properties.html)]]></doc>
+      <doc><![CDATA[[프로퍼티와 필드](properties.html) 참고]]></doc>
       <item>
          <declaration name="getter">
             <usages>
@@ -1385,12 +1384,12 @@ See [Classes and Inheritance](classes.html)]]></doc>
             <other/>
          </description>
       </item>
-      <doc><![CDATA[See [Object expressions and Declarations](object-declarations.html)]]></doc>
+      <doc><![CDATA[[오브젝트 식과 선언](object-declarations.html) 참고]]></doc>
    </set>
    <set file-name="enum.grm">
-      <doc><![CDATA[### Enum classes
+      <doc><![CDATA[### Enum 클래스
 
-See [Enum classes](enum-classes.html)]]></doc>
+[Enum 클래스](enum-classes.html) 참고]]></doc>
       <item>
          <declaration name="enumClassBody">
             <usages>
@@ -1492,9 +1491,9 @@ See [Enum classes](enum-classes.html)]]></doc>
       </item>
    </set>
    <set file-name="types.grm">
-      <doc><![CDATA[## Types
+      <doc><![CDATA[## 타입
 
-See [Types](basic-types.html)]]></doc>
+[타입](basic-types.html) 참고]]></doc>
       <item>
          <declaration name="type">
             <usages>
@@ -1739,9 +1738,9 @@ See [Types](basic-types.html)]]></doc>
       </item>
    </set>
    <set file-name="control.grm">
-      <doc><![CDATA[## Control structures
+      <doc><![CDATA[## 제어 구조
 
-See [Control structures](control-flow.html)]]></doc>
+[제어 구조](control-flow.html) 참고]]></doc>
       <item>
          <declaration name="controlStructureBody">
             <usages>
@@ -2034,30 +2033,30 @@ See [Control structures](control-flow.html)]]></doc>
       </item>
    </set>
    <set file-name="expressions.grm">
-      <doc><![CDATA[## Expressions
+      <doc><![CDATA[## 식
 
-<!--See [Expressions](expressions.html)-->
+<!--[식](expressions.html) 참고-->
 
-### Precedence
+### 우선순위
 
-| Precedence | Title | Symbols |
+| 우선순위 | 제목 | 부호 |
 |------------|-------|---------|
-| Highest    | Postfix | `++`, `--`, `.`, `?.`, `?` |
-| | Prefix | `-`, `+`, `++`, `--`, `!`, [`labelDefinition`](#IDENTIFIER)`@` |
-| | Type RHS | `:`, `as`, `as?` |
+| 높음    | 접미사 | `++`, `--`, `.`, `?.`, `?` |
+| | 접두사 | `-`, `+`, `++`, `--`, `!`, [`labelDefinition`](#IDENTIFIER)`@` |
+| | 타입 RHS | `:`, `as`, `as?` |
 | | Multiplicative | `*`, `/`, `%` |
 | | Additive | `+`, `-` |
-| | Range | `..` |
-| | Infix function | [`SimpleName`](#SimpleName) |
-| | Elvis | `?:` |
-| | Named checks | `in`, `!in`, `is`, `!is` |
-| | Comparison | `<`, `>`, `<=`, `>=` |
-| | Equality | `==`, `\!==` |
-| | Conjunction | `&&` |
-| | Disjunction | `||` |
-| Lowest | Assignment | `=`, `+=`, `-=`, `*=`, `/=`, `%=` |
+| | 범위 | `..` |
+| | 중위 함수 | [`SimpleName`](#SimpleName) |
+| | 엘비스 | `?:` |
+| | 네임드 검사 | `in`, `!in`, `is`, `!is` |
+| | 비교 | `<`, `>`, `<=`, `>=` |
+| | 동등 | `==`, `\!==` |
+| | 논리곱 | `&&` |
+| | 논리합 | `||` |
+| 낮음 | 할당 | `=`, `+=`, `-=`, `*=`, `/=`, `%=` |
 
-### Rules]]></doc>
+### 규]]></doc>
       <item>
          <declaration name="expression">
             <usages>
@@ -3731,9 +3730,9 @@ See [Control structures](control-flow.html)]]></doc>
       </item>
    </set>
    <set file-name="when.grm">
-      <doc><![CDATA[#### When-expression
+      <doc><![CDATA[#### When-식
 
-See [When-expression](control-flow.html#when-expression)]]></doc>
+[When-식](control-flow.html#when-expression) 참고]]></doc>
       <item>
          <declaration name="when">
             <usages>
@@ -3867,7 +3866,7 @@ See [When-expression](control-flow.html#when-expression)]]></doc>
       </item>
    </set>
    <set file-name="modifiers.grm">
-      <doc><![CDATA[## Modifiers]]></doc>
+      <doc><![CDATA[## 수식어]]></doc>
       <item>
          <declaration name="modifiers">
             <usages>
@@ -4317,7 +4316,7 @@ See [When-expression](control-flow.html#when-expression)]]></doc>
       </item>
    </set>
    <set file-name="annotations.grm">
-      <doc><![CDATA[## Annotations]]></doc>
+      <doc><![CDATA[## 애노테이션]]></doc>
       <item>
          <declaration name="annotations">
             <usages>
@@ -4522,7 +4521,7 @@ See [When-expression](control-flow.html#when-expression)]]></doc>
       </item>
    </set>
    <set file-name="lexical.grm">
-      <doc><![CDATA[# Lexical structure]]></doc>
+      <doc><![CDATA[# 어휘 구조]]></doc>
       <item>
          <annotation>helper</annotation>
          <declaration name="Digit">
@@ -4694,7 +4693,7 @@ See [When-expression](control-flow.html#when-expression)]]></doc>
             <whiteSpace>  </whiteSpace>
             <symbol><![CDATA[:]]></symbol>
             <whiteSpace> </whiteSpace>
-            <string><![CDATA[<character as in Java>]]></string>
+            <string><![CDATA[<자바와 같은 문자>]]></string>
             <other>;</other>
             <other/>
             <other/>
@@ -4702,7 +4701,7 @@ See [When-expression](control-flow.html#when-expression)]]></doc>
             <other/>
          </description>
       </item>
-      <doc><![CDATA[See [Basic types](basic-types.html)]]></doc>
+      <doc><![CDATA[[기본 타입](basic-types.html) 참고]]></doc>
       <item>
          <declaration name="NoEscapeString">
             <usages>
@@ -4715,7 +4714,7 @@ See [When-expression](control-flow.html#when-expression)]]></doc>
             <whiteSpace>  </whiteSpace>
             <symbol><![CDATA[:]]></symbol>
             <whiteSpace> </whiteSpace>
-            <string><![CDATA[<"""-quoted string>]]></string>
+            <string><![CDATA[<"""-quoted 문자열>]]></string>
             <other>;</other>
             <other/>
             <other/>
@@ -4733,7 +4732,7 @@ See [When-expression](control-flow.html#when-expression)]]></doc>
             <whiteSpace>  </whiteSpace>
             <symbol><![CDATA[:]]></symbol>
             <whiteSpace> </whiteSpace>
-            <string><![CDATA[<any character other than backslash, quote, $ or newline>]]></string>
+            <string><![CDATA[<역따옴표, 인용부호, $, 뉴라인을 제외한 모든 글자>]]></string>
             <other/>
             <crlf/>
             <other/>
@@ -4790,7 +4789,7 @@ See [When-expression](control-flow.html#when-expression)]]></doc>
             <whiteSpace>  </whiteSpace>
             <symbol><![CDATA[:]]></symbol>
             <whiteSpace> </whiteSpace>
-            <string><![CDATA["\" <any character other than newline>]]></string>
+            <string><![CDATA["\" <뉴라인을 제외한 모든 글자>]]></string>
             <crlf/>
             <other/>
             <crlf/>
@@ -4800,7 +4799,7 @@ See [When-expression](control-flow.html#when-expression)]]></doc>
             <crlf/>
          </description>
       </item>
-      <doc><![CDATA[See [String templates](basic-types.html#templates)]]></doc>
+      <doc><![CDATA[[스프링 템플릿](basic-types.html#templates) 참고]]></doc>
       <item>
          <declaration name="SEMI">
             <usages>
@@ -4818,7 +4817,7 @@ See [When-expression](control-flow.html#when-expression)]]></doc>
             <whiteSpace>  </whiteSpace>
             <symbol><![CDATA[:]]></symbol>
             <whiteSpace> </whiteSpace>
-            <string><![CDATA[<semicolon or newline>]]></string>
+            <string><![CDATA[<세미콜론 또는 뉴라인>]]></string>
             <other>;</other>
             <other/>
             <other/>
@@ -4858,7 +4857,7 @@ See [When-expression](control-flow.html#when-expression)]]></doc>
             <whiteSpace>  </whiteSpace>
             <symbol><![CDATA[:]]></symbol>
             <whiteSpace> </whiteSpace>
-            <string><![CDATA[<java identifier>]]></string>
+            <string><![CDATA[<자바 식별자>]]></string>
             <other/>
             <crlf/>
             <whiteSpace>  </whiteSpace>
@@ -4866,7 +4865,7 @@ See [When-expression](control-flow.html#when-expression)]]></doc>
             <whiteSpace> </whiteSpace>
             <string><![CDATA["`"]]></string>
             <whiteSpace> </whiteSpace>
-            <string><![CDATA[<java identifier>]]></string>
+            <string><![CDATA[<자바 식별자>]]></string>
             <whiteSpace> </whiteSpace>
             <string><![CDATA["`"]]></string>
             <other/>
@@ -4879,7 +4878,7 @@ See [When-expression](control-flow.html#when-expression)]]></doc>
             <other/>
          </description>
       </item>
-      <doc><![CDATA[See [Java interoperability](java-interop.html)]]></doc>
+      <doc><![CDATA[[자바 상호운용성](java-interop.html) 참고]]></doc>
       <item>
          <declaration name="LabelName">
             <usages>
@@ -4906,6 +4905,6 @@ See [When-expression](control-flow.html#when-expression)]]></doc>
             <other/>
          </description>
       </item>
-      <doc><![CDATA[See [Returns and jumps](returns.html)]]></doc>
+      <doc><![CDATA[[리턴과 점프](returns.html) 참고]]></doc>
    </set>
 </tokens>

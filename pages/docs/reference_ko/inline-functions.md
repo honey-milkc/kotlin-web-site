@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "인라인 함수와 구체화한(Reified) 타입 파라미터"
 ---
@@ -46,6 +46,7 @@ inline fun lock<T>(lock: Lock, body: () -> T): T {
 성능에서, 특히 루프의 "변형" 호출 위치에서, 큰 성과를 낼 수 있다.
 
 ## 인라인 안하기
+{:#noinline}
 
 인라인 함수에 전달되는 람다 중 일부만 인라인되길 원할 경우,
 함수 파라미터에 `noinline` 수식어를 붙일 수 있다:
@@ -59,12 +60,13 @@ inline fun foo(inlined: () -> Unit, noinline notInlined: () -> Unit) {
 인라인 가능한 람다는 인라인 함수 안에서만 호출할 수 있고 또는 인라인 가능한 인자로만 전달할 수 있지만,
 `noinline`은 필드에 저장하거나 다른 곳에 전달하는 등 원하는 방식으로 다룰 수 있다.
 
-만약 인라인 함수가 인라인 가능한 함수 파라미터를 갖고 있지 않고 [reified 타입 파라미터](#reified-type-parameters)를 갖지 않으면,
+만약 인라인 함수가 인라인 가능한 함수 파라미터를 갖고 있지 않고 [구체화한 타입 파라미터](#reified-type-parameters)를 갖지 않으면,
 컴파일러는 경고를 발생한다. 왜냐면 그런 함수를 인라인 하는 것은
 이득이 없기 때문이다(인라인이 확실히 필요할 경우 `@Suppress("NOTHING_TO_INLINE")` 애노테애션을 사용해서
 경고를 감출 수 있다). 
 
 ## 비-로컬 리턴
+{:#non-local-returns}
 
 코틀린에서 이름을 가진 함수나 익명 함수에서 나가려면 일반적인 한정하지 않은 `return`을 사용해야 한다.
 이는 람다를 나가려면 [라벨](returns.html#return-at-labels)을 사용해야 한다는 것을 의미한다.
@@ -118,6 +120,7 @@ inline fun f(crossinline body: () -> Unit) {
 인라이된 람다에서의 `break`와 `continue`는 아직 사용할 수 없지만, 향후 지원할 계획이다.
 
 ## 구체화한(Reified) 타입 파라미터
+{:#reified-type-parameters}
 
 종종 파라미터로 전달한 타입에 접근해야 할 때가 있다:
 
@@ -181,6 +184,7 @@ fun main(s: Array<String>) {
 {:#inline-properties}
 
 ## 인라인 프로퍼티 (1.1부터)
+{:#inline-properties}
 
 지원 필드가 없는 프로퍼티 접근자에 `inline` 수식어를 사용할 수 있다.
 개별 프로퍼티 접근자에 사용한다:
@@ -204,9 +208,8 @@ inline var bar: Bar
 
 호출 위치에서 인라인 접근자는 일반 인라인 함수처럼 인라인된다.
 
-{:#public-inline-restrictions}
-
 ## 공개 API 인라인 함수에 대한 제약사항
+{:#public-inline-restrictions}
 
 `public`이나 `protected`인 인라인 함수가 `private` 또는 `internal` 선언에 포함되어 있지 않으면
 [모듈](visibility-modifiers.html#modules)의 공개 API로 간주한다.

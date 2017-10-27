@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Other"
 title: "분리 선언(Destructuring Declarations)"
 ---
@@ -29,7 +29,7 @@ val name = person.component1()
 val age = person.component2()
 ```
 
-`component1()`과  `component2()` 함수는 코틀린에서 광범위하게 사용하는 _관례 법칙(principle of conventions)_ 
+`component1()`과  `component2()` 함수는 코틀린에서 광범위하게 사용하는 _관례 규칙(principle of conventions)_ 
 예다(`+`와 `*`, *for*{: .keyword }-루프 등의 연산자를 보자).
 필요한 개수의 component 함수를 호출할 수만 있으면 무엇이든 분리 선언의 오른쪽에 위치할 수 있다. 
 물론 `component3()`과 `component4()` 등이 존재할 수 있다.
@@ -103,6 +103,7 @@ val (_, status) = getResult()
 이 방식으로 생략한 component에 대해 `componentN()` 연산자 함수를 호출하지 않는다.
 
 ## 람다에서의 분리 선언 (1.1부터)
+{:#destructuring-in-lambdas-since-11}
 
 람다 파라미터에도 분린 선언 구문을 사용할 수 있다.
 람다가 `Pair` 타입의 파라미터를 가지면(또는 `Map.Entry`, 또는 적당한 `componentN` 함수를 가진 다른 타입),

@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "지네릭: in, out, where"
 ---
@@ -27,10 +27,12 @@ val box: Box<Int> = Box<Int>(1)
 val box = Box(1) // 1은 Int 타입이므로 컴파일러는 Box<Int>를 말한다는 것을 알아낼 수 있다
 ```
 
+{:#variance}
+
 ## 변성(Variance)
 
 자바 타입 시스템에서 가장 다루기 힘든 것 중 하나가 와일드카드 타입이다([자바 지네릭 FAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html) 참고),
-코틀린에는 와일드카드 타입이 없다. 대신 선언 위치 가변(declaration-site variance)과 타입 프로젝션(type projections)을 제공한다.
+코틀린에는 와일드카드 타입이 없다. 대신 선언 위치 변성(declaration-site variance)과 타입 프로젝션(type projections)을 제공한다.
 
 첫째로 자바에 왜 그런 미스테리한 와일드카드가 필요한자 생각해보자.
 [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 28: *Use bounded wildcards to increase API flexibility*에서
@@ -103,6 +105,7 @@ Joshua Bloch는 **읽기만** 할 수 있는 오브젝트를 **Producer**라 부
 와일드카드가(또는 다른 타입의 공변성) 보장하는 것은 **타입 안정성**뿐이다. 불변성은 완전히 다른 얘기다.
 
 ### 선언 위치 변성(Declaration-site variance)
+{:#declaration-site-variance}
 
 지네릭 인터페이스 `Source<T>`가 파라미터로 `T`를 갖는 메서드가 없고 오직 `T`를 리턴하는 메서드만 있다고 하자:
 
@@ -150,7 +153,7 @@ fun demo(strs: Source<String>) {
 `C`를 `T`의 **소비자**가 아닌 `T`의 **생산자**로 볼 수 있다.
 
 **out** 수식어를 **변성 애노테이션**이라고 부른다. 이 애노테이션은 타입 파라미터 선언 위치에 제공하므로 **선언 위치 공변**에 대해 말한다.
-이는 타입을 사용할 때 와일드카드를 통해 타입을 공변으로 만드는 자바의 **사용 위치 가변**과 대조된다.
+이는 타입을 사용할 때 와일드카드를 통해 타입을 공변으로 만드는 자바의 **사용 위치 변성**과 대조된다.
 
 **out** 외에 코틀린은 추가 공변 애노테이션인 **in**을 제공한다. 이는 타입 파라미터를 **반공변**으로 만든다.
 반공변 파라미터는 오직 소비만 할 수 있고 생산할 수는 없다. 반공변의 좋은 예가 `Comparable`이다:
@@ -172,7 +175,11 @@ fun demo(x: Comparable<Number>) {
 
 **[실존주의](http://en.wikipedia.org/wiki/Existentialism) 변환: Consumer in, Producer out\!** :-)
 
+{:#type-projections}
+
 ## 타입 프로젝트
+
+{:#use-site-variance-type-projections}
 
 ### 사용 위치 변성(Use-site variance): 타입 프로젝션
 
@@ -288,6 +295,7 @@ val l = singletonList<Int>(1)
 주어진 타입 파라미터에 올 수 있는 모든 가능한 타입 집합은 **지네릭 제한**에 제약을 받는다.
 
 ### 상위 한계
+{:#upper-bounds}
 
 대부분 공통 타입의 제한은 자바의 *extends* 키워드에 해당하는 **상위 한계**이다:
 

@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 title: "메이븐 사용하기"
 description: "이 튜토리얼은 코틀린 코드를 포함한 어플리케이션을 메이븐을 사용해서 제작하는 여러 방법을 보여준다"
 ---

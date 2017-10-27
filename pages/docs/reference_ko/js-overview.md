@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Introduction"
 title: "자바스크립트를 위한 코틀린"
 ---

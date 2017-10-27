@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "패키지와 임포트"
 ---
@@ -45,6 +45,8 @@ class Goo {}
 
 - JS:    
   - [kotlin.js.*](/api/latest/jvm/stdlib/kotlin.js/index.html)
+
+{:#imports}
 
 ## 임포트
 

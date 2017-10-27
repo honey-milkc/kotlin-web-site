@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "프로퍼티와 필드: Getters, Setters, const, lateinit"
 ---
@@ -35,6 +35,7 @@ fun copyAddress(address: Address): Address {
 ```
 
 ## Getters와 Setters
+{:#getters-and-setters}
 
 프로퍼티 선언의 전체 구문은 다음과 같다.
 
@@ -98,6 +99,8 @@ var setterWithAnnotation: Any? = null
     @Inject set // setter에 @Inject 애노테이션 적용
 ```
 
+{:#backing-fields}
+
 ### 지원(Backing) 필드
 
 코틀린 클래스는 필드를 가질 수 없다. 하지만 때때로 커스텀 접근자를 사용할 때 지원(backing) 필드가 필요할 때가 있다.
@@ -142,7 +145,8 @@ public val table: Map<String, Int>
 함수 호출에 따른 오버헤드가 발생하지 않도록 최적화하기 때문이다.
 
 
-## 컴파일타임 상수
+## 컴파일 타임 상수
+{:#compile-time-constants}
 
 컴파일 시점에 알아야 할 프로퍼티 값을 `const` 수식어를 이용해서 _컴파일 타임 상수_로 표시할 수 있다. 
 그런 프로퍼티는 다음 조건을 충족해야 한다:
@@ -160,8 +164,8 @@ const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 ```
 
 
-{:#late-initialized-properties}
 ## 초기화 지연(Late-Initialized) 프로퍼티
+{:#late-initialized-properties}
 
 보통 null이 아닌 타입으로 선언한 프로퍼티는 생성자에서 초기화해야 한다.
 하지만 이게 편리하지 않을 때가 있다.

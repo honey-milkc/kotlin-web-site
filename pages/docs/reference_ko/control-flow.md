@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "흐름 제어: if, when, for, while"
 ---
@@ -8,6 +8,7 @@ title: "흐름 제어: if, when, for, while"
 # 흐름 제어: if, when, for, while
 
 ## If 식
+{:#if-expression}
 
 코틀린에서 *if*{: .keyword }는 식(expression)으로, 값을 리턴한다.
 그래서 삼항 연산자(condition ? then : else)가 없다. 일반 *if*{: .keyword }로 동일하게 할 수 있기 때문이다.
@@ -47,6 +48,7 @@ val max = if (a > b) {
 [*if*{: .keyword } 문법](grammar.html#if)을 보자.
 
 ## When 식
+{:#when-expression}
 
 *when*{: .keyword }은 C와 같은 언어의 switch 연산에 해당한다. 가장 간단한 형식은 다음과 같다:
 
@@ -122,6 +124,7 @@ when {
 
 
 ## for 루프
+{:#for-loops}
 
 *for*{: .keyword }는 이터레이터를 제공하는 모든 것에 대해 반복을 수행한다. C#과 같은 언어의 `foreach` 루트와 동일하다.
 구문은 다음과 같다:
@@ -169,6 +172,7 @@ for ((index, value) in array.withIndex()) {
 [*for*{: .keyword } 문법](grammar.html#for)을 참고하자.
 
 ## While 루프
+{:#while-loops}
 
 *while*{: .keyword }과 *do*{: .keyword }..*while*{: .keyword } 예:
 

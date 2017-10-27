@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "JavaScript"
 title: "Calling JavaScript from Kotlin"
 ---

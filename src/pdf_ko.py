@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 from flask import render_template
 
 from src.grammar import get_grammar
+from src.grammar import get_grammar_ko
 from src.pages import MyFlatPages
 
 root_folder_path = path.dirname(path.dirname(__file__))
@@ -72,11 +73,11 @@ def get_pdf_content(pages: MyFlatPages, toc: Dict) -> str:
                 url = url[:-5]
 
             if url == "docs/reference/grammar":
-                page_html = render_template('pages/grammar.html', kotlinGrammar=get_grammar()).replace("<br>", "<br/>")
+                page_html = render_template('pages/grammar.html', kotlinGrammar=get_grammar_ko()).replace("<br>", "<br/>")
                 document = BeautifulSoup(page_html, 'html.parser')
                 document = document.find("div", {"class": "grammar"})
                 page_id = "grammar"
-                title = "Grammar"
+                title = "문법"
             else:
                 page = pages.get(url)
                 if page is None:

@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Tools"
 title: "코틀린 코드 문서화"
 ---

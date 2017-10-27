@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Classes and Objects"
 title: "실드 클래스"
 ---

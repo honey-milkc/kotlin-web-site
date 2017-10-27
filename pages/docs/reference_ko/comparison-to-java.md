@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: FAQ
 title: "자바와 비교"
 ---
@@ -44,4 +44,4 @@ title: "자바와 비교"
 * [컴페니언 오브젝트](classes.html#companion-objects)
 * [데이터 클래스](data-classes.html)
 * [읽기 전용과 변경 가능 콜렉션의 인터페이스 분리](collections.html)
-* [코루](coroutines.html)
+* [코루틴](coroutines.html)

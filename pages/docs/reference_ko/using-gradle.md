@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 title: "그레이들 사용하기"
 ---
 
@@ -11,6 +11,7 @@ title: "그레이들 사용하기"
 인텔리J IDEA의 Tools \| Kotlin \| 메뉴의 Configure Kotlin in Project 메뉴를 실행하면 자동으로 이를 처리해준다.
 
 ## 플러그인과 버전
+{:#plugin-and-versions}
 
 `kotlin-gradle-plugin`은 코틀린 코드와 모듈을 컴파일한다.
 
@@ -35,6 +36,7 @@ buildscript {
 코틀린 버전을 설정할 필요가 없다.
 
 ## JVM 대상
+{:#targeting-the-jvm}
 
 JVM을 대상으로 하려면 코틀린 플러그인을 적용해야 한다:
 
@@ -142,6 +144,7 @@ android {
 
 
 ## 의존 설정
+{:#configuring-dependencies}
 
 위에서 보여준 `kotlin-gradle-plugin` 의존 외에 코틀린 표준 라이브러리를 의존에 추가해야 한다.
 

@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "고차 함수와 람다"
 ---
@@ -77,6 +77,7 @@ val doubled = ints.map { value -> value * 2 }
 함수를 호출할 때 인자가 람다밖에 없으면 괄호를 완전히 생략할 수 있음에 주목하자.
 
 ### `it`: 단일 파라미터의 암묵적 이름
+{:#it-implicit-name-of-a-single-parameter}
 
 다른 유용한 한 가지 규칙은 함수 리터럴의 파라미터가 한 개면, (`->`를 포함한) 파라미터 선언을 생략할 수 있고,
 파라미터 이름이 `it`이 된다는 것이다:
@@ -92,6 +93,7 @@ strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }
 ```
 
 ### 사용하지 않는 변수의 밑줄 표기 (1.1부터)
+{:#underscore-for-unused-variables-since-11}
 
 람다의 파라미터를 사용하지 않으면 이름 대신에 밑줄을 사용할 수 있다:
 
@@ -108,6 +110,7 @@ map.forEach { _, value -> println("$value!") }
 때때로 고차 함수의 성능을 향상시키기 위해 [인라인 함수](inline-functions.html)를 사용하는 것이 이익이 된다.
 
 ## 람다 식과 익명 함수
+{:#lambda-expressions-and-anonymous-functions}
 
 람다 식 또는 익명 함수는 함수 선언 없이 바로 식으로 전달한 함수인 "함수 리터럴"이다. 다음 예를 보자:
 
@@ -123,6 +126,7 @@ fun compare(a: String, b: String): Boolean = a.length < b.length
 ```
 
 ### 함수 타입
+{:#function-types}
 
 함수가 다른 함수를 파라미터로 받을 때, 파라미터를 위한 함수 타입을 지정해야 한다.
 예를 들어, 앞서 언급한 `max` 함수는 다음과 같이 정의했다:
@@ -156,6 +160,7 @@ var sum: ((Int, Int) -> Int)? = null
 
 
 ### 람다 식 구문
+{:#lambda-expression-syntax}
 
 람다 식(즉 함수 타입의 리터럴)의 완전한 구문 형식은 다음과 같다:
 
@@ -200,6 +205,7 @@ ints.filter {
 [callSuffix](grammar.html#callSuffix)에 대한 문법을 참고한다.
 
 ### 익명 함수
+{:#anonymous-functions}
 
 위에서 보여준 람다 식 구문에서 빼 먹은 한 가지는 함수의 리턴 타입을 지정할 수 있다는 점이다.
 많은 경우, 리턴 타입을 자동으로 유추할 수 있기 때문에 이것이 불필요하다.
@@ -253,6 +259,7 @@ print(sum)
 
 
 ### 리시버를 가진 함수 리터럴
+{:#function-literals-with-receiver}
 
 코틀린은 _리시버 객체_를 가진 함수 리터럴을 호출하는 기능을 제공한다.
 함수 리터럴 몸체 안에서 별도 한정자 없이 리시버 객체의 메서드를 호출할 수 있다.

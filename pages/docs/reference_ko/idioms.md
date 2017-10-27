@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Basics"
 title: "이디엄"
 ---
@@ -85,6 +85,8 @@ if (x in 1..10) { ... }
 ``` kotlin
 val list = listOf("a", "b", "c")
 ```
+
+{:#read-only-map}
 
 ### 읽기 전용 맵
 

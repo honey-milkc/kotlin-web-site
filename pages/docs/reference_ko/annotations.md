@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "애노테이션"
 ---
@@ -36,6 +36,7 @@ annotation class Fancy
 ```
 
 ### 사용법
+{:#usage}
 
 ``` kotlin
 @Fancy class Foo {
@@ -122,6 +123,7 @@ val f = @Suspendable { Fiber.sleep(10) }
 ```
 
 ## 애노테이션 사용 위치 대상
+{:#annotation-use-site-targets}
 
 프로퍼티나 주요 생성자 파라미터에 애노테이션을 적용할 때, 
 코틀린 요소에서 여러 자바 요소가 생성될 수 있고 따라서 생성된 자바 바이트코드에는 애노테이션이

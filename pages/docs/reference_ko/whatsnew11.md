@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 title: "코틀린 1.1의 새로운 점"
 ---
 
@@ -20,6 +20,7 @@ title: "코틀린 1.1의 새로운 점"
 많은 새 도구를 제공한다. 자세한 변경 목록은 [아래](#javascript-backend)에서 확인할 수 있다.
 
 ## 코루틴 (실험)
+{:#coroutines-experimental}
 
 코틀린 1.1의 핵심 특징은 *코루틴*이다. 코루틴은 `async`/`await`, `yield` 내지 이와 유사한 프로그램 패턴을 지원한다
 코틀린 설계의 핵심 특징은 코루틴 실행 구현이 언어가 아닌 라이브러리의 일부라는 점이다.
@@ -84,13 +85,14 @@ fun main(args: Array<String>) {
 
 위 코드를 실행하고 결과를 보자. 마음껏 수정해서 실행해보자!
 
-[코루틴 문서](/docs/reference_ko/coroutines.html)와 [튜토리얼](/docs/tutorials/coroutines-basic-jvm.html)에서
+[코루틴 문서](coroutines.html)와 [튜토리얼](/docs/tutorials/coroutines-basic-jvm.html)에서
 더 많은 정보를 참고할 수 있다.
 
 코루틴은 현재 **실험적인 특징*으로, 코틀린 팀은 최종 1.1 버전 이후에 코루틴의 하위호환성을 지원하지 않을 수도 있다.
 
 
 ## 다른 언어 특징
+{:#other-language-features}
 
 ### 타입 별칭
 
@@ -436,6 +438,7 @@ table {
 `mod` 연산자를 디프리케이트했고 대신 `rem`을 사용한다. 이렇게 바꾼 동기는 [이슈](https://youtrack.jetbrains.com/issue/KT-14650)에서 확인할 수 있다.
 
 ## 표준 라이브러리
+{:#standard-library}
 
 ### String에서 숫자로의 변환
 
@@ -701,6 +704,7 @@ fun main(args: Array<String>) {
 </div>
 
 ## JVM 백엔드
+{:#jvm-backend}
 
 ### 자바 8 바이트코드 지원
 
@@ -756,6 +760,7 @@ println(engine.eval("x + 2"))  // 5를 출력
 
 
 ## 자바스크립트 백엔드
+{:#javascript-backend}
 
 ### 표준 라이브러리 통합
 

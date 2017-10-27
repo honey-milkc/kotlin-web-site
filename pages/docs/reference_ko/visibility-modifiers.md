@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Classes and Objects"
 title: "가시성 수식어"
 ---
@@ -89,6 +89,8 @@ class Unrelated(o: Outer) {
 }
 ```
 
+{:#constructors}
+
 ### 생성자
 
 ``` kotlin
@@ -104,6 +106,7 @@ class C private constructor(a: Int) { ... }
 로컬 변수, 로컬 함수, 로컬 클래스에는 가시성 수식어를 지정할 수 없다.
 
 ## 모듈
+{:#modules}
 
 `internal` 가시성 수식어는 같은 모듈에서 멤버에 접근할 수 있음을 의미한다.
 더 구체적으로 모듈은 함께 컴파일되는 코틀린 파일 집합이다.  

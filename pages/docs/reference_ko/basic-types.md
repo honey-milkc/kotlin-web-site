@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "기본 타입: 숫자, 문자열, 배열"
 ---
@@ -127,6 +127,7 @@ val l = 1L + 3 // Long + Int => Long
 ```
 
 ### 연산
+{:#operations}
 
 코틀린은 숫자에 대한 표준 수치 연산을 지원한다. 이들 연산은 알맞은 클래스의 멤버로 선언되어 있다.
 (하지만 컴파일러는 메서드 호출을 대응하는 명령어로 최적화한다.)
@@ -148,6 +149,8 @@ val x = (1 shl 2) and 0x000FF000
 * `xor(bits)` – 비트 XOR
 * `inv()` – 비트 역
 
+{:#floating-point-numbers-comparison}
+
 ### 부동소수 비교
 
 이 절에서는 실수에 대한 연산을 설명한다:
@@ -166,6 +169,8 @@ val x = (1 shl 2) and 0x000FF000
 * `NaN`은 자신과 동일하다고 간주한다
 * `NaN`은 `POSITIVE_INFINITY`를 포함한 모든 다른 요소보다 크다고 간주한다
 * `-0.0`는 `0.0`보다 작다고 간주한다
+
+{:#characters}
 
 ## 문자
 
@@ -197,6 +202,7 @@ fun decimalDigitValue(c: Char): Int {
 숫자와 마찬가지로, 문자도 null 가능 레퍼런스가 필요하면 박싱된다. 박싱 연산을 하면 동일성은 유지되지 않는다.
 
 ## 불리언
+{:#booleans}
 
 `Boolean` 타입은 불리언을 표현하고 두 값이 존재한다: *true*{: .keyword }와 *false*{: .keyword }.
 
@@ -207,6 +213,8 @@ null 가능 레퍼런스가 필요하면 불리언도 박싱된다.
 * `||` – lazy disjunction
 * `&&` – lazy conjunction
 * `!` - 역
+
+{:#arrays}
 
 ## 배열
 
@@ -247,6 +255,8 @@ val asc = Array(5, { i -> (i * i).toString() })
 val x: IntArray = intArrayOf(1, 2, 3)
 x[0] = x[1] + x[2]
 ```
+
+{:#strings}
 
 ## 문자열
 
@@ -296,6 +306,8 @@ val text = """
 ```
 
 기본으로 `\`를 경계 접두문자로 사용하지만 `trimMargin(">")`과 같이 파라미터를 이용해서 다른 문자를 경계 문자로 사용할 수 있다.
+
+{:#string-templates}
 
 ### 문자열 템플릿
 

@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 title: "컴파일러 플러그인"
 ---
 
@@ -95,6 +95,7 @@ class MyClass // 모드 open이 된다
 ```
 
 {:#kotlin-spring-compiler-plugin}
+
 ### kotlin-spring 컴파일러 플러그인 Kotlin-spring compiler plugin
 
 스프링 애노테이션을 직접 지정할 필요는 없다.
@@ -219,6 +220,7 @@ noArg {
 ```
 
 {:#kotlin-jpa-compiler-plugin}
+
 ### kotlin-jpa 컴파일러 플러그인
 
 이 플러그인은 

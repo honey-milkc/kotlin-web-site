@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Other"
 title: "동등성(Equality)"
 ---
@@ -13,6 +13,7 @@ title: "동등성(Equality)"
 * 구조 동등성 (`equals()`로 검사).
 
 ## 참조 동등
+{:#referential-equality}
 
 참조 동등은 `===` 오퍼레이션으로 검사한다(반대는 `!==`로 검사).
 `a === b`는 `a`와 `b`가 동일 객체를 가리키는 경우에만 true이다.

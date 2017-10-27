@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Basics"
 title: "기초 구문"
 ---
@@ -95,6 +95,7 @@ fun main(args: Array<String>) {
 [함수](functions.html)를 보자.
 
 ## 로컬 변수 정의
+{:#defining-local-variables}
 
 한번만 할당 가능한(읽기 전용) 로컬 변수:
 

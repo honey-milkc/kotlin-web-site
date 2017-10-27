@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "익셉션: try, catch, finally, throw, Nothing"
 ---
@@ -83,6 +83,7 @@ Bruce Eckel은 [Does Java need Checked Exceptions?](http://www.mindview.net/Etc/
 * [The Trouble with Checked Exceptions](http://www.artima.com/intv/handcuffs.html) (Anders Hejlsberg)
 
 ## Nothing 타입
+{:#the-nothing-type}
 
 코틀린에서 `throw`는 식이므로, 식을 사용할 수 있다. 예를 들어, 엘비스 식에서 사용할 수 있다:
 

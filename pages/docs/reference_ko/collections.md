@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: Other
 title: "콜렉션: List, Set, Map"
 ---

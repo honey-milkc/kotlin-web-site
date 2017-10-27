@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "타입에 안전한 그루비 방식 빌더"
 ---
@@ -181,6 +181,7 @@ fun String.unaryPlus() {
 마지막 절에서 이 패키지 전체를 볼 수 있다.
 
 ## 범위 제어: @DslMarker (1.1부터)
+{:#scope-control-dslmarker-since-11}
 
 DSL을 사용할 때, 그 문백에서 호출할 수 있는 함수가 너무 많아질 수 있는 문제가 발생할 수 있다.
 람다 안에서 모든 사용가능한 암묵적인 리서버의 메서드를 호출할 수 있고,
@@ -249,6 +250,7 @@ html {
 ```
 
 ## `com.example.html` 패키지 전체 설명
+{:#full-definition-of-the-comexamplehtml-package}
 
 이 절은 `com.example.html` 패키지를 어떻게 정의했는지 보여준다(위 예제에서 사용한 요소만 설명).
 이 예는 HTML 트리를 생성한다. 이 예제는 [식 함수](extensions.html)와 

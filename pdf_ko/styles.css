@@ -45,6 +45,15 @@
     display: inline-block;
 }
 
+.book-cover-warning {
+    margin: 25px 0 25px 0;
+    font-size: 12px;
+}
+
+.book-cover-translator {
+    font-size: 12px;
+}
+
 
 /* Header */
 .book-header {

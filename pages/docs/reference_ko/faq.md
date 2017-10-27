@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: FAQ
 title: FAQ
 ---
@@ -50,13 +50,13 @@ NPE를 줄여준다 스마트 변환, 고차 함수, 확장 함수, 리시버를
 ### 안드로이드 개발에 코틀린을 사용할 수 있나?
 
 그렇다. 안드로이드는 1급 언어로 코틀린을 지원한다. 이미 Basecamp, Pinterest 등 수 백여개의 안드로이드 어플리케이션이 코틀린을 사용하고 있다.
-[안드로이드 개발 관련 자료](/docs/reference/android-overview.html)에서 더 많은 정보를 확인할 수 있다.
+[안드로이드 개발 관련 자료](android-overview.html)에서 더 많은 정보를 확인할 수 있다.
 
 ### 서버 사이드 개발에 코틀린을 사용할 수 있다?
 
 그렇다. 코틀린은 JVM과 100% 호환되며, 스프링 부트, vert.x 또는 JSF와 같은 기존 프레임워크를 사용할 수 있다.
 추가로 [Ktor](http://github.com/kotlin/ktor)와 같은 코틀린으로 작성한 전용 프레임워크도 있다.
-[서버 사이드 개발 관련 자료](/docs/reference/server-overview.html)에서 더 많은 정보를 확인할 수 있다.
+[서버 사이드 개발 관련 자료](server-overview.html)에서 더 많은 정보를 확인할 수 있다.
 
 ### 웹 개발에 코틀린을 사용할 수 있나?
 
@@ -85,8 +85,8 @@ AMD나 CommonJS 같은 기존의 모듈 시스템과 호환된다.
   
 ### 코틀린을 지원하는 빌드 도구는?
 
-JVM 영역에서는 [그레이들](/docs/reference/using-gradle.html), [메이븐](/docs/reference/using-maven.html), 
-[앤트](/docs/reference/using-ant.html), [코발트](http://beust.com/kobalt/home/index.html) 등 주요 빌드 도구가 지원한다.
+JVM 영역에서는 [그레이들](using-gradle.html), [메이븐](using-maven.html), 
+[앤트](using-ant.html), [코발트](http://beust.com/kobalt/home/index.html) 등 주요 빌드 도구가 지원한다.
 클라이언트 사이드 자바스크립트 대상으로 사용가능한 빌드 도구도 있다. 
 
 ### 코틀린은 무엇으로 컴파일되나?
@@ -119,7 +119,7 @@ JVM을 대상으로 할 때, 코틀린은 자바와 호환되는 바이트코드
 ### 코틀린에 대해서 어디서 더 배울 수 있나?
 
 시작하기 가장 좋은 출발점은 [코틀린 웹사이트](https://kotlinlang.org)이다. 거기서 컴파일러를 다운로드 받을 수 있고,
-[온라인으로 시도](https://try.kotlinlang.org)할 수 있고, 또한 [레퍼런스 문서](/docs/reference/index.html)와
+[온라인으로 시도](https://try.kotlinlang.org)할 수 있고, 또한 [레퍼런스 문서](index.html)와
 [튜토리얼](/docs/tutorials/index.html), 자료를 구할 수 있다.
 
 ### 코틀린에 대한 책이 있나?

@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "클래스와 상속"
 related:
@@ -27,8 +27,8 @@ class Invoice {
 class Empty
 ```
 
-
 ### 생성자
+{:#constructors}
 
 코틀린 클래스는 **주요(primary) 생성자**와 한 개 이상의 **보조(secondary) 생성자*를 가질 수 있다.
 주요 생성자는 클래스 헤더의 한 부분으로 클래스 이름(그리고 필요에 따라 타입 파라미터) 뒤에 위치한다.
@@ -86,6 +86,7 @@ class Customer public @Inject constructor(name: String) { ... }
 
 
 #### 보조 생성자
+{:#secondary-constructors}
 
 클래스는 **보조 생성자**를 선언할 수 있다. 보조 생성자는 *constructor*{: .keyword }를 접두사로 붙인다:
 
@@ -150,6 +151,7 @@ val customer = Customer("Joe Smith")
 
 
 ## 상속
+{:#inheritance}
 
 코틀린의 모든 클래스는 공통의 최상위 클래스인 `Any`를 상속한다. 상위 타입을 선언하지 않으면 `Any`가 기본 상위 타입이다:
 
@@ -188,6 +190,7 @@ class MyView : View {
 Item 17: *Design and document for inheritance or else prohibit it*를 따른 것이다.
 
 ### 메서드 오버라이딩
+{:#overriding-methods}
 
 코틀린은 메서드 오버라이딩을 명시적으로 해야 한다. 자바와 달리 코틀린에서는 오버라이딩 가능한 멤버에 
 (*open*) 애노테이션을 명시적으로 설정해야 한다:
@@ -217,7 +220,8 @@ open class AnotherDerived() : Base() {
 }
 ```
 
-### 프로퍼티 오버라이딩 
+### 프로퍼티 오버라이딩
+{:#overriding-properties}
 
 프로퍼티 오버라이딩은 메서드 오버라이딩과 유사하게 동작한다.
 상위클래스에 선언된 프로퍼티를 하위 클래스에 재선언하려면
@@ -254,6 +258,7 @@ class Bar2 : Foo {
 ```
 
 ### 상위클래스 구현 호출
+{:#calling-the-superclass-implementation}
 
 하위클래스는 *super*{: .keyword } 키워드를 사용해서 상위클래스의 함수와 프로퍼티 접근 구현를 호출할 수 있다:
 
@@ -320,6 +325,7 @@ class C() : A(), B {
 하지만 `f()`의 경우 `C`는 두 개의 구현을 상속받으므로 `C`에 `f()`를 오버라이딩하고 자신의 구현을 제공해서 애매함을 없애야 한다.
 
 ## 추상 클래스
+{:#abstract-classes}
 
 클래스나 클래스의 멤버를 *abstract*{: .keyword }로 선언할 수 있다.
 추상 멤버는 그 클래스에 구현을 갖지 않는다.

@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 title: "연산자 오버로딩"
 category: "Syntax"
 ---
@@ -47,6 +47,7 @@ println(-point)  // "(-10, -20)" 출력
 ```
 
 ### 증가와 감소
+{:#increments-and-decrements}
 
 | 식 | 변환 |
 |------------|---------------|

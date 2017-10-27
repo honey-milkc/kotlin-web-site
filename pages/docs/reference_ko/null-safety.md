@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "Null 안전성"
 ---
@@ -8,6 +8,7 @@ title: "Null 안전성"
 # Null 안정성
 
 ## Null 가능 타입과 Not-null 타입
+{:#nullable-types-and-non-null-types}
 
 코틀린 타입 시스템은 [10억 달러 실수](http://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions)라고 알려진,
 코드에서 null을 참조하는 위험을 없애는데 도움을 준다.
@@ -107,6 +108,7 @@ for (item in listWithNulls) {
 ```
 
 ## Elvis 연산자
+{:#elvis-operator}
 
 nullable 레퍼런스인 `r`에 대해, "`r`이 null이 아니면 그것을 사용하고 그렇지 않으면 다른 not-null 값인 `x`를 사용한다"는
 코드를 다음과 같이 작성할 수 있다:
@@ -136,6 +138,7 @@ fun foo(node: Node): String? {
 ```
 
 ## `!!` 연산자
+{:#the--operator}
 
 `!!` 연산자는 NPE 선호자를 위한 세 번째 옵션이다. `b!!`라고 작성하면 `b`가 null이 아니면 b를 리턴하고(예를 들어, 
 `String`), null이니면 NPE를 발생한다:

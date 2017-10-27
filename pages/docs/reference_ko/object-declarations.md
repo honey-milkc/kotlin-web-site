@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "오브젝트 식, 오브젝트 선언, 컴페니언 오브젝트"
 ---
@@ -12,6 +12,7 @@ title: "오브젝트 식, 오브젝트 선언, 컴페니언 오브젝트"
 코틀린은 *오브젝트 식*과 *오브젝트 선언*으로 이 개념을 일부 일반화했다.
 
 ## 오브젝트 식
+{:#object-expressions}
 
 특정 타입을 상속한 익명 클래스의 객체를 생성하려면 다음과 같이 작성한다: 
 
@@ -102,6 +103,7 @@ fun countClicks(window: JComponent) {
 ```
 
 ## 오브젝트 선언
+{:#object-declarations}
 
 [싱글톤](http://en.wikipedia.org/wiki/Singleton_pattern)은 매우 유용한 패턴이며,
 코틀린은 싱글톤을 쉽게 선언할 수 있다(스칼라를 따라했다):
@@ -145,6 +147,7 @@ object DefaultListener : MouseAdapter() {
 
 
 ### 컴페니언 오브젝트
+{:#companion-objects}
 
 클래스 내부의 오브젝트 선언은 *companion*{: .keyword } 키워드를 붙일 수 있다:
 

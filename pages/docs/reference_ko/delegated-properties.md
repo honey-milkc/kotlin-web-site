@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "위임 프로퍼티"
 ---
@@ -193,6 +193,8 @@ class MutableUser(val map: MutableMap<String, Any?>) {
 }
 ```
 
+{:#local-delegated-properties-since-11}
+
 ## 로컬 위임 프로퍼티 (1.1부터 지원)
 
 로컬 변수를 위임 프로퍼티로 선언할 수 있다. 예를 들어, 로컬 변수를 lazy로 만들 수 있다:
@@ -208,6 +210,8 @@ fun example(computeFoo: () -> Foo) {
 ```
 
 `memoizedFoo` 변수에 처음 접근할 때만 계산을 한다. 만약 `someCondition`이 false면 `memoizedFoo` 변수를 계산하지 않는다.
+
+{:#property-delegate-requirements}
 
 ## 프로퍼티 위임 요구사항
 
@@ -245,6 +249,7 @@ interface ReadWriteProperty<in R, T> {
 ```
 
 ### 변환 규칙
+{:#translation-rules}
 
 모든 위임 프로퍼티에 대해, 코틀린 컴파일러는 보조 프로퍼티를 생성하고 그 프로퍼티에 위임한다.
 예를 들어, `prop` 프로퍼티에 대해 `prop$delegate`이라는 숨겨진 프로퍼티를 생성하고, 접근자 코드는 단순히 이 프로젝트에 위임한다:
@@ -271,6 +276,7 @@ class C {
 참조하는 `this::prop` 구문은 코틀린 1.1부터 사용 가능하다.  
 
 ### 위임객체 제공 (1.1부터)
+{:#providing-a-delegate-since-11}
 
 `provideDelegate` 연산자를 정의하면, 위임 프로퍼티가 위임할 객체를 생성하는 로직을 확장할 수 있다.
 `by`의 오른쪽에서 사용할 객체가 `provideDelegate`를 멤버 함수나 확장 함수로 정의하면,

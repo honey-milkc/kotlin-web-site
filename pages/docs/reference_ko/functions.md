@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "함수: infix, vararg, tailrec"
 ---
@@ -43,6 +43,7 @@ fun powerOf(number: Int, exponent: Int) {
 ```
 
 ### 기본 인자
+{:#default-arguments}
 
 함수 파라미터는 기본 값을 가질 수 있다. 이 경우 대응하는 인자를 생략하면 기본 값을 사용한다.
 이는 다른 언어와 비교해 오버로드의 개수를 줄여준다.
@@ -88,6 +89,7 @@ foo { println("hello") }    // 기본 값 bar = 0와 baz = 1를 사용
 ```
 
 ### 이름 가진 인자(Named Argument)
+{:#named-arguments}
 
 함수를 호출할 때 함수 파라미터에 이름을 줄 수 있다.
 이름을 가진 인자를 사용하면 함수에 파라미터 개수가 많거나 기본 값이 많을 때 편리하다. 
@@ -152,6 +154,7 @@ foo(strings = "a") // 단일 값에는 필요 없다
 항상 유지하는 것은 아니기 때문이다.
 
 ### Unit 리턴 함수
+{:#unit-returning-functions}
 
 함수가 어떤 유용한 값도 리턴하지 않으면, 리턴 타입으로 `Unit`을 사용한다.
 `Unit`은 `Unit`을 유일한 값으로 갖는 타입이다. 이 값을 명시적으로 리턴하면 안 된다:
@@ -189,6 +192,7 @@ fun double(x: Int) = x * 2
 ```
 
 ### 명시적 리턴 타입
+{:#explicit-return-types}
 
 블록 몸체를 갖는 함수는 `Unit`을 리턴한다는 것을 의도하지 않는 이상 항상 리턴 타입을 명시적으로 지정해야 한다.
 [Unit을 리턴하는 경우 생략 가능하다](#unit-returning-functions).
@@ -197,6 +201,7 @@ fun double(x: Int) = x * 2
 
 
 ### 가변 인자 (Varargs)
+{:#variable-number-of-arguments-varargs}
 
 함수 파라미터에 (보통 마지막 파라미터) `vararg` 수식어를 붙일 수 있다:
 
@@ -228,6 +233,7 @@ val list = asList(-1, 0, *a, 4)
 ```
 
 ### 중위 부호
+{:#infix-notation}
 
 다음의 경우에 중위 부호를 사용해서 함수를 호출할 수 있다.
 
@@ -256,6 +262,7 @@ infix fun Int.shl(x: Int): Int {
 최상위 수준 함수뿐만 아니라 함수를 로컬로, 멤버 함수로, 확장 함수로 선언할 수 있다.
 
 ### 로컬 함수
+{:#local-functions}
 
 코틀린은 다른 함수 안에 선언한 로컬 함수를 지원한다.
 
@@ -288,6 +295,7 @@ fun dfs(graph: Graph) {
 ```
 
 ### 멤버 함수
+{:#member-functions}
 
 멤버 함수는 클래스나 오브젝트에 선언된 함수이다:
 

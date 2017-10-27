@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Other"
 title: "타입 별칭 (1.1부터)"
 ---

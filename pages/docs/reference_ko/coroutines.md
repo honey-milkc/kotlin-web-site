@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Syntax"
 title: "코루틴"
 ---
@@ -42,6 +42,7 @@ C#과 파이썬에서 온 [제너레이터/`yield`](#generators-api-in-kotlincor
 코루틴은 *서스펜션 포인트*라고 불리는 곳만 연기할 수 있다. 서스펜션 포인트는 특별히 표시한 함수를 호출하는 지점이다.
 
 ## 서스펜딩 함수(suspending function)
+{:#suspending-functions}
 
 서스펜션은 `suspend`라는 특별한 수식어를 붙인 함수를 호출할 때 발생한다:
 
@@ -108,6 +109,8 @@ class Derived: Base {
 }
 ``` 
 
+{:#restrictssuspension-annotation}
+
 ### `@RestrictsSuspension` 애노테이션
  
 확장 함수(그리고 람다)도 일반 함수처럼 `suspend`를 붙일 수 있다.
@@ -154,6 +157,8 @@ public abstract class SequenceBuilder<in T> {
 (C#이나 ECMAScript 2016와 같은) 다른 언어의 async/await의 설명은 여기 설명과 관련이 있지만,
 다른 언어가 구현한 언어 특징은 코틀린 코루틴만큼 일반적이지 않다. 
 
+{:#experimental-status-of-coroutines}
+
 ## 코루틴의 실험 상태
 
 코루틴 설계는 [실험 단계](compatibility.html#experimental-features)로 앞으로 바뀔 수 있다.
@@ -169,6 +174,8 @@ public abstract class SequenceBuilder<in T> {
  * 하위 호환성을 위해 experimental 패키지를 유지한다. 
  
 이는 라이브러리 사용자의 마이그레이션 이슈를 최소화할 것이다. 
+
+{:#standard-apis}
 
 ## 표준 API
  
@@ -190,6 +197,8 @@ public abstract class SequenceBuilder<in T> {
   저수준의 본질적인 요소 가짐
  
 이들 API에 대한 자세한 사용법은 [여기](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md)를 참고한다.
+
+{:#generators-api-in-kotlincoroutines}
 
 ### `kotlin.coroutines`의 제너레이터 API
   

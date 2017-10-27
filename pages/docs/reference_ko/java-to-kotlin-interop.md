@@ -1,6 +1,6 @@
 ---
 type: doc
-layout: reference
+layout: reference_ko
 category: "Java Interop"
 title: "자바에서 코틀린 호출하기"
 ---
@@ -138,6 +138,7 @@ class JavaClient {
 필드는 `lateinit` 프로퍼티의 setter와 동일한 가시성을 갖는다.
 
 ## 정적 필드
+{:#static-fields}
 
 이름 가진 오브젝트나 컴페니언 오브젝트에 선언한 코틀린 프로퍼티는 이름 가진 오브젝트나 컴페니언 오브젝트를 포함하는 클래스에
 정적 지원 필드를 갖는다.
@@ -385,9 +386,9 @@ fun foo() {
 이것이 코틀린이 non-null을 기대하는 모든 public 함수에 대해 런타임 검사를 생성하는 이유이다.
 이 방법은 자바 코드에서 즉시 `NullPointerException`을 얻는다.
 
-## 가변 지네릭
+## 변성 지네릭
 
-코틀린 클래스에서 [선언 위치 가변성](generics.html#declaration-site-variance)을 사용할 때,
+코틀린 클래스에서 [선언 위치 변성](generics.html#declaration-site-variance)을 사용할 때,
 자바 코드에 어떻게 보여줄지에 대한 두 가지 선택이 있다. 선언 위치 변성을 사용하는 클래스와 두 함수 예를 보자:
 
 ``` kotlin
