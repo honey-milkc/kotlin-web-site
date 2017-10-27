@@ -395,7 +395,7 @@ reference_ko:
         - url: /docs/reference_ko/using-gradle.html
           title: 그레이들 사용하기
         - url: /docs/reference_ko/using-maven.html
-          title: Using Maven
+          title: 메이븐 사용하기
         - url: /docs/reference_ko/using-ant.html
           title: Using Ant
         - url: /docs/reference_ko/kotlin-osgi.html
