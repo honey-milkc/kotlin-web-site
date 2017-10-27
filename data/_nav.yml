@@ -172,8 +172,8 @@ reference:
       content:
         - url: /docs/reference/keyword-reference.html
           title: Keywords and Operators
-#        - url: /docs/reference/grammar.html
-#          title: Grammar
+        - url: /docs/reference/grammar.html
+          title: Grammar
         - url: /docs/reference/compatibility.html
           title: Compatibility
 
@@ -354,17 +354,17 @@ reference_ko:
       content:
         - url: /docs/reference_ko/keyword-reference.html
           title: 키워드와 연산자
-#        - url: /docs/reference_ko/grammar.html
-#          title: Grammar
+        - url: /docs/reference_ko/grammar.html
+          title: 문법
         - url: /docs/reference_ko/compatibility.html
           title: 호환성
 
 
-    - title: Java Interop
-      description: What you need to know about interoperability with Java.
+    - title: 자바 상호운용
+      description: 자바 상호운용성에 대해 알아야 할 것
       content:
         - url: /docs/reference_ko/java-interop.html
-          title: Calling Java from Kotlin
+          title: 코틀린에서 자바 호출하기
         - url: /docs/reference_ko/java-to-kotlin-interop.html
           title: Calling Kotlin from Java
 

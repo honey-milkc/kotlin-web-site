@@ -2,10 +2,10 @@
 type: doc
 layout: reference
 category: Basics
-title: 코딩 관려
+title: 코딩 관례
 ---
 
-# 코딩 관려
+# 코딩 관례
 
 이 문서는 코틀린 언어를 위한 현재의 코딩 관례를 포함한다.
 
