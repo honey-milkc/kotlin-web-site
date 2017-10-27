@@ -8,8 +8,7 @@ title: "코틀린과 OSGi"
 # 코틀린과 OSGi
 
 코틀린 OSGi 지원을 활성화하려면 일반 코틀린 라이브러리 대신 `kotlin-osgi-bundle`를 포함해야 한다.
-`kotlin-osgi-bundle`이 `kotlin-runtime`, `kotlin-stdlib`, `kotlin-reflect`를 포함하므로
-이 세 의존을 제거할 것을 권한다.
+`kotlin-osgi-bundle`이 `kotlin-runtime`, `kotlin-stdlib`, `kotlin-reflect`를 포함하므로 이 세 의존을 제거한다.
 또한, 외부 코틀린 라이브러리를 포함할 경우 주의해야 한다.
 대부분 일반적인 코틀린 의존은 OSGi를 지원하지 않으므로
 그것을 사용하지 말고 프로젝트에서 제거해야 한다.
@@ -71,5 +70,5 @@ dependencies {
 비록 OSGi 지원을 제공하는 가장 선호하는 방법임에도 불구하고 
 ["패키지 분리" 이슈](http://wiki.osgi.org/wiki/Split_Packages) 때문에 지금은 할 수 없다.
 이 문제는 쉽게 없앨 수 없고 그런 큰 변화는 현재 계획에 없다.
-`Require-Bundle` 특징이 있지만 최선의 옵션이 아니며 사용을 권하지 않는다
+`Require-Bundle` 특징이 있지만 최선의 옵션이 아니며 사용을 권하지 않는다.
 그래서 OSGi를 위한 아티팩트를 구분하기로 결정했다.
