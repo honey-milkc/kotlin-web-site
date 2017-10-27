@@ -357,7 +357,7 @@ reference_ko:
 #        - url: /docs/reference_ko/grammar.html
 #          title: Grammar
         - url: /docs/reference_ko/compatibility.html
-          title: Compatibility
+          title: 호환성
 
 
     - title: Java Interop
