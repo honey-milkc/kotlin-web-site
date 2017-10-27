@@ -1,11 +1,11 @@
 ---
-layout: reference
-title: "Reference"
+layout: reference_ko
+title: "레퍼런스"
 ---
 
-# Reference
+# 레퍼런스
 
-Provides a complete reference to the Kotlin language and the [standard library](/api/latest/jvm/stdlib/index.html).
+코틀린 언어와 [표준 라이브러리](/api/latest/jvm/stdlib/index.html)에 대한 완벽한 가이드를 제공한다.
 
 ### Where to Begin
 
@@ -17,6 +17,6 @@ Once you get an idea of what Kotlin looks like, try solving some [Kotlin Koans](
 If you are not sure how to solve a Koan, or you're looking for a more elegant solution, check out [Kotlin idioms](idioms.html).
 
 
-### Browse offline
-You can download the entire reference documentation as a single [PDF file]({{ site.pdf_url }}).
+### 오프라인에서 보기
+전체 레퍼런스 문서를 한 개의 [PDF 파일({{ site.pdf_ko_url }})로 다운로드 할 수 있다.
 
