@@ -255,7 +255,7 @@ reference_ko:
         - url: /docs/reference_ko/coding-conventions.html
           title: 코딩 관례
 
-    - title: Basics
+    - title: 기초
       description: 기초
       content:
         - url: /docs/reference_ko/basic-types.html
@@ -366,23 +366,23 @@ reference_ko:
         - url: /docs/reference_ko/java-interop.html
           title: 코틀린에서 자바 호출하기
         - url: /docs/reference_ko/java-to-kotlin-interop.html
-          title: Calling Kotlin from Java
+          title: 자바에서 코틀린 호출하기
 
-    - title: JavaScript
-      description: Using Kotlin with JavaScript
-      content:
-       - url: /docs/reference_ko/dynamic-type.html
-         title: Dynamic Type
-       - url: /docs/reference_ko/js-interop.html
-         title: Calling JavaScript from Kotlin
-       - url: /docs/reference_ko/js-to-kotlin-interop.html
-         title: Calling Kotlin from JavaScript
-       - url: /docs/reference_ko/js-modules.html
-         title: JavaScript Modules
-       - url: /docs/reference_ko/js-reflection.html
-         title: JavaScript Reflection
-       - url: /docs/reference_ko/javascript-dce.html
-         title: JavaScript DCE
+#    - title: JavaScript
+#      description: Using Kotlin with JavaScript
+#      content:
+#       - url: /docs/reference_ko/dynamic-type.html
+#         title: Dynamic Type
+#       - url: /docs/reference_ko/js-interop.html
+#         title: Calling JavaScript from Kotlin
+#       - url: /docs/reference_ko/js-to-kotlin-interop.html
+#         title: Calling Kotlin from JavaScript
+#       - url: /docs/reference_ko/js-modules.html
+#         title: JavaScript Modules
+#       - url: /docs/reference_ko/js-reflection.html
+#         title: JavaScript Reflection
+#       - url: /docs/reference_ko/javascript-dce.html
+#         title: JavaScript DCE
 
     - title: Tools
       description:
