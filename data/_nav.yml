@@ -401,7 +401,7 @@ reference_ko:
         - url: /docs/reference_ko/kotlin-osgi.html
           title: Kotlin and OSGi
         - url: /docs/reference_ko/compiler-plugins.html
-          title: Compiler plugins
+          title: 컴파일러 플러그인
 
     - title: FAQ
       description: Every question you could possibly think of, might be answered.

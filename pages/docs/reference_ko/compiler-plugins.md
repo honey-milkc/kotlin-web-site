@@ -8,14 +8,14 @@ title: "컴파일러 플러그인"
 
 ## all-open 컴파일러 플러그인
 
-코틀린은 기본적으로 클래스와 멤버가 `final`이다. 이는 `open`인 클래스를 요구하는 스프링 AOP와 같은 프레임워크나 라이브러리 사용을 불편하게 만든다.
+코틀린은 기본적으로 클래스와 멤버가 `final`이다. 이는 `open`인 클래스를 요구하는 스프링 AOP와 같은 프레임워크나 라이브러리를 사용할 때 불편하다.
 `all-open` 컴파일러 플러그인은 그런 프레임워크의 요구에 코틀린을 맞추고
 `open` 키워드를 직접 사용하지 않아도 클래스에 특정 애노테이션을 붙이고 멤버를 open으로 만든다.    
 예를 들어 스프링을 사용할 때 모든 클래스를 open으로 만들 필요가 없다.
 단지 클래스에 `@Configuration`나 `@Service`와 같은 특정 애노테이션만 붙이면 된다.
 `all-open` 플러그인은 이 애노테이션을 지정하는 것을 허용한다.
 
-그레이들과 메이븐 또한 IDE를 위한 all-open 플러그인 지원을 제공한다.
+그레이들, 메이븐, IDE를 위한 all-open 플러그인을 제공한다.
 스프링의 경우 `kotlin-spring` 컴파일러 플러그인을 사용한다([아래 참고](compiler-plugins.html#kotlin-spring-compiler-plugin)).
 
 ### all-open 플러그인을 사용하는 방법
@@ -94,10 +94,10 @@ class MyClass // 모드 open이 된다
 </plugin>
 ```
 
-
+{:#kotlin-spring-compiler-plugin}
 ### kotlin-spring 컴파일러 플러그인 Kotlin-spring compiler plugin
 
-스프링 애노테이션을 손으로 지정할 필요는 없다.
+스프링 애노테이션을 직접 지정할 필요는 없다.
 `kotlin-spring` 플러그인을 사용하면 자동으로 스프링의 요구에 맞게 all-open 플러그인을 설정한다:
 
 ``` groovy
@@ -218,12 +218,13 @@ noArg {
 </plugin>
 ```
 
+{:#kotlin-jpa-compiler-plugin}
 ### kotlin-jpa 컴파일러 플러그인
 
 이 플러그인은 
 [`@Entity`](http://docs.oracle.com/javaee/7/api/javax/persistence/Entity.html)와 
 [`@Embeddable`](http://docs.oracle.com/javaee/7/api/javax/persistence/Embeddable.html)을
-클래스에 대해 인자없는 생성자를 생성해야 할 마커로 사용한다.
+인자없는 생성자를 생성해야 할 마커로 사용한다.
 그레이들에서 플러그인을 추가하는 방법은 다음과 같다: 
 
 ``` groovy
