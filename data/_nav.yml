@@ -333,7 +333,7 @@ reference_ko:
         - url: /docs/reference_ko/annotations.html
           title: 애노테이션
         - url: /docs/reference_ko/reflection.html
-          title: Reflection
+          title: 리플렉션
         - url: /docs/reference_ko/type-safe-builders.html
           title: Type-Safe Builders
         - url: /docs/reference_ko/type-aliases.html
