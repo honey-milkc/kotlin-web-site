@@ -342,18 +342,18 @@ reference_ko:
 #          title: Multiplatform Projects (preview)
 
 
-    - title: Core Libraries
+    - title: 핵심 라이브러리
       content:
         - url: /api/latest/jvm/stdlib/index.html
           title: Standard Library
         - url: /api/latest/kotlin.test/index.html
           title: kotlin.test
 
-    - title: Reference
-      description: Grammar and other information
+    - title: 레퍼런스
+      description: 문법과 다른 정보
       content:
         - url: /docs/reference_ko/keyword-reference.html
-          title: Keywords and Operators
+          title: 키워드와 연산자
 #        - url: /docs/reference_ko/grammar.html
 #          title: Grammar
         - url: /docs/reference_ko/compatibility.html
