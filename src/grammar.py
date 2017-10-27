@@ -68,6 +68,30 @@ def _get_item_content(node):
 def get_grammar():
     data = []
     grammar_file = path.join(path.dirname(path.dirname(__file__)), 'grammar.xml')
+    print(grammar_file)
+    if not os.path.isfile(grammar_file):
+        return None
+    grammar_xml = ElementTree(file=grammar_file).getroot()
+    for grammar_set in grammar_xml:
+        set = {
+            'file-name': grammar_set.attrib['file-name'],
+            'content': []
+        }
+        for node in grammar_set:
+            if node.tag == 'doc':
+                set['content'].append({
+                    'type': 'comment',
+                    'content': customized_markdown(node.text)
+                })
+            elif node.tag == 'item':
+                set['content'].append(_get_item_content(node))
+        data.append(set)
+    return data
+
+
+def get_grammar_ko():
+    data = []
+    grammar_file = path.join(path.dirname(path.dirname(__file__)), 'grammar_ko.xml')
     if not os.path.isfile(grammar_file):
         return None
     grammar_xml = ElementTree(file=grammar_file).getroot()

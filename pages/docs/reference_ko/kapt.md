@@ -6,7 +6,7 @@ title: "kapt 사용하기"
 
 # 코틀린 애노테이션 처리 도구 사용하기
 
-코틀린 플러그인 _Dagger_나 _DBFlow_와 같은 애노테이션 처리기를 지원한다.
+코틀린 플러그인은 _Dagger_나 _DBFlow_와 같은 애노테이션 처리기를 지원한다.
 애노테이션 처리기를 코틀린 클래스에 사용하려면 `kotlin-kapt` 플러그인을 적용한다.
 
 ## 그레이들 설정
@@ -33,7 +33,7 @@ dependencies {
 
 이미 [android-apt](https://bitbucket.org/hvisser/android-apt) 플러그인을 사용한다면 `build.gradle` 파일에서 그 설정을 제거하고
  `apt` 설정을 `kapt`로 대체한다.
-프로젝트가 자바 클래스도 `kapt`가 처리한다.
+프로젝트가 자바 클래스를 포함한다면, `kapt`가 자바 클래스도 처리한다.
 
 `androidTest`나 `test` 소스에 대해 애노테이션 처리기를 사용하려면
 각 `kapt` 설정에 대해 `kaptAndroidTest`와 `kaptTest` 이름을 사용한다.
@@ -42,7 +42,7 @@ dependencies {
  
 일부 애노테이션 처리기는(`AutoFactory`와 같은) 선언 시그너처의 정확한 타입에 의존한다.
 기본적으로 Kapt는 모든 알 수 없는 타입(생성된 클래스의 타입 포함)을 `NonExistentClass`로 대체하는데,
-이런 기능이 다르게 동작하게 바꿀 수 있다.
+이 기능이 다르게 동작하게 바꿀 수 있다.
 `build.gradle` 파일에 다음 플래그를 추가하면 스텁의 에러 타입 추론이 가능해진다:
 
 ``` groovy
@@ -56,7 +56,7 @@ kapt {
 
 ## 메이븐 설정 (코틀린 1.1.2부터)
 
-`compile` 전에 kotlin-maven-plugin의 `kapt` 골을 실행하는 설정을 추가한다: 
+`compile` 전에 kotlin-maven-plugin의 `kapt` goal을 실행하는 설정을 추가한다: 
 
 ```xml
 <execution>

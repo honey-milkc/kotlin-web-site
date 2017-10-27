@@ -17,6 +17,7 @@ from src.navigation import process_video_nav, process_nav
 from src.api import get_api_page
 from src.encoder import DateAwareEncoder
 from src.grammar import get_grammar
+from src.grammar import get_grammar_ko
 from src.markdown.makrdown import jinja_aware_markdown
 from src.pages.MyFlatPages import MyFlatPages
 from src.pdf import generate_pdf
@@ -140,6 +141,14 @@ def grammar():
     if grammar is None:
         return "Grammar file not found", 404
     return render_template('pages/grammar.html', kotlinGrammar=grammar)
+
+
+@app.route('/docs/reference_ko/grammar.html')
+def grammar_ko():
+    grammar = get_grammar_ko()
+    if grammar is None:
+        return "Grammar file not found", 404
+    return render_template('pages/grammar_ko.html', kotlinGrammar=grammar)
 
 
 @app.route('/docs/videos.html')

@@ -1,0 +1,4911 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tokens>
+   <set file-name="notation.grm">
+      <doc><![CDATA[# Notation
+
+This section informally explains the grammar notation used below.
+
+## Symbols and naming
+
+_Terminal symbol_ names start with an uppercase letter, e.g. **SimpleName**.<br>
+_Nonterminal symbol_ names start with lowercase letter, e.g. **kotlinFile**.<br>
+Each _production_ starts with a colon (**:**).<br>
+_Symbol definitions_ may have many productions and are terminated by a semicolon (**;**).<br>
+Symbol definitions may be prepended with _attributes_, e.g. `start` attribute denotes a start symbol.
+
+## EBNF expressions
+
+Operator `|` denotes _alternative_.<br>
+Operator `*` denotes _iteration_ (zero or more).<br>
+Operator `+` denotes _iteration_ (one or more).<br>
+Operator `?` denotes _option_ (zero or one).<br>
+alpha`{`beta`}` denotes a nonempty _beta_-separated list of _alpha_'s. <br>
+Operator `++` means that no space or comment allowed between operands.
+
+# Semicolons
+
+Kotlin provides "semicolon inference": syntactically, subsentences (e.g., statements, declarations etc) are separated by
+the pseudo-token [SEMI](#SEMI), which stands for "semicolon or newline". In most cases, there's no need for semicolons in
+Kotlin code.]]></doc>
+      <other/>
+      <crlf/>
+   </set>
+   <set file-name="toplevel.grm">
+      <doc><![CDATA[# Syntax
+
+Relevant pages: [Packages](packages.html)]]></doc>
+      <item>
+         <annotation>start</annotation>
+         <declaration name="kotlinFile"/>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="preamble"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="topLevelObject"/>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <annotation>start</annotation>
+         <declaration name="script"/>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="preamble"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="preamble">
+            <usages>
+               <declaration>kotlinFile</declaration>
+               <declaration>script</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="fileAnnotations"/>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="packageHeader"/>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="import"/>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="fileAnnotations">
+            <usages>
+               <declaration>preamble</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="fileAnnotation"/>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="fileAnnotation">
+            <usages>
+               <declaration>fileAnnotations</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["@"]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["file"]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[":"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["["]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="unescapedAnnotation"/>
+            <symbol><![CDATA[+]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["]"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="unescapedAnnotation"/>
+            <symbol><![CDATA[)]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="packageHeader">
+            <usages>
+               <declaration>preamble</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["package"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA["."]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SEMI"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <doc><![CDATA[See [Packages](packages.html)]]></doc>
+      <item>
+         <declaration name="import">
+            <usages>
+               <declaration>preamble</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["import"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA["."]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["."]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["*"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["as"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SEMI"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <doc><![CDATA[See [Imports](packages.html#imports)]]></doc>
+      <item>
+         <declaration name="topLevelObject">
+            <usages>
+               <declaration>kotlinFile</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="class"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="object"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="function"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="property"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeAlias"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="typeAlias">
+            <usages>
+               <declaration>topLevelObject</declaration>
+               <declaration>memberDeclaration</declaration>
+               <declaration>declaration</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["typealias"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeParameters"/>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["="]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="type"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+         </description>
+      </item>
+   </set>
+   <set file-name="class.grm">
+      <doc><![CDATA[## Classes
+
+See [Classes and Inheritance](classes.html)]]></doc>
+      <item>
+         <declaration name="class">
+            <usages>
+               <declaration>topLevelObject</declaration>
+               <declaration>memberDeclaration</declaration>
+               <declaration>declaration</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["class"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["interface"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <identifier name="typeParameters"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <identifier name="primaryConstructor"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA[":"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="annotations"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="delegationSpecifier"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <identifier name="typeConstraints"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="classBody"/>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="enumClassBody"/>
+            <symbol><![CDATA[)]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="primaryConstructor">
+            <usages>
+               <declaration>class</declaration>
+               <declaration>object</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["constructor"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="functionParameter"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="classBody">
+            <usages>
+               <declaration>objectLiteral</declaration>
+               <declaration>companionObject</declaration>
+               <declaration>enumEntry</declaration>
+               <declaration>class</declaration>
+               <declaration>object</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["{"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="members"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["}"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="members">
+            <usages>
+               <declaration>classBody</declaration>
+               <declaration>enumClassBody</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="memberDeclaration"/>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="delegationSpecifier">
+            <usages>
+               <declaration>objectLiteral</declaration>
+               <declaration>companionObject</declaration>
+               <declaration>class</declaration>
+               <declaration>object</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="constructorInvocation"/>
+            <whiteSpace> </whiteSpace>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="userType"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="explicitDelegation"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="explicitDelegation">
+            <usages>
+               <declaration>delegationSpecifier</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="userType"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["by"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <whiteSpace> </whiteSpace>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="typeParameters">
+            <usages>
+               <declaration>function</declaration>
+               <declaration>property</declaration>
+               <declaration>typeAlias</declaration>
+               <declaration>class</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["<"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeParameter"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[">"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="typeParameter">
+            <usages>
+               <declaration>typeParameters</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA[":"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="userType"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <doc><![CDATA[See [Generic classes](generics.html)]]></doc>
+      <item>
+         <declaration name="typeConstraints">
+            <usages>
+               <declaration>function</declaration>
+               <declaration>property</declaration>
+               <declaration>class</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["where"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeConstraint"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="typeConstraint">
+            <usages>
+               <declaration>typeConstraints</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="annotations"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[":"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="type"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+         </description>
+      </item>
+      <doc><![CDATA[See [Generic constraints](generics.html#generic-constraints)]]></doc>
+   </set>
+   <set file-name="class_members.grm">
+      <doc><![CDATA[### Class members]]></doc>
+      <item>
+         <declaration name="memberDeclaration">
+            <usages>
+               <declaration>members</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="companionObject"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="object"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="function"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="property"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="class"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeAlias"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="anonymousInitializer"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="secondaryConstructor"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="anonymousInitializer">
+            <usages>
+               <declaration>memberDeclaration</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["init"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="block"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="companionObject">
+            <usages>
+               <declaration>memberDeclaration</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["companion"]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["object"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA[":"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="delegationSpecifier"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="classBody"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="valueParameters">
+            <usages>
+               <declaration>secondaryConstructor</declaration>
+               <declaration>function</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="functionParameter"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="functionParameter">
+            <usages>
+               <declaration>primaryConstructor</declaration>
+               <declaration>valueParameters</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["val"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["var"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="parameter"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["="]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="block">
+            <usages>
+               <declaration>anonymousInitializer</declaration>
+               <declaration>secondaryConstructor</declaration>
+               <declaration>catchBlock</declaration>
+               <declaration>controlStructureBody</declaration>
+               <declaration>try</declaration>
+               <declaration>functionBody</declaration>
+               <declaration>finallyBlock</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["{"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="statements"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["}"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="function">
+            <usages>
+               <declaration>topLevelObject</declaration>
+               <declaration>memberDeclaration</declaration>
+               <declaration>declaration</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["fun"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <identifier name="typeParameters"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="type"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["."]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <identifier name="SimpleName"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <identifier name="typeParameters"/>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="valueParameters"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA[":"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="type"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <identifier name="typeConstraints"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <identifier name="functionBody"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="functionBody">
+            <usages>
+               <declaration>getter</declaration>
+               <declaration>function</declaration>
+               <declaration>setter</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="block"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["="]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="variableDeclarationEntry">
+            <usages>
+               <declaration>multipleVariableDeclarations</declaration>
+               <declaration>property</declaration>
+               <declaration>for</declaration>
+               <declaration>lambdaParameter</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA[":"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="type"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="multipleVariableDeclarations">
+            <usages>
+               <declaration>property</declaration>
+               <declaration>for</declaration>
+               <declaration>lambdaParameter</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="variableDeclarationEntry"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="property">
+            <usages>
+               <declaration>topLevelObject</declaration>
+               <declaration>memberDeclaration</declaration>
+               <declaration>declaration</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["val"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["var"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <identifier name="typeParameters"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="type"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["."]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="multipleVariableDeclarations"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="variableDeclarationEntry"/>
+            <symbol><![CDATA[)]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <identifier name="typeConstraints"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["by"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["="]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SEMI"/>
+            <symbol><![CDATA[?]]></symbol>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>      </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="getter"/>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="setter"/>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="setter"/>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="getter"/>
+            <symbol><![CDATA[?]]></symbol>
+            <symbol><![CDATA[)]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SEMI"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <doc><![CDATA[See [Properties and Fields](properties.html)]]></doc>
+      <item>
+         <declaration name="getter">
+            <usages>
+               <declaration>property</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["get"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["get"]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA[":"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="type"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="functionBody"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="setter">
+            <usages>
+               <declaration>property</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["set"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["set"]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="SimpleName"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="parameter"/>
+            <symbol><![CDATA[)]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="functionBody"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="parameter">
+            <usages>
+               <declaration>functionParameter</declaration>
+               <declaration>functionType</declaration>
+               <declaration>setter</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[":"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="type"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="object">
+            <usages>
+               <declaration>topLevelObject</declaration>
+               <declaration>memberDeclaration</declaration>
+               <declaration>declaration</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["object"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="primaryConstructor"/>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA[":"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="delegationSpecifier"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="classBody"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <other/>
+            <crlf/>
+         </description>
+      </item>
+      <item>
+         <declaration name="secondaryConstructor">
+            <usages>
+               <declaration>memberDeclaration</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["constructor"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="valueParameters"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA[":"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="constructorDelegationCall"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="block"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="constructorDelegationCall">
+            <usages>
+               <declaration>secondaryConstructor</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["this"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="valueArguments"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["super"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="valueArguments"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <doc><![CDATA[See [Object expressions and Declarations](object-declarations.html)]]></doc>
+   </set>
+   <set file-name="enum.grm">
+      <doc><![CDATA[### Enum classes
+
+See [Enum classes](enum-classes.html)]]></doc>
+      <item>
+         <declaration name="enumClassBody">
+            <usages>
+               <declaration>class</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["{"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="enumEntries"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA[";"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="members"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["}"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="enumEntries">
+            <usages>
+               <declaration>enumClassBody</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="enumEntry"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[";"]]></string>
+            <symbol><![CDATA[?]]></symbol>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="enumEntry">
+            <usages>
+               <declaration>enumEntries</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="modifiers"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="arguments"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="classBody"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+         </description>
+      </item>
+   </set>
+   <set file-name="types.grm">
+      <doc><![CDATA[## Types
+
+See [Types](basic-types.html)]]></doc>
+      <item>
+         <declaration name="type">
+            <usages>
+               <declaration>typeArguments</declaration>
+               <declaration>getter</declaration>
+               <declaration>atomicExpression</declaration>
+               <declaration>typeConstraint</declaration>
+               <declaration>variableDeclarationEntry</declaration>
+               <declaration>simpleUserType</declaration>
+               <declaration>whenCondition</declaration>
+               <declaration>function</declaration>
+               <declaration>parameter</declaration>
+               <declaration>property</declaration>
+               <declaration>namedInfix</declaration>
+               <declaration>functionType</declaration>
+               <declaration>typeAlias</declaration>
+               <declaration>lambdaParameter</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeModifiers"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeReference"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="typeReference">
+            <usages>
+               <declaration>nullableType</declaration>
+               <declaration>typeReference</declaration>
+               <declaration>type</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeReference"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="functionType"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="userType"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="nullableType"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["dynamic"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="nullableType">
+            <usages>
+               <declaration>typeReference</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeReference"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["?"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="userType">
+            <usages>
+               <declaration>catchBlock</declaration>
+               <declaration>delegationSpecifier</declaration>
+               <declaration>typeParameter</declaration>
+               <declaration>callableReference</declaration>
+               <declaration>constructorInvocation</declaration>
+               <declaration>typeReference</declaration>
+               <declaration>explicitDelegation</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="simpleUserType"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA["."]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="simpleUserType">
+            <usages>
+               <declaration>userType</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["<"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="optionalProjection"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="type"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["*"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[">"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="optionalProjection">
+            <usages>
+               <declaration>simpleUserType</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="varianceAnnotation"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="functionType">
+            <usages>
+               <declaration>typeReference</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="type"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["."]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="parameter"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["->"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="type"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+         </description>
+      </item>
+   </set>
+   <set file-name="control.grm">
+      <doc><![CDATA[## Control structures
+
+See [Control structures](control-flow.html)]]></doc>
+      <item>
+         <declaration name="controlStructureBody">
+            <usages>
+               <declaration>doWhile</declaration>
+               <declaration>for</declaration>
+               <declaration>while</declaration>
+               <declaration>whenEntry</declaration>
+               <declaration>if</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="block"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="blockLevelExpression"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="if">
+            <usages>
+               <declaration>atomicExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["if"]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="controlStructureBody"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SEMI"/>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["else"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="controlStructureBody"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="try">
+            <usages>
+               <declaration>atomicExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["try"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="block"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="catchBlock"/>
+            <symbol><![CDATA[*]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="finallyBlock"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="catchBlock">
+            <usages>
+               <declaration>try</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["catch"]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="annotations"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[":"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="userType"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="block"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="finallyBlock">
+            <usages>
+               <declaration>try</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["finally"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="block"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="loop">
+            <usages>
+               <declaration>atomicExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="for"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="while"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="doWhile"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="for">
+            <usages>
+               <declaration>loop</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["for"]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="annotations"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="multipleVariableDeclarations"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="variableDeclarationEntry"/>
+            <symbol><![CDATA[)]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["in"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="controlStructureBody"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="while">
+            <usages>
+               <declaration>loop</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["while"]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="controlStructureBody"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="doWhile">
+            <usages>
+               <declaration>loop</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["do"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="controlStructureBody"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["while"]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+         </description>
+      </item>
+   </set>
+   <set file-name="expressions.grm">
+      <doc><![CDATA[## Expressions
+
+<!--See [Expressions](expressions.html)-->
+
+### Precedence
+
+| Precedence | Title | Symbols |
+|------------|-------|---------|
+| Highest    | Postfix | `++`, `--`, `.`, `?.`, `?` |
+| | Prefix | `-`, `+`, `++`, `--`, `!`, [`labelDefinition`](#IDENTIFIER)`@` |
+| | Type RHS | `:`, `as`, `as?` |
+| | Multiplicative | `*`, `/`, `%` |
+| | Additive | `+`, `-` |
+| | Range | `..` |
+| | Infix function | [`SimpleName`](#SimpleName) |
+| | Elvis | `?:` |
+| | Named checks | `in`, `!in`, `is`, `!is` |
+| | Comparison | `<`, `>`, `<=`, `>=` |
+| | Equality | `==`, `\!==` |
+| | Conjunction | `&&` |
+| | Disjunction | `||` |
+| Lowest | Assignment | `=`, `+=`, `-=`, `*=`, `/=`, `%=` |
+
+### Rules]]></doc>
+      <item>
+         <declaration name="expression">
+            <usages>
+               <declaration>atomicExpression</declaration>
+               <declaration>for</declaration>
+               <declaration>blockLevelExpression</declaration>
+               <declaration>explicitDelegation</declaration>
+               <declaration>while</declaration>
+               <declaration>when</declaration>
+               <declaration>script</declaration>
+               <declaration>longTemplate</declaration>
+               <declaration>doWhile</declaration>
+               <declaration>valueArguments</declaration>
+               <declaration>whenCondition</declaration>
+               <declaration>property</declaration>
+               <declaration>functionParameter</declaration>
+               <declaration>functionBody</declaration>
+               <declaration>arrayAccess</declaration>
+               <declaration>if</declaration>
+               <declaration>jump</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="disjunction"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="assignmentOperator"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="disjunction"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="disjunction">
+            <usages>
+               <declaration>expression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="conjunction"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["||"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="conjunction"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="conjunction">
+            <usages>
+               <declaration>disjunction</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="equalityComparison"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["&&"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="equalityComparison"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="equalityComparison">
+            <usages>
+               <declaration>conjunction</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="comparison"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="equalityOperation"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="comparison"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="comparison">
+            <usages>
+               <declaration>equalityComparison</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="namedInfix"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="comparisonOperation"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="namedInfix"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="namedInfix">
+            <usages>
+               <declaration>comparison</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="elvisExpression"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="inOperation"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="elvisExpression"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="elvisExpression"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="isOperation"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="type"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="elvisExpression">
+            <usages>
+               <declaration>namedInfix</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="infixFunctionCall"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["?:"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="infixFunctionCall"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="infixFunctionCall">
+            <usages>
+               <declaration>elvisExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="rangeExpression"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="SimpleName"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="rangeExpression"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="rangeExpression">
+            <usages>
+               <declaration>infixFunctionCall</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="additiveExpression"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA[".."]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="additiveExpression"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="additiveExpression">
+            <usages>
+               <declaration>rangeExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="multiplicativeExpression"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="additiveOperation"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="multiplicativeExpression"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="multiplicativeExpression">
+            <usages>
+               <declaration>additiveExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeRHS"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="multiplicativeOperation"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeRHS"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="typeRHS">
+            <usages>
+               <declaration>multiplicativeExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="prefixUnaryExpression"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="typeOperation"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="prefixUnaryExpression"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="prefixUnaryExpression">
+            <usages>
+               <declaration>typeRHS</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="prefixUnaryOperation"/>
+            <symbol><![CDATA[*]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="postfixUnaryExpression"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="postfixUnaryExpression">
+            <usages>
+               <declaration>prefixUnaryExpression</declaration>
+               <declaration>postfixUnaryOperation</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="atomicExpression"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="postfixUnaryOperation"/>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="callableReference"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="postfixUnaryOperation"/>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="callableReference">
+            <usages>
+               <declaration>postfixUnaryExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="userType"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["?"]]></string>
+            <symbol><![CDATA[*]]></symbol>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["::"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeArguments"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="atomicExpression">
+            <usages>
+               <declaration>postfixUnaryExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="literalConstant"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="functionLiteral"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["this"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="labelReference"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["super"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["<"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="type"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[">"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="labelReference"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="if"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="when"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="try"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="objectLiteral"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="jump"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="loop"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="collectionLiteral"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="labelReference">
+            <usages>
+               <declaration>atomicExpression</declaration>
+               <declaration>jump</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["@"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[+]]></symbol>
+            <symbol><![CDATA[+]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="LabelName"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="labelDefinition">
+            <usages>
+               <declaration>annotatedLambda</declaration>
+               <declaration>prefixUnaryOperation</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="LabelName"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[+]]></symbol>
+            <symbol><![CDATA[+]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["@"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="literalConstant">
+            <usages>
+               <declaration>atomicExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["true"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["false"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="stringTemplate"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="NoEscapeString"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="IntegerLiteral"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="HexadecimalLiteral"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="CharacterLiteral"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="FloatLiteral"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["null"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="stringTemplate">
+            <usages>
+               <declaration>literalConstant</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["\""]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="stringTemplateElement"/>
+            <symbol><![CDATA[*]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["\""]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="stringTemplateElement">
+            <usages>
+               <declaration>stringTemplate</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="RegularStringPart"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="ShortTemplateEntryStart"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="SimpleName"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["this"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="EscapeSequence"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="longTemplate"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="longTemplate">
+            <usages>
+               <declaration>stringTemplateElement</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["${"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["}"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="declaration">
+            <usages>
+               <declaration>statement</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="function"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="property"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="class"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeAlias"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="object"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="statement">
+            <usages>
+               <declaration>statements</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="declaration"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="blockLevelExpression"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="blockLevelExpression">
+            <usages>
+               <declaration>controlStructureBody</declaration>
+               <declaration>statement</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="annotations"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["\n"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[+]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="multiplicativeOperation">
+            <usages>
+               <declaration>multiplicativeExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["*"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["/"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["%"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="additiveOperation">
+            <usages>
+               <declaration>additiveExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["+"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["-"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="inOperation">
+            <usages>
+               <declaration>namedInfix</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["in"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["!in"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="typeOperation">
+            <usages>
+               <declaration>typeRHS</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["as"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["as?"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[":"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="isOperation">
+            <usages>
+               <declaration>namedInfix</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["is"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["!is"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="comparisonOperation">
+            <usages>
+               <declaration>comparison</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["<"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[">"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[">="]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["<="]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="equalityOperation">
+            <usages>
+               <declaration>equalityComparison</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["!="]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["=="]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="assignmentOperator">
+            <usages>
+               <declaration>expression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["="]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["+="]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["-="]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["*="]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["/="]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["%="]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="prefixUnaryOperation">
+            <usages>
+               <declaration>prefixUnaryExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["-"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["+"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["++"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["--"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["!"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="annotations"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="labelDefinition"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="postfixUnaryOperation">
+            <usages>
+               <declaration>postfixUnaryExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["++"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["--"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["!!"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="callSuffix"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="arrayAccess"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="memberAccessOperation"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="postfixUnaryExpression"/>
+            <whiteSpace> </whiteSpace>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="callSuffix">
+            <usages>
+               <declaration>constructorInvocation</declaration>
+               <declaration>postfixUnaryOperation</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeArguments"/>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="valueArguments"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="annotatedLambda"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeArguments"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="annotatedLambda"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="annotatedLambda">
+            <usages>
+               <declaration>callSuffix</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["@"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="unescapedAnnotation"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="labelDefinition"/>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="functionLiteral"/>
+            <other/>
+            <crlf/>
+            <other/>
+            <crlf/>
+         </description>
+      </item>
+      <item>
+         <declaration name="memberAccessOperation">
+            <usages>
+               <declaration>postfixUnaryOperation</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["."]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["?."]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["?"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="typeArguments">
+            <usages>
+               <declaration>callableReference</declaration>
+               <declaration>unescapedAnnotation</declaration>
+               <declaration>callSuffix</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["<"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="type"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[">"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="valueArguments">
+            <usages>
+               <declaration>constructorDelegationCall</declaration>
+               <declaration>unescapedAnnotation</declaration>
+               <declaration>callSuffix</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="SimpleName"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["="]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["*"]]></string>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="jump">
+            <usages>
+               <declaration>atomicExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["throw"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["return"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[+]]></symbol>
+            <symbol><![CDATA[+]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="labelReference"/>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["continue"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[+]]></symbol>
+            <symbol><![CDATA[+]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="labelReference"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["break"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[+]]></symbol>
+            <symbol><![CDATA[+]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="labelReference"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="functionLiteral">
+            <usages>
+               <declaration>atomicExpression</declaration>
+               <declaration>annotatedLambda</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["{"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="statements"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["}"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["{"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="lambdaParameter"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["->"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="statements"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["}"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="lambdaParameter">
+            <usages>
+               <declaration>functionLiteral</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="variableDeclarationEntry"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="multipleVariableDeclarations"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA[":"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="type"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="statements">
+            <usages>
+               <declaration>functionLiteral</declaration>
+               <declaration>block</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SEMI"/>
+            <symbol><![CDATA[*]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="statement"/>
+            <symbol><![CDATA[{]]></symbol>
+            <identifier name="SEMI"/>
+            <symbol><![CDATA[+]]></symbol>
+            <symbol><![CDATA[}]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SEMI"/>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="constructorInvocation">
+            <usages>
+               <declaration>delegationSpecifier</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="userType"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="callSuffix"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="arrayAccess">
+            <usages>
+               <declaration>postfixUnaryOperation</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["["]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["]"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="objectLiteral">
+            <usages>
+               <declaration>atomicExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["object"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA[":"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="delegationSpecifier"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="classBody"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="collectionLiteral">
+            <usages>
+               <declaration>atomicExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["["]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="element"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["]"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+         </description>
+      </item>
+   </set>
+   <set file-name="when.grm">
+      <doc><![CDATA[#### When-expression
+
+See [When-expression](control-flow.html#when-expression)]]></doc>
+      <item>
+         <declaration name="when">
+            <usages>
+               <declaration>atomicExpression</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["when"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["("]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[")"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["{"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>        </whiteSpace>
+            <identifier name="whenEntry"/>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>    </whiteSpace>
+            <string><![CDATA["}"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="whenEntry">
+            <usages>
+               <declaration>when</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="whenCondition"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA[","]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["->"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="controlStructureBody"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SEMI"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["else"]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["->"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="controlStructureBody"/>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SEMI"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="whenCondition">
+            <usages>
+               <declaration>whenEntry</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["in"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["!in"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="expression"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <string><![CDATA["is"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["!is"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="type"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+         </description>
+      </item>
+   </set>
+   <set file-name="modifiers.grm">
+      <doc><![CDATA[## Modifiers]]></doc>
+      <item>
+         <declaration name="modifiers">
+            <usages>
+               <declaration>typeParameter</declaration>
+               <declaration>getter</declaration>
+               <declaration>companionObject</declaration>
+               <declaration>enumEntry</declaration>
+               <declaration>packageHeader</declaration>
+               <declaration>secondaryConstructor</declaration>
+               <declaration>primaryConstructor</declaration>
+               <declaration>function</declaration>
+               <declaration>property</declaration>
+               <declaration>functionParameter</declaration>
+               <declaration>typeAlias</declaration>
+               <declaration>setter</declaration>
+               <declaration>class</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="modifier"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="annotations"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="typeModifiers">
+            <usages>
+               <declaration>type</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="suspendModifier"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="annotations"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="modifier">
+            <usages>
+               <declaration>modifiers</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="classModifier"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="accessModifier"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="varianceAnnotation"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="memberModifier"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="parameterModifier"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeParameterModifier"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="functionModifier"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="propertyModifier"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="classModifier">
+            <usages>
+               <declaration>modifier</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["abstract"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["final"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["enum"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["open"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["annotation"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["sealed"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["data"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="memberModifier">
+            <usages>
+               <declaration>modifier</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["override"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["open"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["final"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["abstract"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["lateinit"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="accessModifier">
+            <usages>
+               <declaration>modifier</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["private"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["protected"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["public"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["internal"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="varianceAnnotation">
+            <usages>
+               <declaration>modifier</declaration>
+               <declaration>optionalProjection</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["in"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["out"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="parameterModifier">
+            <usages>
+               <declaration>modifier</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["noinline"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["crossinline"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["vararg"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="typeParameterModifier">
+            <usages>
+               <declaration>modifier</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["reified"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="functionModifier">
+            <usages>
+               <declaration>modifier</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["tailrec"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["operator"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["infix"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["inline"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["external"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="suspendModifier"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="propertyModifier">
+            <usages>
+               <declaration>modifier</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["const"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="suspendModifier">
+            <usages>
+               <declaration>typeModifiers</declaration>
+               <declaration>functionModifier</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["suspend"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+         </description>
+      </item>
+   </set>
+   <set file-name="annotations.grm">
+      <doc><![CDATA[## Annotations]]></doc>
+      <item>
+         <declaration name="annotations">
+            <usages>
+               <declaration>catchBlock</declaration>
+               <declaration>typeModifiers</declaration>
+               <declaration>for</declaration>
+               <declaration>blockLevelExpression</declaration>
+               <declaration>prefixUnaryOperation</declaration>
+               <declaration>modifiers</declaration>
+               <declaration>class</declaration>
+               <declaration>typeConstraint</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="annotation"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="annotationList"/>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="annotation">
+            <usages>
+               <declaration>annotations</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["@"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="annotationUseSiteTarget"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[":"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="unescapedAnnotation"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="annotationList">
+            <usages>
+               <declaration>annotations</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["@"]]></string>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="annotationUseSiteTarget"/>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[":"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["["]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="unescapedAnnotation"/>
+            <symbol><![CDATA[+]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["]"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="annotationUseSiteTarget">
+            <usages>
+               <declaration>annotation</declaration>
+               <declaration>annotationList</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["field"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["file"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["property"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["get"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["set"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["receiver"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["param"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["setparam"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["delegate"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="unescapedAnnotation">
+            <usages>
+               <declaration>annotation</declaration>
+               <declaration>fileAnnotation</declaration>
+               <declaration>annotationList</declaration>
+               <declaration>annotatedLambda</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <symbol><![CDATA[{]]></symbol>
+            <string><![CDATA["."]]></string>
+            <symbol><![CDATA[}]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="typeArguments"/>
+            <symbol><![CDATA[?]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="valueArguments"/>
+            <symbol><![CDATA[?]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+         </description>
+      </item>
+   </set>
+   <set file-name="lexical.grm">
+      <doc><![CDATA[# Lexical structure]]></doc>
+      <item>
+         <annotation>helper</annotation>
+         <declaration name="Digit">
+            <usages>
+               <declaration>HexDigit</declaration>
+               <declaration>IntegerLiteral</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[[]]></symbol>
+            <string><![CDATA["0"]]></string>
+            <symbol><![CDATA[.]]></symbol>
+            <symbol><![CDATA[.]]></symbol>
+            <string><![CDATA["9"]]></string>
+            <symbol><![CDATA[]]]></symbol>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="IntegerLiteral">
+            <usages>
+               <declaration>literalConstant</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="Digit"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="Digit"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="Digit"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["_"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="Digit"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="FloatLiteral">
+            <usages>
+               <declaration>literalConstant</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[<Java double literal>]]></string>
+            <other>;</other>
+            <other/>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <annotation>helper</annotation>
+         <declaration name="HexDigit">
+            <usages>
+               <declaration>RegularStringPart</declaration>
+               <declaration>HexadecimalLiteral</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="Digit"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[[]]></symbol>
+            <string><![CDATA["A"]]></string>
+            <symbol><![CDATA[.]]></symbol>
+            <symbol><![CDATA[.]]></symbol>
+            <string><![CDATA["F"]]></string>
+            <other>,</other>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["a"]]></string>
+            <symbol><![CDATA[.]]></symbol>
+            <symbol><![CDATA[.]]></symbol>
+            <string><![CDATA["f"]]></string>
+            <symbol><![CDATA[]]]></symbol>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="HexadecimalLiteral">
+            <usages>
+               <declaration>literalConstant</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["0x"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="HexDigit"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["0x"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="HexDigit"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[(]]></symbol>
+            <identifier name="HexDigit"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["_"]]></string>
+            <symbol><![CDATA[)]]></symbol>
+            <symbol><![CDATA[*]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="HexDigit"/>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="CharacterLiteral">
+            <usages>
+               <declaration>literalConstant</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[<character as in Java>]]></string>
+            <other>;</other>
+            <other/>
+            <other/>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <doc><![CDATA[See [Basic types](basic-types.html)]]></doc>
+      <item>
+         <declaration name="NoEscapeString">
+            <usages>
+               <declaration>literalConstant</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[<"""-quoted string>]]></string>
+            <other>;</other>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="RegularStringPart">
+            <usages>
+               <declaration>stringTemplateElement</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[<any character other than backslash, quote, $ or newline>]]></string>
+            <other/>
+            <crlf/>
+            <other/>
+            <crlf/>
+            <identifier name="ShortTemplateEntryStart"/>
+            <symbol><![CDATA[:]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["$"]]></string>
+            <other/>
+            <crlf/>
+            <other/>
+            <crlf/>
+            <identifier name="EscapeSequence"/>
+            <symbol><![CDATA[:]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="UnicodeEscapeSequence"/>
+            <whiteSpace> </whiteSpace>
+            <symbol><![CDATA[|]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <identifier name="RegularEscapeSequence"/>
+            <other/>
+            <crlf/>
+            <other/>
+            <crlf/>
+            <identifier name="UnicodeEscapeSequence"/>
+            <symbol><![CDATA[:]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["\u"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="HexDigit"/>
+            <symbol><![CDATA[{]]></symbol>
+            <other>4</other>
+            <symbol><![CDATA[}]]></symbol>
+            <other/>
+            <crlf/>
+            <other/>
+            <crlf/>
+            <identifier name="RegularEscapeSequence"/>
+            <symbol><![CDATA[:]]></symbol>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["\" <any character other than newline>]]></string>
+            <crlf/>
+            <other/>
+            <crlf/>
+            <other/>
+            <crlf/>
+            <other/>
+            <crlf/>
+         </description>
+      </item>
+      <doc><![CDATA[See [String templates](basic-types.html#templates)]]></doc>
+      <item>
+         <declaration name="SEMI">
+            <usages>
+               <declaration>import</declaration>
+               <declaration>property</declaration>
+               <declaration>statements</declaration>
+               <declaration>whenEntry</declaration>
+               <declaration>if</declaration>
+               <declaration>packageHeader</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[<semicolon or newline>]]></string>
+            <other>;</other>
+            <other/>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <item>
+         <declaration name="SimpleName">
+            <usages>
+               <declaration>catchBlock</declaration>
+               <declaration>typeParameter</declaration>
+               <declaration>stringTemplateElement</declaration>
+               <declaration>atomicExpression</declaration>
+               <declaration>import</declaration>
+               <declaration>unescapedAnnotation</declaration>
+               <declaration>companionObject</declaration>
+               <declaration>LabelName</declaration>
+               <declaration>enumEntry</declaration>
+               <declaration>typeConstraint</declaration>
+               <declaration>packageHeader</declaration>
+               <declaration>variableDeclarationEntry</declaration>
+               <declaration>simpleUserType</declaration>
+               <declaration>infixFunctionCall</declaration>
+               <declaration>callableReference</declaration>
+               <declaration>valueArguments</declaration>
+               <declaration>function</declaration>
+               <declaration>parameter</declaration>
+               <declaration>typeAlias</declaration>
+               <declaration>setter</declaration>
+               <declaration>class</declaration>
+               <declaration>object</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[<java identifier>]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["`"]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA[<java identifier>]]></string>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["`"]]></string>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <other>;</other>
+            <other/>
+            <other/>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <doc><![CDATA[See [Java interoperability](java-interop.html)]]></doc>
+      <item>
+         <declaration name="LabelName">
+            <usages>
+               <declaration>labelDefinition</declaration>
+               <declaration>labelReference</declaration>
+            </usages>
+         </declaration>
+         <description>
+            <other/>
+            <crlf/>
+            <whiteSpace>  </whiteSpace>
+            <symbol><![CDATA[:]]></symbol>
+            <whiteSpace> </whiteSpace>
+            <string><![CDATA["@"]]></string>
+            <whiteSpace> </whiteSpace>
+            <identifier name="SimpleName"/>
+            <other>;</other>
+            <other/>
+            <other/>
+            <other/>
+            <other/>
+            <other/>
+            <other/>
+            <other/>
+         </description>
+      </item>
+      <doc><![CDATA[See [Returns and jumps](returns.html)]]></doc>
+   </set>
+</tokens>

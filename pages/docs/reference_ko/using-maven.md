@@ -21,7 +21,7 @@ description: "이 튜토리얼은 코틀린 코드를 포함한 어플리케이�
 
 ## 의존
 
-코틀린은 어플리케이션 사용할 수 있는 확장 표준 라이브러리를 제공한다. 다음 의존을 pom 파일에 설정한다:
+코틀린은 어플리케이션이 사용할 수 있는 확장 표준 라이브러리를 제공한다. 다음 의존을 pom 파일에 설정한다:
 
 ``` xml
 <dependencies>
@@ -85,7 +85,7 @@ JDK 7이나 JDK 8을 `kotlin-stdlib-jre7` 또는 `kotlin-stdlib-jre8`을 사용�
 
 자바와 코틀린을 함께 사용하는 코드를 컴파일하려면 자바 컴파일러보다 코틀린 컴파일러는 먼저 호출해야 한다.
 메이븐 관점에서는 다음과 같이 pom.xml 파일에서 maven-compiler-plugin 위에 코틀린 플러그인을 위치시켜서
- 방법으로 maven-compiler-plugin보다 kotlin-maven-plugin을 먼저 실행해야 함을 의미한다:
+maven-compiler-plugin보다 kotlin-maven-plugin을 먼저 실행해야 함을 의미한다:
 
 ``` xml
 <build>
@@ -165,7 +165,7 @@ JDK 7이나 JDK 8을 `kotlin-stdlib-jre7` 또는 `kotlin-stdlib-jre8`을 사용�
 
 [코틀린 애노테이션 처리 도구](kapt.html) (`kapt`)의 설명을 참고한다.
 
-## Jar file
+## Jar 파일
 
 모듈의 코드만 포함하는 작은 Jar 파일을 만들려면 메이븐 pom.xml 파일의 `build->plugins`에 다음 설정을 포함한다.
 `main.class` 프로퍼티는 코틀린이나 자바 메인 클래스를 가리킨다.
@@ -216,7 +216,7 @@ JDK 7이나 JDK 8을 `kotlin-stdlib-jre7` 또는 `kotlin-stdlib-jre8`을 사용�
 </plugin>
 ```
 
-이 독립 jar 파일을 JRE에 바로 전달하면 어플맄이션을 실행할 수 있다:
+이 독립 jar 파일을 JRE에 바로 전달하면 어플리케이션을 실행할 수 있다:
 
 ``` bash
 java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
@@ -266,7 +266,7 @@ java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 ## 컴파일러 옵션 지정
 
-컴파일러를 위한 추가 옵션을 메이븐 플러그인 노트의 `<configuration>` 요소에 태그로 지정할 수 있다:
+컴파일러를 위한 추가 옵션을 메이븐 플러그인 노드의 `<configuration>` 요소에 태그로 지정할 수 있다:
 
 ``` xml
 <plugin>

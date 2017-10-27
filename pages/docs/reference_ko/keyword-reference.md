@@ -17,10 +17,10 @@ title: "키워드와 연산자"
  * `as?`: [안전한 타입 변환](/docs/reference/typecasts.html#safe-nullable-cast-operator)에 사용  
  * `break`: [루프 실행을 종료](http://kotlinlang.org/docs/reference/returns.html)
  * `class`: [클래스](/docs/reference/classes.html) 선언
- * `continue`: [가장 가까운 루트의 다음 단계를 진행](/docs/reference/returns.html) 
+ * `continue`: [가장 가까운 루프의 다음 단계를 진행](/docs/reference/returns.html) 
  * `do`: [do/while 루프](/docs/reference/control-flow.html#while-loops) 시작 (사후조건을 가진 루프)
  * `else`: [if 식](/docs/reference/control-flow.html#if-expression)에서 조건이 false일 때 실행하는 브랜치 정의
- * `false`: [부리언 타입](/docs/reference/basic-types.html#booleans)의 `false` 값
+ * `false`: [불리언 타입](/docs/reference/basic-types.html#booleans)의 `false` 값
  * `for`: [for 루프](/docs/reference/control-flow.html#for-loops)를 시작
  * `fun`: [함수](/docs/reference/functions.html) 선언 
  * `if`: [if 식](/docs/reference/control-flow.html#if-expression) 시작

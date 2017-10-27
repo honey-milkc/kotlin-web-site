@@ -8,7 +8,7 @@ title: "그레이들 사용하기"
 
 그레이들에서 코틀린을 빌드하려면 [*kotlin-gradle* 플러그인을 설정](#plugin-and-versions)하고
 프로젝트에 [그 플러그인을 적용](#targeting-the-jvm)하고, [*kotlin-stdlib* 의존](#configuring-dependencies)을 추가해야 한다.
-인텔리J IDEA의 \| Kotlin \| 도구의 Configure Kotlin in Project 메뉴를 실행하면 자동으로 이를 처리해준다.
+인텔리J IDEA의 Tools \| Kotlin \| 메뉴의 Configure Kotlin in Project 메뉴를 실행하면 자동으로 이를 처리해준다.
 
 ## 플러그인과 버전
 
@@ -52,7 +52,7 @@ plugins {
 ```
 이 블록에서 `version`은 리터럴이어야 하며, 다른 빌드 스크립트로부터 적용할 수 없다.
 
-같은 폴더나 다른 포런데 코틀린 소스와 자바 소스를 섞을 수 있다.
+같은 폴더나 다른 폴더에 코틀린 소스와 자바 소스를 함께 사용할 수 있다.
 기본 관례는 다른 폴더를 사용하는 것이다:
 
 ``` groovy
@@ -90,7 +90,7 @@ sourceSets {
 }
 ```
 
-플러그인은 자바스크립트 파일을 출력할 뿐만아니라 바이너리 디스크립터를 가진 JS 파일을 추가로 생성한다.
+플러그인은 자바스크립트 파일을 출력할 뿐만 아니라 바이너리 디스크립터를 가진 JS 파일을 추가로 생성한다.
 다른 코틀린 모듈에서 의존할 수 있는 재사용가능한 라이브러리를 빌드하려면 이 파일이 필요하며,
 변환 결과에 함께 배포해야 한다.
 `kotlinOptions.metaInfo` 옵션으로 파일 생성을 설정한다:
@@ -184,7 +184,7 @@ testCompile "org.jetbrains.kotlin:kotlin-test-junit"
 
 ## 증분 컴파일
 
-코틀린의 그레이들의 선택적인 증분 컴파일을 지원한다. 증분 컴파일은 빌드 간 소스 파일의 변경을 추적해서
+코틀린은 그레이들에서 선택적인 증분 컴파일을 지원한다. 증분 컴파일은 빌드 간 소스 파일의 변경을 추적해서
 변경에 영향을 받는 파일만 컴파일한다.
 
 코틀린 1.1.1부터 기본으로 증분 컴파일을 활성화한다.
@@ -193,7 +193,7 @@ testCompile "org.jetbrains.kotlin:kotlin-test-junit"
 
   1. `gradle.properties`나 `local.properties` 파일에 `kotlin.incremental=true` 또는 `kotlin.incremental=false` 설정을 추가한다.
 
-  2. 그레이들 명령행 파라미터로 `-Pkotlin.incremental=true` or `-Pkotlin.incremental=false`를 추가한다. 이 경우 각 빌드마다 파라미터를 추가해야 하며
+  2. 그레이들 명령행 파라미터로 `-Pkotlin.incremental=true` 또는 `-Pkotlin.incremental=false`를 추가한다. 이 경우 각 빌드마다 파라미터를 추가해야 하며
   증분 컴파일을 사용하지 않은 빌드가 존재하면 증분 캐시를 무효로한다.
 
 증분 컴파일을 활성화하면, 빌드 로그에서 다음 경고 문구를 보게 된다:
@@ -205,7 +205,7 @@ Using kotlin incremental compilation
 
 ## 코루틴 지원
 
-[Coroutines](coroutines.html) 지원은 코틀린 1.1에서 실험 특징이므로, 프로젝트에서 코루틴을 사용하면 코틀린 컴파일러는 경고를 발생한다.
+[코루틴](coroutines.html) 지원은 코틀린 1.1에서 실험 특징이므로, 프로젝트에서 코루틴을 사용하면 코틀린 컴파일러는 경고를 발생한다.
 경고를 끄려면, `build.gradle`에 다음 블록을 추가한다:
 
 ``` groovy
@@ -220,7 +220,7 @@ kotlin {
 
 빌드로 생성한 코틀린 모듈은 프로젝트의 `archivesBaseName` 프로퍼티의 이름을 따른다.
 프로젝트가 `lib`나 `jvm`과 같이 하위 프로젝트들에 공통인 넓은 의미의 이름을 사용하면,
-모듈과 관련된 코틀린 출력 파일은(`*.kotlin_module`) 같은 이름을 갖는 외부 모듈의 출력 파일과 충돌날 수 있다.
+모듈과 관련된 코틀린 출력 파일은(`*.kotlin_module`) 같은 이름을 갖는 외부 모듈의 출력 파일과 충돌할 수 있다.
 이는 프로젝트를 한 개의 아카이브(예, APK)로 패키징할 때 문제를 발생시킨다.
 
 이를 피하려면, 수동으로 유일한 `archivesBaseName`을 설정해야 한다:
@@ -233,7 +233,7 @@ archivesBaseName = 'myExampleProject_lib'
 
 컴파일러 옵션을 추가로 설정하려면 코틀린 컴파일 태스크의 `kotlinOptions` 프로퍼티를 사용한다.
 
-JVM이 대상일 때, 제품을 위한 태스크는 `compileKotlin`이고 테스트 코드를 위한 태스크는 `compileTestKotlin`이다.
+JVM 대상일 때, 제품을 위한 태스크는 `compileKotlin`이고 테스트 코드를 위한 태스크는 `compileTestKotlin`이다.
 커스텀 소스 집합을 위한 태스크는 `compile<Name>Kotlin` 패턴에 따라 호출한다.
  
 안드로이드 프로젝트에서 태스크의 이름은 [build variant](https://developer.android.com/studio/build/build-variants.html)를 포함하며,

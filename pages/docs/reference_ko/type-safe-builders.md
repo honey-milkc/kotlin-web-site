@@ -11,12 +11,12 @@ title: "타입에 안전한 그루비 방식 빌더"
 빌더는 반정도 선언적인 방식으로 데이터를 정의할 수 있도록 한다.
 [XML 생성](http://www.groovy-lang.org/processing-xml.html#_creating_xml),
 [UI 컴포넌트 배치](http://www.groovy-lang.org/swing.html),
-[describing 3D scenes](http://www.artima.com/weblogs/viewpost.jsp?thread=296081) 등이 빌더의 좋은 예이다. 
+[3D 장면 설명](http://www.artima.com/weblogs/viewpost.jsp?thread=296081) 등이 빌더의 좋은 예이다. 
 
-많은 사용처를 위해 코틀린은 *타입에 안전한* 빌더를 허용한다. 심지어 이 빌더는 그루비 자체에서 만든
+코틀린은 많은 사용처를 위해 *타입에 안전한* 빌더를 허용한다. 심지어 이 빌더는 그루비 자체에서 만든
 동적 타입 구현보다 더 매력적이다.
 
-다른 경우를 위해, 코틀린은 동적 타입 빌더를 제공한다.
+코틀린은 동적 타입 빌더를 제공해서 타입에 안전한 빌더로 하지 못하는 경우도 지원한다.
 
 ## 타입에 안전한 빌더 예제
 
@@ -57,7 +57,7 @@ fun result(args: Array<String>) =
 ```
 
 이 코드는 완전히 올바른 코틀린 코드이다.
-이 코드를 [here](http://try.kotlinlang.org/#/Examples/Longer examples/HTML Builder/HTML Builder.kt)에서
+이 코드를 [여기](http://try.kotlinlang.org/#/Examples/Longer examples/HTML Builder/HTML Builder.kt)에서
 실행해 볼 수 있다(브라우저에서 수정하고 실행해보자).
 
 ## 동작 방식
@@ -101,7 +101,7 @@ html {
 
 (`head`와 `body`는 `HTML`의 멤버 함수이다)
 
-이제 *this*{: .keyword }를 생략할 수 있고, 이미 빌더처럼 보이는 것을 얻었다:
+*this*{: .keyword }를 생략할 수 있고, 이미 빌더처럼 보이는 것을 얻었다:
 
 ``` kotlin
 html {
@@ -114,8 +114,8 @@ html {
 함수는 `HTML` 인스턴스를 생성하고 인자로 전달받은 함수를 호출해서 그 인스턴스를 초기화하고(이 예에서는
 `HTML` 인스턴스의 `head`와 `body`를 호출한다), 인스턴스를 리턴한다. 이것이 정확하게 빌더가 해야 하는 일이다.
 
-`HTML`의 `head`와 `body` 함수도 `html`가 유사하게 정의한다.
-유일한 차이점은 두 함수는 둘러싼 `HTML`의 인스턴스의 `children` 콜렉션이 생성한 인스턴스를 추가한다는 것이다:
+`HTML`의 `head`와 `body` 함수도 `html`과 유사하게 정의한다.
+유일한 차이점은 두 함수는 둘러싼 `HTML` 인스턴스의 `children` 콜렉션에 생성한 인스턴스를 추가한다는 것이다:
 
 ``` kotlin
 fun head(init: Head.() -> Unit) : Head {
@@ -164,7 +164,7 @@ html {
 }
 ```
 
-기본적으로 태그 몸체에 단지 문자열을 넣었다. 하지만, 문자열에 앞에 `+`이 붙어 있는데,
+기본적으로 태그 몸체에 단지 문자열을 넣었다. 하지만, 문자열에 앞에 `+`가 붙어 있는데,
 이는 접두사 `unaryPlus()` 오퍼레이션을 호출하는 함수 호출이다.
 이 오퍼레이션은 실제로 `TagWithText` 추상 클래스(`Title`의 부모)의 멤버인 `unaryPlus()` 확장 함수로 정의되어 있다. 
 
@@ -177,14 +177,14 @@ fun String.unaryPlus() {
 그래서 접두사 `+`는 문자열을 `TextElement` 인스턴스로 감싸고, `children` 콜렉션에 추가하며,
 따라서 태그 트리의 알맞은 부분이 된다.
 
-이것들 모두 빌더 예제의 상단에서 임포트한 `com.example.html` 패키지에 정의했다.
+지금까지 보여준 코드는 빌더 예제의 상단에서 임포트한 `com.example.html` 패키지에 정의했다.
 마지막 절에서 이 패키지 전체를 볼 수 있다.
 
 ## 범위 제어: @DslMarker (1.1부터)
 
 DSL을 사용할 때, 그 문백에서 호출할 수 있는 함수가 너무 많아질 수 있는 문제가 발생할 수 있다.
-람다 안에서 모든 사용가능한 implicit 리서버의 메서드를 호출할 수 있고,
-그 결과로 다른 `head` 안에 `head`를 넣는 것고 같이 일관성없는 결과를 얻을 수 있다:
+람다 안에서 모든 사용가능한 암묵적인 리서버의 메서드를 호출할 수 있고,
+그 결과로 다른 `head` 안에 `head`를 넣는 것고 같이 일관성이 깨지는 결과를 얻을 수 있다:
 
 ``` kotlin
 html {
@@ -195,11 +195,11 @@ html {
 }
 ```
 
-이 예에서는 가장 가까운 implicit 리시버인 `this@head`의 멤버만 가능해야 한다.
+이 예에서는 가장 가까운 암묵적인 리시버인 `this@head`의 멤버만 가능해야 한다.
 `head()`는 외부 리서버인 `this@html`의 멤버이므로, `head()`를 호출하는 것은 막아야 한다.
 
 이 문제를 해결하기 위해, 코틀린 1.1은 리시버 범위를 제어하기 위한 특별한 메커니즘을 추가했다.
-컴파일러가 범위 제어를 시작하도록 하려면, DLS에서 사용할 모든 리비버의 타입에 동일한 마커 애노테이션을 붙여야 한다.
+컴파일러가 범위 제어를 시작하도록 하려면, DLS에서 사용할 모든 리시버 타입에 동일한 마커 애노테이션을 붙여야 한다.
 예를 들어, HTML 빌더의 경우 `@HTMLTagMarker` 애노테이션을 선언한다:
  
 ``` kotlin
@@ -225,7 +225,7 @@ class HTML() : Tag("html") { ... }
 class Head() : Tag("head") { ... }
 ```
 
-이 애노테이션을 추가하면, 코틀린 컴파일러는 implicit 리시버가 동일 DLS의 어느 부분인지 알 수 있게 되고,
+이 애노테이션을 추가하면, 코틀린 컴파일러는 암묵적 리시버가 동일 DLS의 어느 부분인지 알 수 있게 되고,
 가장 가까운 리시버의 멤버만 호출할 수 있게 만들 수 있다:: 
 
 ``` kotlin
@@ -237,12 +237,12 @@ html {
 }
 ```
 
-Note that it's still possible to call the members of the outer receiver, but to do that you have to specify this receiver explicitly:
+외부 리시버의 멤버를 호출하는 것은 여전히 가능하지만, 이를 하려면 명시적으로 리시버를 지정해야 한다:
 
 ``` kotlin
 html {
     head {
-        this@html.head { } // possible
+        this@html.head { } // 가능
     }
     // ...
 }

@@ -172,8 +172,8 @@ reference:
       content:
         - url: /docs/reference/keyword-reference.html
           title: Keywords and Operators
-#        - url: /docs/reference/grammar.html
-#          title: Grammar
+        - url: /docs/reference/grammar.html
+          title: Grammar
         - url: /docs/reference/compatibility.html
           title: Compatibility
 
@@ -255,7 +255,7 @@ reference_ko:
         - url: /docs/reference_ko/coding-conventions.html
           title: 코딩 관례
 
-    - title: Basics
+    - title: 기초
       description: 기초
       content:
         - url: /docs/reference_ko/basic-types.html
@@ -335,81 +335,81 @@ reference_ko:
         - url: /docs/reference_ko/reflection.html
           title: 리플렉션
         - url: /docs/reference_ko/type-safe-builders.html
-          title: Type-Safe Builders
+          title: 타입에 안전한 빌더
         - url: /docs/reference_ko/type-aliases.html
-          title: Type Aliases
+          title: 타입 별칭
 #        - url: /docs/reference_ko/multiplatform.html
 #          title: Multiplatform Projects (preview)
 
 
-    - title: Core Libraries
+    - title: 핵심 라이브러리
       content:
         - url: /api/latest/jvm/stdlib/index.html
           title: Standard Library
         - url: /api/latest/kotlin.test/index.html
           title: kotlin.test
 
-    - title: Reference
-      description: Grammar and other information
+    - title: 레퍼런스
+      description: 문법과 다른 정보
       content:
         - url: /docs/reference_ko/keyword-reference.html
-          title: Keywords and Operators
-#        - url: /docs/reference_ko/grammar.html
-#          title: Grammar
+          title: 키워드와 연산자
+        - url: /docs/reference_ko/grammar.html
+          title: 문법
         - url: /docs/reference_ko/compatibility.html
-          title: Compatibility
+          title: 호환성
 
 
-    - title: Java Interop
-      description: What you need to know about interoperability with Java.
+    - title: 자바 상호운용
+      description: 자바 상호운용성에 대해 알아야 할 것
       content:
         - url: /docs/reference_ko/java-interop.html
-          title: Calling Java from Kotlin
+          title: 코틀린에서 자바 호출하기
         - url: /docs/reference_ko/java-to-kotlin-interop.html
-          title: Calling Kotlin from Java
+          title: 자바에서 코틀린 호출하기
 
-    - title: JavaScript
-      description: Using Kotlin with JavaScript
-      content:
-       - url: /docs/reference_ko/dynamic-type.html
-         title: Dynamic Type
-       - url: /docs/reference_ko/js-interop.html
-         title: Calling JavaScript from Kotlin
-       - url: /docs/reference_ko/js-to-kotlin-interop.html
-         title: Calling Kotlin from JavaScript
-       - url: /docs/reference_ko/js-modules.html
-         title: JavaScript Modules
-       - url: /docs/reference_ko/js-reflection.html
-         title: JavaScript Reflection
-       - url: /docs/reference_ko/javascript-dce.html
-         title: JavaScript DCE
+#    - title: JavaScript
+#      description: Using Kotlin with JavaScript
+#      content:
+#       - url: /docs/reference_ko/dynamic-type.html
+#         title: Dynamic Type
+#       - url: /docs/reference_ko/js-interop.html
+#         title: Calling JavaScript from Kotlin
+#       - url: /docs/reference_ko/js-to-kotlin-interop.html
+#         title: Calling Kotlin from JavaScript
+#       - url: /docs/reference_ko/js-modules.html
+#         title: JavaScript Modules
+#       - url: /docs/reference_ko/js-reflection.html
+#         title: JavaScript Reflection
+#       - url: /docs/reference_ko/javascript-dce.html
+#         title: JavaScript DCE
 
-    - title: Tools
+    - title: 도구
       description:
       content:
   #      - /docs/reference_ko/kotlin-build-tools.html: Kotlin Build Tools
         - url: /docs/reference_ko/kotlin-doc.html
-          title: Documenting Kotlin Code
+          title: 코틀린 코드 문서화
         - url: /docs/reference_ko/kapt.html
-          title: Using Kapt
+          title: Kapt 사용하기
         - url: /docs/reference_ko/using-gradle.html
-          title: Using Gradle
+          title: 그레이들 사용하기
         - url: /docs/reference_ko/using-maven.html
-          title: Using Maven
+          title: 메이븐 사용하기
         - url: /docs/reference_ko/using-ant.html
           title: Using Ant
         - url: /docs/reference_ko/kotlin-osgi.html
           title: Kotlin and OSGi
         - url: /docs/reference_ko/compiler-plugins.html
-          title: Compiler plugins
+          title: 컴파일러 플러그인
 
     - title: FAQ
-      description: Every question you could possibly think of, might be answered.
+      description: 생각할 만한 모든 질문
       content:
         - url: /docs/reference_ko/faq.html
           title: FAQ
         - url: /docs/reference_ko/comparison-to-java.html
-          title: Comparison to Java
+          title: 자바와 비교
 
 
 

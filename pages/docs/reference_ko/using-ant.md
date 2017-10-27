@@ -55,7 +55,7 @@ ${kotlin.lib}는 코틀린 표준 컴파일러 압축을 푼 폴더를 가리킨
 ## 코틀린과 자바 소스를 가진 경우의 JVM 대상
 
 프로젝트가 코틀린과 자바 소스 코드로 구성되어 있으면, *kotlinc*를 사용할 수 있지만
-태스트 파라미터 중복을 피하기 위해 *withKotlin* 태스크를 사용할 것을 권한다:
+태스크 파라미터 중복을 피하기 위해 *withKotlin* 태스크를 사용할 것을 권한다:
 
 ``` xml
 <project name="Ant Task Test" default="build">
@@ -74,7 +74,7 @@ ${kotlin.lib}는 코틀린 표준 컴파일러 압축을 푼 폴더를 가리킨
 </project>
 ```
 
-`<withKotlin>`를 위한 추가 명령행 인자를 지정하려면 중첩한 `<compilerArg>` 파라미터를 사용한다.
+`<withKotlin>`을 위한 추가 명령행 인자를 지정하려면 중첩한 `<compilerArg>` 파라미터를 사용한다.
 사용할 수 있는 전체 인자 목록은 `kotlinc -help`로 확인할 수 있다.
 `moduleName` 속성을 사용해서 컴파일할 모듈의 이름을 지정할 수 있다:
 

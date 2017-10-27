@@ -10,7 +10,7 @@ title: FAQ
 ### 코틀린은 무엇인가?
 
 코틀린은 OSS 정적 타입 프로그래밍 언어로서, JVM, 안드로이드 자바스크립트와 네이티비를 대상으로 한다.
-코틀린은 [젯브레인Brains](http://www.jetbrains.com)이 개발한다.
+코틀린은 [JetBrains](http://www.jetbrains.com)이 개발한다.
 2010년에 프로젝트를 시작했고 초기부터 오픈 소스였다.
 첫 번째 공식 1.0 버전은 2016년 2월에 나왔다. 
 
@@ -163,7 +163,7 @@ Peter Sommerhoff의 [Udemy Kotlin Course](http://petersommerhoff.com/dev/kotlin/
 [뉴스레터](http://www.kotlinweekly.net), [팟캐스트](https://talkingkotlin.com) 등의 사이트를
 [온라인 자료](https://kotlinlang.org/community/)에서 확인할 수 있다.
 
-### HD 코틀린 로고는 어디서 구할 수 있나?
+### 코틀린 HD 로고는 어디서 구할 수 있나?
 
 [여기](https://resources.jetbrains.com/storage/products/kotlin/docs/kotlin_logos.zip)에서 로고를 다운로드할 수 있다.
 아카이브에 포함된 `guidelines.pdf`의 간단한 규칙을 따라주길 바란다.

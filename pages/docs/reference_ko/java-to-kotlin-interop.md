@@ -11,11 +11,11 @@ title: "자바에서 코틀린 호출하기"
 
 ## 프로퍼티
 
-코틀린 프로퍼티는 다음의 자바 요소로 컴파일된다:
+코틀린 프로퍼티는 다음 자바 요소로 컴파일된다:
 
  * `get` 접두사가 앞에 붙은 계산된 이름을 가진 getter 메서드
  * `set` 접두사가 앞에 붙은 계산된 이름을 가진 setter 메서드 (`var` 프로퍼티에만 적용)
- * 프로퍼티 이름과 같은 이름을 가진 private 필드 (backing 필드를 가진 프로퍼티에만 적용
+ * 프로퍼티 이름과 같은 이름을 가진 private 필드 (지원 필드를 가진 프로퍼티에만 적용)
 
 예를 들어, `var firstName: String` 코드는 다음의 자바 선언으로 컴파일된다:
 
@@ -36,7 +36,7 @@ setter 이름은 `is` 대신에 `set`을 사용한다.
 예를 들어, `isOpen` 프로퍼티의 경우 getter는 `isOpen`이고 setter는 `setOpen()`이 된다.
 이 규칙은 `Boolean` 뿐만 아니라 모든 타입의 프로퍼티에 적용된다.
 
-## 패키시 수준 함수
+## 패키지 수준 함수
 
 `example.kt` 파일의 `org.foo.bar` 안에 선언한 모든 함수(확장 함수 포함)와 프로퍼티는
 `org.foo.bar.ExampleKt`라 불리는 자바 클래스의 정적 메서드로 컴파일된다.
@@ -115,7 +115,7 @@ demo.Utils.bar();
 ## 인스턴스 필드
 
 코틀린 프로퍼티를 자바 필드로 노출하고 싶다면, 프로퍼티에 `@JvmField` 애노테이션을 붙이면 된다.
-이 필드는 해당 프로퍼티와 동일한 가시성을 갖는다. 프로퍼티가 Backing 필드를 갖고, private이 아니고,
+이 필드는 해당 프로퍼티와 동일한 가시성을 갖는다. 프로퍼티가 지원 필드를 갖고, private이 아니고,
 `open`이나 `override`나 `const` 수식어를 갖지 않고, 위임 프로퍼티가 아니면,
 `@JvmField` 애노테이션을 붙일 수 없다.
 
@@ -134,21 +134,21 @@ class JavaClient {
 }
 ```
 
-[Late-Initialized](properties.html#late-initialized-properties) 프로퍼티 또한 필드로 노출할 수 있다.
-필드는  `lateinit` 프로퍼티의 setter와 동일한 가시성을 갖는다.
+[초기화 지연](properties.html#late-initialized-properties) 프로퍼티 또한 필드로 노출할 수 있다.
+필드는 `lateinit` 프로퍼티의 setter와 동일한 가시성을 갖는다.
 
 ## 정적 필드
 
 이름 가진 오브젝트나 컴페니언 오브젝트에 선언한 코틀린 프로퍼티는 이름 가진 오브젝트나 컴페니언 오브젝트를 포함하는 클래스에
-정적 backing 필드를 갖는다.
+정적 지원 필드를 갖는다.
 
 보통 이 필드는 private이지만 다음 중 하나로 노출할 수 있다:
 
  - `@JvmField` 애노테이션
  - `lateinit` 수식어
  - `const` 수식어
- 
-이 프로퍼티에 `@JvmField`을 붙이면, 프로퍼티를 프로퍼티와 같은 가시성을 가진 정적 필드로 만든다.
+
+이 프로퍼티에 `@JvmField`를 붙이면, 프로퍼티와 같은 가시성을 가진 정적 필드로 만든다.
 
 ``` kotlin
 class Key(val value: Int) {
@@ -162,11 +162,11 @@ class Key(val value: Int) {
 ``` java
 // 자바
 Key.COMPARATOR.compare(key1, key2);
-// public static final field in Key class
+// Key 클래스에 public static final 필드
 ```
 
-객체나 컴페니언 오브젝트의 [late-initialized](properties.html#late-initialized-properties) 프로퍼티는
-프로퍼티 setter와 같은 가시성을 갖는 정적 backing 필드를 갖는다.
+객체나 컴페니언 오브젝트의 [초기화 지연](properties.html#late-initialized-properties) 프로퍼티는
+프로퍼티 setter와 같은 가시성을 갖는 정적 지원 필드를 갖는다.
 
 ``` kotlin
 object Singleton {
@@ -177,7 +177,7 @@ object Singleton {
 ``` java
 // 자바
 Singleton.provider = new Provider();
-// public static non-final field in Singleton class
+// Singleton 클래스에 public static이고 final이 아닌 필드
 ```
 
 (클래스나 최상위 수준에 선언한) `const` 프로퍼티는 자바의 정적 필드로 바뀐다:
@@ -211,7 +211,7 @@ int v = C.VERSION;
 위에서 말한 것처럼, 코틀린은 패키지 수준 함수를 정적 메서드로 표현한다.
 코틀린은 또한 이름가진 객체나 컴페니언 오브젝트에 정의한 함수에 `@JvmStatic`을 붙이면 
 정적 메서드를 생성한다.
-이 애노테이션 사용하면 컴파일러는 객체를 둘러싼 클래스에 정적 메서드를 생성하고 객체 자체에 인스턴스 메서드를 생성한다.
+이 애노테이션을 사용하면 컴파일러는 객체를 둘러싼 클래스에 정적 메서드를 생성하고 객체 자체에 인스턴스 메서드를 생성한다.
 다음은 예이다:
 
 ``` kotlin
@@ -225,7 +225,7 @@ class C {
 
 이제 `foo()`는 자바에서 정적 메서드이고, `bar()`는 아니다:
 
-``` 자바
+``` java
 C.foo(); // 동작
 C.bar(); // 에러: 정적 메서드 아님
 C.Companion.foo(); // 인스턴스 메서드 유지
@@ -388,7 +388,7 @@ fun foo() {
 ## 가변 지네릭
 
 코틀린 클래스에서 [선언 위치 가변성](generics.html#declaration-site-variance)을 사용할 때,
-자바 코드에 어떻게 보여줄지에 대한 두 가지 선택이 있다. 선언 위치 가변을 사용하는 클래스와 두 함수 예를 보자:
+자바 코드에 어떻게 보여줄지에 대한 두 가지 선택이 있다. 선언 위치 변성을 사용하는 클래스와 두 함수 예를 보자:
 
 ``` kotlin
 class Box<out T>(val value: T)
@@ -400,7 +400,7 @@ fun boxDerived(value: Derived): Box<Derived> = Box(value)
 fun unboxBase(box: Box<Base>): Base = box.value
 ```
 
-이 함수를 자바 코드로 해석하는 naive한 방법은 다음과 같이 하는 것이다:
+이 함수를 자바 코드로 해석하는 순진한 방법은 다음과 같이 하는 것이다:
  
 ``` java
 Box<Derived> boxDerived(Derived value) { ... }
@@ -415,10 +415,10 @@ Base unboxBase(Box<Base> box) { ... }
 Base unboxBase(Box<? extends Base> box) { ... }  
 ```  
 
-여기서 사용 위치 가변으로 선언 위치 가변을 흉내내기 위해 *와일드카드 타입* (`? extends Base`)을 사용했다. 자바는 사용 위치 가변만 있기 때문이다.
+여기서 사용 위치 변성으로 선언 위치 변성을 흉내내기 위해 *와일드카드 타입*(`? extends Base`)을 사용했다. 자바는 사용 위치 변성만 있기 때문이다.
 
 코틀린 API가 자바에서 동작할 수 있도록 타입 파라미터가 *파라미터로 쓰일* 때 
-공변으로 정의한 `Box`에 대한 `Box<Super>`와 `Box<? extends Super>`를 생성한다(또는  반공변으로 정의한 `Foo`에 대한 `Foo<? super Bar>`를 생성)
+공변으로 정의한 `Box`에 대한 `Box<Super>`와 `Box<? extends Super>`를 생성한다(또는 반공변으로 정의한 `Foo`에 대한 `Foo<? super Bar>`를 생성).
 파라미터가 리턴 값일 때, 와일카드를 생성하지 않는다. 왜냐면, 자바 클라이언트가 이를 처리할 수 있기 때문이다(그리고, 리턴 타입에서 와일드카드는
 보통의 자바 코딩 스타일에 반한다). 따라서 예제의 함수를 실제로 다음과 같이 해석한다:
   
@@ -430,14 +430,14 @@ Box<Derived> boxDerived(Derived value) { ... }
 Base unboxBase(Box<? extends Base> box) { ... }
 ```
 
-주의: 인자 타입이 final일 때, 와일드카드를 생성할 위치가 없고, 따라서 `Box<String>`은 그것이 취하는 위치가 무엇이냐에 상관없이
+주의: 인자 타입이 final이면 와일드카드를 생성할 위치가 없고, 따라서 `Box<String>`은 그것이 취하는 위치가 무엇이냐에 상관없이
 항상 `Box<String>`이다. 
 
-기본으로 생성되지 않는 타입에 대해 와일드카드가 필요하면 `@JvmWildcard` 주석을 사용한다:
+기본 생성되지 않는 타입에 대해 와일드카드가 필요하면 `@JvmWildcard` 주석을 사용한다:
 
 ``` kotlin
 fun boxDerived(value: Derived): Box<@JvmWildcard Derived> = Box(value)
-// is translated to 
+// 다음으로 해석 
 // Box<? extends Derived> boxDerived(Derived value) { ... }
 ```
 
@@ -445,7 +445,7 @@ fun boxDerived(value: Derived): Box<@JvmWildcard Derived> = Box(value)
 
 ``` kotlin
 fun unboxBase(box: Box<@JvmSuppressWildcards Base>): Base = box.value
-// is translated to 
+// 다음으로 해석 
 // Base unboxBase(Box<Base> box) { ... }
 ```
 
