@@ -384,12 +384,12 @@ reference_ko:
 #       - url: /docs/reference_ko/javascript-dce.html
 #         title: JavaScript DCE
 
-    - title: Tools
+    - title: 도구
       description:
       content:
   #      - /docs/reference_ko/kotlin-build-tools.html: Kotlin Build Tools
         - url: /docs/reference_ko/kotlin-doc.html
-          title: Documenting Kotlin Code
+          title: 코틀린 코드 문서화
         - url: /docs/reference_ko/kapt.html
           title: Using Kapt
         - url: /docs/reference_ko/using-gradle.html

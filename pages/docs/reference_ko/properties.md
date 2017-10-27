@@ -160,6 +160,7 @@ const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 ```
 
 
+{:#late-initialized-properties}
 ## 초기화 지연(Late-Initialized) 프로퍼티
 
 보통 null이 아닌 타입으로 선언한 프로퍼티는 생성자에서 초기화해야 한다.
