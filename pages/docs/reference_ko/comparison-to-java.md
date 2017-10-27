@@ -15,7 +15,7 @@ title: "자바와 비교"
 * [raw 타입 없음](java-interop.html)
 * 코틀린 배열은 [공변](basic-types.html#arrays)임
 * 자바의 SAM 변환과 달리 코틀린에는 제대로 된 [함수 타입](lambdas.html#function-types)이 있음
-* 와일드카드 없은 [사용 위치 가변성](generics.html#use-site-variance-type-projections) without wildcards
+* 와일드카드 없는 [사용 위치 변성](generics.html#use-site-variance-type-projections)
 * 코틀린에는 checked [익셉션](exceptions.html)이 없음
 
 ## 자바에는 있는데 코틀린에는 없는 것
