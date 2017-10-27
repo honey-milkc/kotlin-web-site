@@ -393,7 +393,7 @@ reference_ko:
         - url: /docs/reference_ko/kapt.html
           title: Kapt 사용하기
         - url: /docs/reference_ko/using-gradle.html
-          title: Using Gradle
+          title: 그레이들 사용하기
         - url: /docs/reference_ko/using-maven.html
           title: Using Maven
         - url: /docs/reference_ko/using-ant.html
