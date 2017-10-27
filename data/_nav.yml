@@ -404,7 +404,7 @@ reference_ko:
           title: 컴파일러 플러그인
 
     - title: FAQ
-      description: Every question you could possibly think of, might be answered.
+      description: 생각할 만한 모든 질문
       content:
         - url: /docs/reference_ko/faq.html
           title: FAQ
