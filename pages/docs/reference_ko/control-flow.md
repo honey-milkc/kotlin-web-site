@@ -18,7 +18,7 @@ title: "흐름 제어: if, when, for, while"
 var max = a 
 if (a < b) max = b
 
-// With else 
+// else 사용 
 var max: Int
 if (a > b) {
     max = a
@@ -45,7 +45,7 @@ val max = if (a > b) {
 문장이 아닌 식으로 *if*{: .keyword }를 사용하면(예를 들어 식의 값을 리턴하거나 변수에 값을 할당),
 `else` 브랜치를 가져야 한다. 
 
-[*if*{: .keyword } 문법](grammar.html#if)을 보자.
+[*if*{: .keyword } 문법](http://kotlinlang.org/docs/reference/grammar.html#if)을 보자.
 
 ## When 식
 {:#when-expression}
@@ -120,13 +120,13 @@ when {
 }
 ```
 
-[*when*{: .keyword } 문법](grammar.html#when)을 참고하자.
+[*when*{: .keyword } 문법](http://kotlinlang.org/docs/reference/grammar.html#when)을 참고하자.
 
 
 ## for 루프
 {:#for-loops}
 
-*for*{: .keyword }는 이터레이터를 제공하는 모든 것에 대해 반복을 수행한다. C#과 같은 언어의 `foreach` 루트와 동일하다.
+*for*{: .keyword }는 이터레이터를 제공하는 모든 것에 대해 반복을 수행한다. C#과 같은 언어의 `foreach` 루프와 동일하다.
 구문은 다음과 같다:
 
 ``` kotlin
@@ -169,7 +169,7 @@ for ((index, value) in array.withIndex()) {
 }
 ```
 
-[*for*{: .keyword } 문법](grammar.html#for)을 참고하자.
+[*for*{: .keyword } 문법](http://kotlinlang.org/docs/reference/grammar.html#for)을 참고하자.
 
 ## While 루프
 {:#while-loops}
@@ -186,10 +186,10 @@ do {
 } while (y != null) // 여기서 y를 사용할 수 있다!
 ```
 
-[*while*{: .keyword } 문법](grammar.html#while)을 참고하자.
+[*while*{: .keyword } 문법](http://kotlinlang.org/docs/reference/grammar.html#while)을 참고하자.
 
 ## 루프에서의 break와 continue
 
-코틀린은 루프에서 전통적인 *break*{: .keyword }와 *continue*{: .keyword } 연산자를 지원한다.  
+코틀린은 루프에서 전통적인 *break*{: .keyword }와 *continue*{: .keyword } 연산자를 지원한다.
 [리턴과 점프](returns.html)를 참고한다.
 

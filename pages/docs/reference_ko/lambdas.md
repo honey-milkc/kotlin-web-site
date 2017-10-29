@@ -25,7 +25,7 @@ fun <T> lock(lock: Lock, body: () -> T): T {
 }
 ```
 
-위 코드를 보자. `body`는 [함수 타입](#function-types)인 `() -> T`이다
+위 코드를 보자. `body`는 [함수 타입](#function-types)인 `() -> T`이다.
 이 함수 타입은 파라미터가 없고 `T` 타입을 리턴하는 함수이다.
 `lock`으로 보호하는 동안 *try*{: .keyword } 블록에서 이 함수를 호출하고 그 결과를 `lock()` 함수의 결과로 리턴한다.
 
@@ -47,7 +47,7 @@ val result = lock(lock, { sharedResource.operation() })
 
 * 람다 식은 항상 증괄호로 둘러 싼다.
 * `->` 앞에 파라미터를 선언한다. (파라미터 타입은 생략할 수 있다.)
-* `->` 뒤에 몸체가 온다 (몸체가 존재할 때).
+* `->` 뒤에 몸체가 온다(몸체가 존재할 때).
 
 코틀린에서 함수의 마지막 파라미터가 함수면, 괄호 밖에서 람다 식을 인자로 전달할 수 있다.
 
@@ -74,7 +74,7 @@ fun <T, R> List<T>.map(transform: (T) -> R): List<R> {
 val doubled = ints.map { value -> value * 2 }
 ```
 
-함수를 호출할 때 인자가 람다밖에 없으면 괄호를 완전히 생략할 수 있음에 주목하자.
+함수를 호출할 때 인자가 람다뿐이면 괄호를 완전히 생략할 수 있다.
 
 ### `it`: 단일 파라미터의 암묵적 이름
 {:#it-implicit-name-of-a-single-parameter}
@@ -177,7 +177,7 @@ val sum = { x: Int, y: Int -> x + y }
 val sum: (Int, Int) -> Int = { x, y -> x + y }
 ```
 
-람다 식이 파라미터가 한 개인 경우는 매우 일반적이다.
+람다 식이 파라미터가 한 개인 경우는 흔하다.
 코틀린이 시그너처 자체를 알아낼 수 있다면, 한 개인 파라미터를 선언하지 않는 것이 가능하며
 `it`이라는 이름으로 파라미터를 암묵적으로 선언한다: 
 
@@ -202,7 +202,7 @@ ints.filter {
 ```
 
 함수가 다른 함수를 마지막 파라미터로 받으면 괄호로 둘러싼 인자 목록 밖에 람다 식 인자를 전달할 수 있음에 주목하자. 
-[callSuffix](grammar.html#callSuffix)에 대한 문법을 참고한다.
+[callSuffix](http://kotlinlang.org/docs/reference/grammar.html#callSuffix)에 대한 문법을 참고한다.
 
 ### 익명 함수
 {:#anonymous-functions}
@@ -245,7 +245,7 @@ ints.filter(fun(item) = item > 0)
 
 ### 클로저
 
-람다 식 또는 익명 함수(그리고 [로컬 함수](functions.html#local-functions)와 [오브젝트 식](object-declarations.html#object-expressions))은  
+람다 식 또는 익명 함수(그리고 [로컬 함수](functions.html#local-functions)와 [오브젝트 식](object-declarations.html#object-expressions))은
 그것의 _클로저_에, 즉 외부 범위에 선언된 변수에 접근할 수 있다.
 자바와 달리 클로저에 캡처한 변수를 수정할 수 있다:
 
@@ -287,7 +287,7 @@ val sum = fun Int.(other: Int): Int = this + other
 
 리시버 타입을 갖는 함수의 비-리터럴 값을 할당하거나 
 추가로 리시버 타입의 *첫 번째* 파라미터를 가진 걸로 기대하는 일반 함수의 인자로 전달할 수 있다.
-예를 들어, `String.(Int) -> Boolean`와 `(String, Int) -> Boolean`는 호환된다:
+예를 들어, `String.(Int) -> Boolean`과 `(String, Int) -> Boolean`은 호환된다:
 
 ``` kotlin
 val represents: String.(Int) -> Boolean = { other -> toIntOrNull() == other }

@@ -89,7 +89,7 @@ interface Collection<E> ... {
 
 이 트릭이 어떻게 동작하는지 이해하기 위한 핵심은 다소 간단하다. 콜렉션에서 항목을 **가져**올 수만 있다면 `String` 콜렉션을 사용하고 
 `Object`로 읽어도 괜찮다. 역으로 콜렉션에 항목을 **넣을** 수만 있다면 `Object` 콜렉션에 `String`을 넣어도 괜찮다.
-자바에서 `List<Object>`의 **상위타입*이 `List<? super String>`이다. 
+자바에서 `List<Object>`의 **상위타입**이 `List<? super String>`이다. 
 
 후자를 **반공변(contravariance)**이라고 부른다. `List<? super String>` 타입 인자에 대해 String을 취하는 메서드를 
 호출할 수 있다(예, `add(String)`이나 `set(int, String)`을 호출할 수 있다). 반면에 List<T>에서 `T`를 리턴하는 무언가를 호출하면
@@ -100,7 +100,7 @@ Joshua Bloch는 **읽기만** 할 수 있는 오브젝트를 **Producer**라 부
 
 *PECS는 Producer-Extends, Consumer-Super를 의미한다.*
 
-*주의*: `List<? extends Foo>` 타입의 Producer 객체를 사용하면 `add()`나 `set()`을 호출할 수 없는데, 그렇다고 이 객체가 **불변*인 것은 아니다.
+*주의*: `List<? extends Foo>` 타입의 Producer 객체를 사용하면 `add()`나 `set()`을 호출할 수 없는데, 그렇다고 이 객체가 **불변**인 것은 아니다.
 예를 들어, 리스트의 모든 항목을 삭제하기 위해 `clear()`를 호출하는 것은 막을 수 없다. 왜냐면 `clear()`는 어떤 파라미터도 받지 않기 때문이다.
 와일드카드가(또는 다른 타입의 공변성) 보장하는 것은 **타입 안정성**뿐이다. 불변성은 완전히 다른 얘기다.
 
@@ -116,8 +116,8 @@ interface Source<T> {
 }
 ```
 
-`Source<String>` 인스턴스에 대한 레퍼런스를 `Source<Object>` 타입 변수에 저장하는 것은 완전히 안전하다 --
-Consumer-메서드 호출이 없기 때문이다. 하지만 자바는 이를 알지 못하기에 여전히 이를 금지한다: 
+`Source<String>` 인스턴스에 대한 레퍼런스를 `Source<Object>` 타입 변수에 저장하는 것은 완전히 안전하다.
+Consumer 메서드 호출이 없기 때문이다. 하지만 자바는 이를 알지 못하기에 여전히 이를 금지한다: 
 
 ``` java
 // 자바
@@ -131,7 +131,7 @@ void demo(Source<String> strs) {
 왜냐면 전처럼 변수에 대해 동일 메서드를 호출할 수 있고 이득없이 타입만 더 복잡해지기 때문이다.
 하지만 컴파일러는 이를 모른다.
 
-코틀린에서는 이런 종류를 컴파일러에 알려주는 방법을 제공한다. 이를 **선언 위치 변성(declaration-site variance)** 이라고 부른다.
+코틀린에서는 이를 컴파일러에 알려주는 방법을 제공한다. 이를 **선언 위치 변성(declaration-site variance)** 이라고 부른다.
 Source의 **타입 파라미터** T에 대해 `Source<T>`의 멤버에서 T를 **리턴**(제공)만 하고 소비하지 않는다는 것을 명시할 수 있다.
 이를 위해 **out** 수식어를 제공한다:
 
@@ -141,7 +141,7 @@ abstract class Source<out T> {
 }
 
 fun demo(strs: Source<String>) {
-    val objects: Source<Any> = strs // 괜찮다. T가 out 파라미터기 때문이다.
+    val objects: Source<Any> = strs // 괜찮다. T가 out 파라미터이기 때문이다.
     // ...
 }
 ```
@@ -153,7 +153,7 @@ fun demo(strs: Source<String>) {
 `C`를 `T`의 **소비자**가 아닌 `T`의 **생산자**로 볼 수 있다.
 
 **out** 수식어를 **변성 애노테이션**이라고 부른다. 이 애노테이션은 타입 파라미터 선언 위치에 제공하므로 **선언 위치 공변**에 대해 말한다.
-이는 타입을 사용할 때 와일드카드를 통해 타입을 공변으로 만드는 자바의 **사용 위치 변성**과 대조된다.
+이는 타입을 사용할 때 와일드카드로 타입을 공변으로 만드는 자바의 **사용 위치 변성**과 대조된다.
 
 **out** 외에 코틀린은 추가 공변 애노테이션인 **in**을 제공한다. 이는 타입 파라미터를 **반공변**으로 만든다.
 반공변 파라미터는 오직 소비만 할 수 있고 생산할 수는 없다. 반공변의 좋은 예가 `Comparable`이다:
@@ -164,8 +164,8 @@ abstract class Comparable<in T> {
 }
 
 fun demo(x: Comparable<Number>) {
-    x.compareTo(1.0) // 1.0은 Double 타입인데 이는 Number의 하위타입이다
-    // 따라서 Comparable<Double> 타입의 변수에 x를 할당할 수 있다
+    x.compareTo(1.0) // 1.0은 Double 타입인데 이는 Number의 하위타입이다.
+    // 따라서 Comparable<Double> 타입의 변수에 x를 할당할 수 있다.
     val y: Comparable<Double> = x // OK!
 }
 ```
@@ -179,9 +179,8 @@ fun demo(x: Comparable<Number>) {
 
 ## 타입 프로젝트
 
-{:#use-site-variance-type-projections}
-
 ### 사용 위치 변성(Use-site variance): 타입 프로젝션
+{:#use-site-variance-type-projections}
 
 타입 파라미터 T를 *out*으로 선언하면 매우 편리하며, 사용 위치에서 하위타입에 대한 문제를 피할 수 있다.
 하지만 어떤 클래스는 실제로 오직 `T`만 리턴하도록 제약할 수 없다.
@@ -215,8 +214,7 @@ copy(ints, any) // Error: (Array<Any>, Array<Any>)를 기대함
 여기서 유사한 문제가 발생한다. `Array<T>`는 `T`에 대해 **무공변(invariant)**이므로
 `Array<Int>`와 `Array<Any>`는 각각 상대의 하위타입이 아니다.
 왜? copy가 잘못된 것을 할 **수도** 있기 때문이다.
-예를 들어, `from`이 Int 배열인데 `from`에 String을 **쓰는** 시도를 할 수 있으며   
-이는 나중에 `ClassCastException`을 발생할 수 있다.
+예를 들어, `from`이 Int 배열인데 `from`에 String을 **쓰는** 시도를 할 수 있으며 이는 나중에 `ClassCastException`을 발생할 수 있다.
 
 우리가 원하는 것은 `copy()`가 잘못된 것을 하지 않도록 확신할 수 있는 것이다.
 다음과 같이 `from`에 **쓰는** 것을 막을 수 있다:
@@ -252,15 +250,15 @@ fun fill(dest: Array<in String>, value: String) {
 
 코틀린은 이를 위해 **스타 프로젝션**이라 불리는 구문을 제공한다:
 
- - `Foo<out T>`에서 `T`는 상위 한계로 `TUpper`를 가진 공변 타입 파라미터면, `Foo<*>`는 `Foo<out TUpper>`과 동일하다.
+ - `Foo<out T>`에서 `T`는 상위 한계로 `TUpper`를 가진 공변 타입 파라미터면, `Foo<*>`는 `Foo<out TUpper>`와 동일하다.
    이는 `T`를 알 수 없을 때 `Foo<*>`에서 안전하게 `TUpper`의 값을 *읽을* 수 있다는 것을 의미한다.
  - `Foo<in T>`에서 `T`가 반공변 타입 파라미터면, `Foo<*>`는 `Foo<in Nothing>`과 동일하다.
    이는 `T`를 알 수 없을 때 안전하게 `Foo<*>`에 *쓸* 수 없다는 것을 의미한다.
  - `Foo<T>`에서 `T`가 상위 한계로 `TUpper`를 가진 무공변 타입 파라미터면,
    `Foo<*>`는 값을 읽는 것은 `Foo<out TUpper>`와 동일하고
-   값을 쓰는 것은 `Foo<in Nothing>`와 동일하다.
+   값을 쓰는 것은 `Foo<in Nothing>`과 동일하다.
 
-지네릭 타입이 타입 파라미터가 여러 개이면, 각 타입 파라미터별로 따로 프로젝션할 수 있다.
+지네릭 타입이 타입 파라미터가 여러 개이면, 타입 파라미터별로 따로 프로젝션할 수 있다.
 예를 들어, `interface Function<in T, out U>` 타입이 있을 때 다음의 스타-프로젝션을 만들 수 있다:
 
  - `Function<*, String>`은 `Function<in Nothing, String>`을 의미한다.
@@ -310,7 +308,8 @@ fun <T : Comparable<T>> sort(list: List<T>) {
 
 ``` kotlin
 sort(listOf(1, 2, 3)) // OK. Int는 Comparable<Int>의 하위타입이다.
-sort(listOf(HashMap<Int, String>())) // 에러: HashMap<Int, String>는 Comparable<HashMap<Int, String>>의 하위타입이 아니다.  
+sort(listOf(HashMap<Int, String>())) // 에러: HashMap<Int, String>는 
+                                    // Comparable<HashMap<Int, String>>의 하위타입이 아니다.  
 ```
 
 기본 상위 한계는 (지정하지 않은 경우) `Any?`이다.

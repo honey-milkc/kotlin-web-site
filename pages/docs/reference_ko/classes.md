@@ -30,7 +30,7 @@ class Empty
 ### 생성자
 {:#constructors}
 
-코틀린 클래스는 **주요(primary) 생성자**와 한 개 이상의 **보조(secondary) 생성자*를 가질 수 있다.
+코틀린 클래스는 **주요(primary) 생성자**와 한 개 이상의 **보조(secondary) 생성자**를 가질 수 있다.
 주요 생성자는 클래스 헤더의 한 부분으로 클래스 이름(그리고 필요에 따라 타입 파라미터) 뒤에 위치한다.
 
 ``` kotlin
@@ -240,7 +240,7 @@ class Bar1 : Foo() {
 ```
 
 또한 `val` 프로퍼티를 `var` 프로퍼티로 재정의할 수 있지만 반대는 안 된다.
-이것이 허용되는 이유는 `var` 프로퍼티는 근본적으로 getter 메서드를 선언하는데,
+이것을 허용하는 이유는, `var` 프로퍼티는 근본적으로 getter 메서드를 선언하는데
 그것을 `var`로 오버라이딩하면 추가로 하위 클래스에서 setter 메서드를 선언하기 때문이다.
 
 주요 생성자에 선언한 프로퍼티에도 *override*{: .keyword } 키워드를 사용할 수 있다.
@@ -315,8 +315,8 @@ interface B {
 class C() : A(), B {
     // 컴파일러는 f()를 오버라이딩할 것을 요구한다:
     override fun f() {
-        super<A>.f() // call to A.f()
-        super<B>.f() // call to B.f()
+        super<A>.f() // A.f() 호출
+        super<B>.f() // B.f() 호출
     }
 }
 ```

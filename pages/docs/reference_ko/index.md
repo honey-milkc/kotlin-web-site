@@ -13,7 +13,7 @@ title: "레퍼런스"
 [기본 구문](basic-syntax.html)에서 시작해서, 더 고급 주제로 진행하면 된다.
 읽는 동안 [온라인 IDE](http://try.kotlinlang.org/)에서 예제를 테스트해 볼 수 있다.
 
-코틀린이 어떤 지 감을 잡았다면, 상호작용 프로그래밍 연습 문제인 [코틀린 콘](/docs/tutorials/koans.html)을 풀어보자.
+코틀린이 어떤 지 감을 잡았다면, 상호작용 프로그래밍 연습 문제인 [코틀린 콘](http://kotlinlang.org/docs/tutorials/koans.html)을 풀어보자.
 콘을 푸는 방법을 모르거나 더 나은 해법을 찾고 싶다면  [코틀린 이디엄](idioms.html)을 확인한다.
 
 

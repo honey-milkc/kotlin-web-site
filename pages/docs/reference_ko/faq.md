@@ -79,9 +79,9 @@ AMD나 CommonJS 같은 기존의 모듈 시스템과 호환된다.
 
 ### 코틀린을 지원하는 IDE는?
 
-[인텔리J IDEA](/docs/tutorials/getting-started.html), [안드로이드 스튜디오](/docs/tutorials/kotlin-android.html),
-[이클립스](/docs/tutorials/getting-started-eclipse.html), [넷빈즈](http://plugins.netbeans.org/plugin/68590/kotlin)를 포함한 주요 자바 IDE에서 코틀린을 지원한다.
-또한 [명령행 컴파일러](/docs/tutorials/command-line.html)를 사용해서 컴파일하고 어플리케이션을 실행할 수 있다.
+[인텔리J IDEA](http://kotlinlang.org/docs/tutorials/getting-started.html), [안드로이드 스튜디오](http://kotlinlang.org/docs/tutorials/kotlin-android.html),
+[이클립스](http://kotlinlang.org/docs/tutorials/getting-started-eclipse.html), [넷빈즈](http://plugins.netbeans.org/plugin/68590/kotlin)를 포함한 주요 자바 IDE에서 코틀린을 지원한다.
+또한 [명령행 컴파일러](http://kotlinlang.org/docs/tutorials/command-line.html)를 사용해서 컴파일하고 어플리케이션을 실행할 수 있다.
   
 ### 코틀린을 지원하는 빌드 도구는?
 
@@ -120,7 +120,7 @@ JVM을 대상으로 할 때, 코틀린은 자바와 호환되는 바이트코드
 
 시작하기 가장 좋은 출발점은 [코틀린 웹사이트](https://kotlinlang.org)이다. 거기서 컴파일러를 다운로드 받을 수 있고,
 [온라인으로 시도](https://try.kotlinlang.org)할 수 있고, 또한 [레퍼런스 문서](index.html)와
-[튜토리얼](/docs/tutorials/index.html), 자료를 구할 수 있다.
+[튜토리얼](http://kotlinlang.org/docs/tutorials/index.html), 자료를 구할 수 있다.
 
 ### 코틀린에 대한 책이 있나?
 

@@ -25,7 +25,7 @@ val s = person.name ?: return
 {:#break-and-continue-labels}
 
 코틀린의 모든 식에 *label*{: .keyword }을 붙일 수 있다.
-라벨은 `@` 부호 뒤에 식별자가 붙는 형식으로, 예를 들어 `abc@`, `fooBar@`는 유효한 라벨이다([문법](grammar.html#labelReference) 참고).
+라벨은 `@` 부호 뒤에 식별자가 붙는 형식으로, 예를 들어 `abc@`, `fooBar@`는 유효한 라벨이다([문법](http://kotlinlang.org/docs/reference/grammar.html#labelReference) 참고).
 식 앞에 라벨을 위치시켜 라벨을 붙인다.
 
 ``` kotlin
@@ -51,7 +51,7 @@ loop@ for (i in 1..100) {
 ## 라벨에 리턴하기
 {:#return-at-labels}
 
-코틀린은 함수 리터럴, 로컬 함수, 객체 식에서 함수를 중첩할 수 있는데,
+코틀린은 함수 리터럴, 로컬 함수, 오브젝트 식에서 함수를 중첩할 수 있는데,
 한정한 *return*{: .keyword }을 사용하면 바깥 함수로부터 리턴할 수 있다.
 가장 중요한 용도는 람다 식에서 리턴하는 것이다. 아래 코드를 보자:
 

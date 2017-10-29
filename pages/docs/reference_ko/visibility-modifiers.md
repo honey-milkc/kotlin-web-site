@@ -35,7 +35,7 @@ class Bar {}
 예제:
 
 ``` kotlin
-// file name: example.kt
+// 파일 이름: example.kt
 package foo
 
 private fun foo() {} // example.kt 안에서 접근 가능
@@ -60,7 +60,7 @@ internal val baz = 6    // 같은 모듈에서 접근 가능
 `protected` 멤버를 오버라이딩할 때 가시성을 명시적으로 지정하지 않으면,
 오버라이딩한 멤버 또한 `protected` 가시성을 갖는다.
  
-Examples:
+예제:
 
 ``` kotlin
 open class Outer {
@@ -114,4 +114,4 @@ class C private constructor(a: Int) { ... }
   * IntelliJ IDEA 모듈
   * 메이븐 프로젝트
   * 그레이들 소스 집합
-  * <kotlinc> Ant 태스크를 한 번 호출할 때 컴파일되는 파일 집합
+  * kotlinc 앤트 태스크를 한 번 호출할 때 컴파일되는 파일 집합

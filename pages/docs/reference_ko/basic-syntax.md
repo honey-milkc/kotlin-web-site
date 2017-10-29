@@ -97,7 +97,7 @@ fun main(args: Array<String>) {
 ## 로컬 변수 정의
 {:#defining-local-variables}
 
-한번만 할당 가능한(읽기 전용) 로컬 변수:
+한 번만 할당 가능한(읽기 전용) 로컬 변수:
 
 <div class="sample" markdown="1">
 
@@ -211,7 +211,7 @@ fun main(args: Array<String>) {
 
 ## null 가능 값 사용과 *null*{: .keyword } 검사
 
-*null*{: .keyword } 값이 가능할 때 반드시 레퍼런스를 명시적으로 null 가능으로 표시해야 한다.
+*null*{: .keyword } 값이 가능할 때 반드시 레퍼런스를 명시적으로 null 가능(nullable)으로 표시해야 한다.
 
 아래 코드가 `str`이 정수를 갖지 않으면 *null*{: .keyword }을 리턴한다고 할 때: 
 
@@ -297,7 +297,7 @@ fun main(args: Array<String>) {
 
 ## 타입 검사와 자동 변환 사용
 
-*is*{: .keyword } 연산자는 식이 타입 인스턴스인지 검사한다.
+*is*{: .keyword } 연산자는 식이 타입의 인스턴스인지 검사한다.
 불변 로컬 변수나 프로퍼티가 특정 타입인지 검사할 경우 명시적으로 타입을 변환할 필요가 없다:
 
 
@@ -489,7 +489,7 @@ fun main(args: Array<String>) {
 </div>
 
 
-숫자가 범위를 벗어나는지 검사한다:
+*!in*{: .keyword } 연산자를 사용해서 숫자가 범위를 벗어나는지 검사한다:
 
 <div class="sample" markdown="1">
 

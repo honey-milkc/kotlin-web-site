@@ -51,12 +51,11 @@ launch(UI) {
 }
 ```
 
-여기서 `async { ... }`는 코루틴을 시작하고, `await()`를 사용하면 대기하는 오퍼레이션을 실행하는 동안 코루틴 실행을 지연하고,  
+여기서 `async { ... }`는 코루틴을 시작하고, `await()`를 사용하면 대기하는 오퍼레이션을 실행하는 동안 코루틴 실행을 지연하고,
 (아마도 다른 쓰레드에서) 대기중인 오퍼레이션이 끝날 때 실행을 재개한다. 
 
-표준 라이브러리는 `yield`와 `yieldAll` 함수를 사용해서 *시퀀스 지연 생성*을 지원하기 위해 코루틴을 사용한다. 
-그 시퀀스에서, 시퀀스 요소를 리턴하는 코드 블럭은 각 요소를 읽어온 이후에 멈추고
-다음 요소를 요청할 때 재개한다. 다음은 예이다: 
+표준 라이브러리는 `yield`와 `yieldAll` 함수를 사용해서 *시퀀스 지연 생성*을 지원하기 위해 코루틴을 사용한다.
+그 시퀀스에서, 시퀀스 요소를 리턴하는 코드 블럭은 각 요소를 읽어온 이후에 멈추고 다음 요소를 요청할 때 재개한다. 다음은 예이다: 
 
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1"> 
@@ -85,10 +84,10 @@ fun main(args: Array<String>) {
 
 위 코드를 실행하고 결과를 보자. 마음껏 수정해서 실행해보자!
 
-[코루틴 문서](coroutines.html)와 [튜토리얼](/docs/tutorials/coroutines-basic-jvm.html)에서
+[코루틴 문서](coroutines.html)와 [튜토리얼](http://kotlinlang.org/docs/tutorials/coroutines-basic-jvm.html)에서
 더 많은 정보를 참고할 수 있다.
 
-코루틴은 현재 **실험적인 특징*으로, 코틀린 팀은 최종 1.1 버전 이후에 코루틴의 하위호환성을 지원하지 않을 수도 있다.
+코루틴은 현재 *실험적인 특징*으로, 코틀린 팀은 최종 1.1 버전 이후에 코루틴의 하위호환성을 지원하지 않을 수도 있다.
 
 
 ## 다른 언어 특징
@@ -135,9 +134,9 @@ fun main(args: Array<String>) {
 다 자세한 내용은 [문서](type-aliases.html)와 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/type-aliases.md)을 참고한다.
 
 
-### 객체에 묶인 callable 참조
+### 객체에 묶인 호출가능 레퍼런스
 
-이제 `::` 연산자를 이용해서 특정 객체 인스턴스의 메서드나 프로퍼티를 가리키는 [멤버 참조](reflection.html#function-references)를 구할 수 있다.
+이제 `::` 연산자를 이용해서 특정 객체 인스턴스의 메서드나 프로퍼티를 가리키는 [멤버 레퍼런스](reflection.html#function-references)를 구할 수 있다.
 이전 버전에서는 람다에서만 표현할 수 있었다.
 다음은 예이다:
 
@@ -304,7 +303,7 @@ fun main(args: Array<String>) {
 
 ### 인라인 프로퍼티 접근자
 
-프러퍼티가 backing 필드를 갖지 않으면 프로퍼티 접근자에 `inline` 수식어를 붙일 수 있다.
+프러퍼티가 지원 필드를 갖지 않으면 프로퍼티 접근자에 `inline` 수식어를 붙일 수 있다.
 이 접근자는 [인라인 함수](inline-functions.html)와 동일한 방법으로 컴파일된다.
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
@@ -331,7 +330,7 @@ fun main(args: Array<String>) {
 ### 로컬 위임 프로퍼티
 
 이제 로컬 변수에 [위임 프로퍼티](delegated-properties.html) 구문을 사용할 수 있다.
-한 가지 가능한 사용은 지연 평가되는 로컬 변수를 정의하는 것이다:
+한 가지 가능한 용도는 지연 평가되는 로컬 변수를 정의하는 것이다:
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
 
@@ -410,9 +409,9 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-### DSL에서 implicit 리시버를 위한 범위 제어
+### DSL에서 암묵적 리시버를 위한 범위 제어
 
-[`@DslMarker`](/api/latest/jvm/stdlib/kotlin/-dsl-marker/index.html) 애노테이션은 DSL 컨텍스트의 바깥 범위에서 리시버 사용을 제한한다
+[`@DslMarker`](/api/latest/jvm/stdlib/kotlin/-dsl-marker/index.html) 애노테이션은 DSL 컨텍스트의 바깥 범위에서 리시버 사용을 제한한다.
 기준이 되는 [HTML 빌더 예제](type-safe-builders.html)를 보자:
 
 ``` kotlin
@@ -424,10 +423,10 @@ table {
 ```
 
 코틀린 1.0에서 `td`에 전달한 람다에 있는 코드는 `table`에 전달된 것, `tr`에 전달된 것, `td`에 전달된 것
-이렇게 세 개의 implicit 리시버에 접근한다. 이는 컨텍스트에서 의미없는 메서드를 호출할 수 있게 허용한다.
+이렇게 세 개의 암묵적인 리시버에 접근한다. 이는 컨텍스트에서 의미없는 메서드를 호출할 수 있게 허용한다.
 예를 들어 `td` 안에서 `tr`을 호출해서 `<td>`에 `<tr>` 태그를 넣는 것이 가능하다.
 
-코틀린 1.1에서는 `td`의 implicit 리서버에 정의된 메서드는 오직 `td`에 전달된 람다에서만 접근할 수 있게 제한할 수 있다.
+코틀린 1.1에서는 `td`의 암묵적 리서버에 정의된 메서드는 오직 `td`에 전달된 람다에서만 접근할 수 있게 제한할 수 있다.
 `@DslMarker` 메타 애노테이션을 지정한 애노테이션을 정의하고 이를 태그 클래스의 베이스 클래스에 적용하면 된다.
 
 더 많은 정보는 [문서](type-safe-builders.html#scope-control-dslmarker-since-11)와 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md)을 참고한다.
@@ -435,17 +434,16 @@ table {
 
 ### `rem` 연산자
 
-`mod` 연산자를 디프리케이트했고 대신 `rem`을 사용한다. 이렇게 바꾼 동기는 [이슈](https://youtrack.jetbrains.com/issue/KT-14650)에서 확인할 수 있다.
+`mod` 연산자를 디프리케이트했고 대신 `rem`을 사용한다. [이슈](https://youtrack.jetbrains.com/issue/KT-14650)에서 이렇게 바꾼 동기를 확인할 수 있다.
 
 ## 표준 라이브러리
 {:#standard-library}
 
 ### String에서 숫자로의 변환
 
-잘못된 숫자에 대해 익셉션 발생없이 문자열을 숫자로 변환할 수 있는 확장을 String에 추가했다:
-`String.toIntOrNull(): Int?`, `String.toDoubleOrNull(): Double?` 등.
+`String.toIntOrNull(): Int?`, `String.toDoubleOrNull(): Double?` 등 잘못된 숫자에 대해 익셉션 발생없이 문자열을 숫자로 변환할 수 있는 확장을 String에 추가했다:
 
-```
+``` kotlin
 val port = System.getenv("PORT")?.toIntOrNull() ?: 80
 ```
 
@@ -534,7 +532,7 @@ fun main(args: Array<String>) {
 val index = input.indexOf(keyword).takeUnless { it < 0 } ?: error("keyword not found")
 ```
 
-또한 람다 대신에 callable 레퍼런스를 함께 사용하면 편리하다:
+또한 람다 대신에 호출가능 레퍼런스를 함께 사용하면 편리하다:
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
 
@@ -610,7 +608,7 @@ fun main(args: Array<String>) {
 
 ### minOf() and maxOf()
 
-이 함수는 두 개 이상의 값(기본 숫자 타입이나 `Comparable` 객체)에서 최소와 최대 값을 찾는다.
+이 함수는 두 개 이상의 값(기본 숫자 타입이나 `Comparable` 객체)에서 최솟값과 최댓값을 찾는다.
 `Comparable`이 아닌 객체를 비교할 수 있도록 `Comparator` 인스턴스를 받는 함수도 추가로 제공한다:
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
@@ -687,7 +685,7 @@ JVM에서 이들 수정 가능한 추상 콜렉션은 JDK의 추상 콜렉션의
 ### 배열 조작 함수
 
 이제 표준 라이브러리로 배열의 요소간 연산을 위한 함수를 제공한다. 이 연산에는 비교(`contentEquals`와 `contentDeepEquals`),
-해시 코드 계산(`contentHashCode`와 `contentDeepHashCode`), 문자열로 변환(`contentToString`와 `contentDeepToString`)이 있다.
+해시 코드 계산(`contentHashCode`와 `contentDeepHashCode`), 문자열 변환(`contentToString`와 `contentDeepToString`)이 있다.
 JVM(`java.util.Arrays`에 대응하는 함수에 대한 별칭으로 동작)과 JS(코틀린 표준 라이브러리가 구현을 제공)에서 모두 지원한다.
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
@@ -696,8 +694,8 @@ JVM(`java.util.Arrays`에 대응하는 함수에 대한 별칭으로 동작)과 
 fun main(args: Array<String>) {
 //sampleStart
     val array = arrayOf("a", "b", "c")
-    println(array.toString())  // JVM implementation: type-and-hash gibberish
-    println(array.contentToString())  // nicely formatted as list
+    println(array.toString())  // JVM 구현: 타입과 알 수 없는 해시 값 출력
+    println(array.contentToString())  // 리스트처럼 보기 좋게 출력
 //sampleEnd
 }
 ```
@@ -708,7 +706,7 @@ fun main(args: Array<String>) {
 
 ### 자바 8 바이트코드 지원
 
-이제 자바 8 바이트코드 생성 옵션(`-jvm-target 1.8` 명령행 옵션이나 대응하는 앤트/메이븐/그레이들 옵션)을 제공한다.
+이제 자바 8 바이트코드 생성 옵션을 제공한다(`-jvm-target 1.8` 명령행 옵션이나 대응하는 앤트/메이븐/그레이들 옵션).
 현재는 이 옵션이 바이트코드의 세만틱을 변경하지 않지만(특히 인터페이스의 디폴트 메서드와 람다를 코틀린 1.0처럼 생성한다),
 향후에 이를 더 사용할 계획이다.
 
@@ -716,7 +714,7 @@ fun main(args: Array<String>) {
 ### 자바 8 표준 라이브러리 지원
 
 이제 자바 7과 8에 추가된 새로운 JDK API를 지원하는 표준 라이브러리 버전을 따로 제공한다. 새 API에 접근하려면 표준 `kotlin-stdlib` 대신에
-`kotlin-stdlib-jre7`와 `kotlin-stdlib-jre8` 메이븐 아티팩트를 사용하면 된다.
+`kotlin-stdlib-jre7`과 `kotlin-stdlib-jre8` 메이븐 아티팩트를 사용하면 된다.
 이 아티팩트는 `kotlin-stdlib`를 일부 확장한 것으로 의존성 전이로 `kotlin-stdlib`를 포함한다. 
 
 
@@ -732,7 +730,7 @@ fun main(args: Array<String>) {
 
 ### 수정가능 클로저 변수
 
-람다에서 수정가능 클로저 변수를 캡처하기 위해 사용한 박스 클래스는 더 이상 volatile 필드를 갖지 않는다.
+람다에서 수정가능한 클로저 변수를 캡처하기 위해 사용한 박싱 클래스는 더 이상 volatile 필드를 갖지 않는다.
 이 변화는 성능을 향상시키지만, 매우 드물게 새로운 경쟁 조건(race condition)을 유발할 수 있다.
 경쟁 조건에 영향을 받는다면 변수에 접근할 때 자신만의 동기화를 제공해야 한다.
 
@@ -794,7 +792,7 @@ external class Node {
 
 ### import 처리 개선
 
-자바스크립트 모듈에 정확하게 임포트될 수 있도록 선언을 제공할 수 있다.
+자바스크립트 모듈에 정확하게 임포트하기 위한 선언을 제공할 수 있다.
 external 선언에 `@JsModule("<module-name>")` 애노테이션을 추가하면, 컴파일 과정에서 모듈 시스템(CommonJS나 AMD)에 알맞게 임포트할 수 있다.
 예를 들어 CommonJS를 사용하면 `require(...)` 함수로 선언을 임포트한다.
 추가로 모듈이나 글로벌 자바스크립트 객체로 선언을 임포트하고 싶다면 `@JsNonModule` 애노테이션을 사용한다.

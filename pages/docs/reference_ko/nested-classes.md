@@ -41,8 +41,7 @@ val demo = Outer().Inner().foo() // == 1
 
 ## 익명 내부 클래스
 
-[object 식](object-declarations.html#object-expressions)을 사용해서
-익명 내부 클래스를 생성할 수 있다:
+[오브젝트 식](object-declarations.html#object-expressions)을 사용해서 익명 내부 클래스를 생성할 수 있다:
                                                       
 ``` kotlin
 window.addMouseListener(object: MouseAdapter() {

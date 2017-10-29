@@ -46,7 +46,7 @@ var <propertyName>[: <PropertyType>] [= <property_initializer>]
 ```
 
 initializer, getter, setter는 선택사항이다. 
-프로퍼티 타입은 initializer(또는 다음에 보여줄 getter의 리턴 타입에서에서 유추할 수 있으면 생략가능하다.
+프로퍼티 타입은 initializer(또는 다음에 보여줄 getter)의 리턴 타입에서 유추할 수 있으면 생략가능하다.
 
 예제:
 
@@ -127,7 +127,7 @@ val isEmpty: Boolean
 
 ### 지원(Backing) 프로퍼티
 
-"자동 지원 필드" 방식이 맞지 않는 것을 해야 할 경우,
+"자동 지원 필드" 방식이 맞지 않을 때
 *지원(backing) 프로퍼티*로 대신할 수 있다:
 
 ``` kotlin
@@ -171,9 +171,9 @@ const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 하지만 이게 편리하지 않을 때가 있다.
 예를 들어 의존 주입이나 단위 테스트의 셋업 메서드에서 프로퍼티를 초기화한다고 하자.
 이 경우 생성자에 null이 아닌 초기값을 제공할 수는 없는데, 
-클래스 몸체에서 프로퍼티를 참조할 때 null 검사는 피하고 싶을 것이다.   
+클래스 몸체에서는 프로퍼티를 참조할 때 null 검사는 피하고 싶을 것이다.   
 
-이런 경우를 위해 프로퍼티에 `lateinit` 수식어를 붙일 수 있다:
+이런 경우 프로퍼티에 `lateinit` 수식어를 붙일 수 있다:
 
 ``` kotlin
 public class MyTest {
@@ -201,7 +201,7 @@ public class MyTest {
 
 ## 위임 프로퍼티(Delegated Properties)
 
-보통 대부분 프로퍼티는 단순히 지원 필드에서 읽어온다(어쩌면 쓰기도 한다).
+보통 대부분 프로퍼티는 단순히 지원 필드에서 읽어오거나 쓴다.
 반면에 커스텀 getter와 setter를 가진 프로퍼티는 동작을 구현할 수 있다.
 그 중간에 프로퍼티가 동작하는 공통 패턴이 존재한다. 패턴의 예로 지연 값, 주어진 키로 맵에서 읽기, 데이터베이스 접근하기,
 접근할 때 리스너에 통지하기 등이 있다.    

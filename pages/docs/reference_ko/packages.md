@@ -31,7 +31,7 @@ class Goo {}
 - [kotlin.*](/api/latest/jvm/stdlib/kotlin/index.html)
 - [kotlin.annotation.*](/api/latest/jvm/stdlib/kotlin.annotation/index.html)
 - [kotlin.collections.*](/api/latest/jvm/stdlib/kotlin.collections/index.html)
-- [kotlin.comparisons.*](/api/latest/jvm/stdlib/kotlin.comparisons/index.html)  (since 1.1)
+- [kotlin.comparisons.*](/api/latest/jvm/stdlib/kotlin.comparisons/index.html)  (1.1부터)
 - [kotlin.io.*](/api/latest/jvm/stdlib/kotlin.io/index.html)
 - [kotlin.ranges.*](/api/latest/jvm/stdlib/kotlin.ranges/index.html)
 - [kotlin.sequences.*](/api/latest/jvm/stdlib/kotlin.sequences/index.html)
@@ -51,7 +51,7 @@ class Goo {}
 ## 임포트
 
 디폴트 임포트에 추가로 각 파일은 자신만의 import 디렉티브를 포함할 수 있다.
-import 문법은 [문법](grammar.html#import)에서 설명한다.
+import 문법은 [문법](http://kotlinlang.org/docs/reference/grammar.html#import)에서 설명한다.
 
 한 개 이름을 임포트하는 예:
 

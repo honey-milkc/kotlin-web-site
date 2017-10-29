@@ -261,7 +261,7 @@ java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 단위 테스팅을 지원하려면 `kotlin-test-js`를 의존으로 추가한다.
 
 더 많은 정보는 
-[Getting Started with Kotlin and JavaScript with Maven](/docs/tutorials/javascript/getting-started-maven/getting-started-with-maven.html)
+[Getting Started with Kotlin and JavaScript with Maven](http://kotlinlang.org/docs/tutorials/javascript/getting-started-maven/getting-started-with-maven.html)
 튜토리얼을 참고한다.
 
 ## 컴파일러 옵션 지정

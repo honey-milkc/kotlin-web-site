@@ -41,10 +41,9 @@ JQuery나 ReactJS와 같은 기존의 서드파티 라이브러리나 프레임�
 [ts2kt](https://github.com/kotlin/ts2kt) 도구를 사용해서 코틀린으로 전환할 수 있다.
 또는 강한 타입없이 [동적 타입](dynamic-type.html)을 사용해서 프레임워크에 접근할 수 있다.
 
-코틀린은 또한 CommonJS, AMD and UMD 모듈 시스템과 호환되며,  
-[다른 모듈 시스템과 상호운용](/docs/tutorials/javascript/working-with-modules/working-with-modules.html)할 수 있다 
+코틀린은 또한 CommonJS, AMD and UMD 모듈 시스템과 호환되며, [다른 모듈 시스템과 상호운용](http://kotlinlang.org/docs/tutorials/javascript/working-with-modules/working-with-modules.html)할 수 있다 
 
 
 ## 자바스크립트에 대해 코틀린으로 시작하기
 
-자바스크립트를 위한 코틀린을 시작하는 방법은 [튜토리얼](/docs/tutorials/javascript/kotlin-to-javascript/kotlin-to-javascript.html)에서 확인할 수 있다.
+자바스크립트를 위한 코틀린을 시작하는 방법은 [튜토리얼](http://kotlinlang.org/docs/tutorials/javascript/kotlin-to-javascript/kotlin-to-javascript.html)에서 확인할 수 있다.
