@@ -38,7 +38,7 @@ title: "자바와 비교"
 * [1급 위임](delegation.html)
 * [변수와 프로퍼티 타입에 대한 타입 추론](basic-types.html)
 * [싱글톤](object-declarations.html)
-* [선언 위치 가변성과 타입 프로젝션](generics.html)
+* [선언 위치 변성과 타입 프로젝션](generics.html)
 * [범위 식](ranges.html)
 * [연산자 오버로딩](operator-overloading.html)
 * [컴페니언 오브젝트](classes.html#companion-objects)

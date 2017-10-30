@@ -7,7 +7,7 @@ title: "리플렉션"
 
 # 리플렉션
 
-리플렉션은 란타임에 프로그램의 구조를 볼 수 있게 해주는 언어와 라이브러리 특징이다.
+리플렉션은 란타임에 프로그램의 구조를 볼 수 있게 해주는 라이브러리와 언어 특징이다.
 코틀린에서 함수와 프로퍼티는 1급이며, 
 이 둘의 내부를 알아내는 것은(예, 런타임에 이름, 프로퍼티 타입이나 함수를 알아내는 것)
 함수형 또는 리액티브 방식을 간단하게 사용하는 것과 밀접하게 관련있다.
@@ -27,12 +27,12 @@ title: "리플렉션"
 val c = MyClass::class
 ```
 
-레퍼런스의 값은 [KClass](/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html) 타입이다.
+레퍼런스의 값은 [KClass](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html) 타입이다.
 
 코틀린 클래스 레퍼런스는 자바 클래스 레퍼런스와 같지 않다. 자바 클래스 레퍼런스를 구하려면
 `KClass` 인스턴스의 `.java` 프로퍼티를 사용한다.
 
-## 바운드(Bound) 클래스 레퍼런스 (1.1부터)
+## 객체에 묶은(Bound) 클래스 레퍼런스 (1.1부터)
 
 리시버로 객체를 사용하면 `::class` 구문을 통해 특정 객체의 클래스에 대한 레퍼런스를 구할 수 있다:
 
@@ -63,7 +63,7 @@ println(numbers.filter(::isOdd)) // [1, 3] 출력
 
 여기서 `::isOdd`는 함수 타입 `(Int) -> Boolean`의 값이다.
 
-`::`는 문백을 통해 원하는 타입을 알 수 있을 때, 오버로딩한 함후세어도 사용할 수 있다. 다음 예를 보자:
+`::`는 문백을 통해 원하는 타입을 알 수 있을 때, 오버로딩한 함수에서도 사용할 수 있다. 다음 예를 보자:
 
 ``` kotlin
 fun isOdd(x: Int) = x % 2 != 0
@@ -121,10 +121,10 @@ fun main(args: Array<String>) {
 
 `::x` 식은 `KProperty<Int>` 타입의 프로퍼티 객체로 평가하는데 이는 `get()`을 사용해서 프로퍼티의 값을 읽거나
 `name` 프로퍼티를 사용해서 프로퍼티 이름을 가져올 수 있도록 해 준다.
-더 자세한 정보는 [`KProperty` 클래스 문서](/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html)를 참고한다.
+더 자세한 정보는 [`KProperty` 클래스 문서](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html)를 참고한다.
 
 수정 가능한 프로퍼티, 예를 들어 `var y = `에 대해 `::y`는 
-`set()` 함수를 가진 [`KMutableProperty<Int>`](/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html) 타입의 값을 리턴한다.
+`set()` 함수를 가진 [`KMutableProperty<Int>`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html) 타입의 값을 리턴한다.
 
 파라미터가 없는 함수가 필요한 곳에 프로퍼티 레퍼런스를 사용할 수 있다:
  
@@ -159,7 +159,7 @@ fun main(args: Array<String>) {
 ### 자바 리플렉션과 상호운영성
 
 자바 플랫폼에서, 표준 라이브러리는 자바 리플렉션 객체와의 매핑을 제공하는 리플렉션 클래스 확장을 포함한다(`kotlin.reflect.jvm` 패키지 참고).
-예를 들어, Backing 필드를 찾거나 코틀린 프로퍼티에 대한 Getter로 동작하는 자바 메서드를 찾으려면,
+예를 들어, 지원 필드를 찾거나 코틀린 프로퍼티에 대한 getter로 동작하는 자바 메서드를 찾으려면,
 다음과 같은 코드를 사용할 수 있다:
 
 
@@ -182,7 +182,7 @@ fun getKClass(o: Any): KClass<Any> = o.javaClass.kotlin
 
 ## 생성자 레퍼런스
 
-메서드나 프로퍼티처럼 생성자도 참조할 수 있다. 생서자와 같은 파라미터를 갖고 해당 타입의 객체를 리턴하는
+메서드나 프로퍼티처럼 생성자도 참조할 수 있다. 생성자와 같은 파라미터를 갖고 해당 타입의 객체를 리턴하는
 함수 타입 객체가 필요한 곳에 생성자 레퍼런스를 사용할 수 있다.
 `::` 연산자에 클래스 이름을 붙여서 생성자 레퍼런스를 구한다.
 다음 함수를 보자. 이 함수는 파라미터가 없고 리턴 타입이 `Foo`인 함수 파라미터를 갖고 있다:
@@ -203,7 +203,7 @@ function(::Foo)
 
 {:#bound-function-and-property-references-since-11}
 
-## 바운드(Bound) 함수 레퍼런스와 바운드 프로퍼티 레퍼런스 (1.1부터)
+## 객체에 묶은(Bound) 함수 레퍼런스와 프로퍼티 레퍼런스 (1.1부터)
 
 특정 객체의 인스턴스 메서드를 참조할 수 있다:
 
@@ -224,8 +224,8 @@ val strings = listOf("abc", "124", "a70")
 println(strings.filter(numberRegex::matches)) // "[124]" 출력
 ```
 
-객체에 묶인 타입과 그에 대응하는 묶이지 않은 레퍼런스를 비교해보자.
-묶은 호출가능한 레퍼런스는 리시버를 갖는다. 그래서 리시버 타입 파라미터가 필요없다:
+객체에 묶은 타입과 그에 대응하는 클래스 레퍼런스를 비교해보자.
+객체에 묶은 호출가능한 레퍼런스는 리시버를 갖는다. 그래서 리시버 타입 파라미터가 필요 없다:
 
 ``` kotlin
 val isNumber: (CharSequence) -> Boolean = numberRegex::matches

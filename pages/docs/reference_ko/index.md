@@ -5,7 +5,7 @@ title: "레퍼런스"
 
 # 레퍼런스
 
-코틀린 언어와 [표준 라이브러리](/api/latest/jvm/stdlib/index.html)에 대한 완벽한 가이드를 제공한다.
+코틀린 언어와 [표준 라이브러리](http://kotlinlang.org/api/latest/jvm/stdlib/index.html)에 대한 완벽한 가이드를 제공한다.
 
 ### 출발점
 

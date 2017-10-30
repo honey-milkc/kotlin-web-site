@@ -28,23 +28,23 @@ class Goo {}
 
 모든 코틀린 파일은 다음 패키지를 기본적으로 임포트한다:
 
-- [kotlin.*](/api/latest/jvm/stdlib/kotlin/index.html)
-- [kotlin.annotation.*](/api/latest/jvm/stdlib/kotlin.annotation/index.html)
-- [kotlin.collections.*](/api/latest/jvm/stdlib/kotlin.collections/index.html)
-- [kotlin.comparisons.*](/api/latest/jvm/stdlib/kotlin.comparisons/index.html)  (1.1부터)
-- [kotlin.io.*](/api/latest/jvm/stdlib/kotlin.io/index.html)
-- [kotlin.ranges.*](/api/latest/jvm/stdlib/kotlin.ranges/index.html)
-- [kotlin.sequences.*](/api/latest/jvm/stdlib/kotlin.sequences/index.html)
-- [kotlin.text.*](/api/latest/jvm/stdlib/kotlin.text/index.html)
+- [kotlin.*](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin/index.html)
+- [kotlin.annotation.*](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/index.html)
+- [kotlin.collections.*](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index.html)
+- [kotlin.comparisons.*](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.comparisons/index.html)  (1.1부터)
+- [kotlin.io.*](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/index.html)
+- [kotlin.ranges.*](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/index.html)
+- [kotlin.sequences.*](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/index.html)
+- [kotlin.text.*](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/index.html)
 
 대상 플랫폼에 따라 추가 패키지를 임포트한다:
 
 - JVM:
   - java.lang.*
-  - [kotlin.jvm.*](/api/latest/jvm/stdlib/kotlin.jvm/index.html)
+  - [kotlin.jvm.*](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/index.html)
 
 - JS:    
-  - [kotlin.js.*](/api/latest/jvm/stdlib/kotlin.js/index.html)
+  - [kotlin.js.*](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/index.html)
 
 {:#imports}
 

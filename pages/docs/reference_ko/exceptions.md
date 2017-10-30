@@ -22,13 +22,13 @@ throw MyException("Hi There!")
 
 ``` kotlin
 try {
-    // some code
+    // 어떤 코드
 }
 catch (e: SomeException) {
-    // handler
+    // 익셉션 처리
 }
 finally {
-    // optional finally block
+    // 선택적인 finally 블록
 }
 ```
 
@@ -49,8 +49,7 @@ val a: Int? = try { parseInt(input) } catch (e: NumberFormatException) { null }
 
 ## Checked 익셉션
 
-Kotlin에는 Checked 익셉션이 없다. 여기에는 여러 이유가 있는데, 간단한 예로 살펴보자.
-Kotlin does not have checked exceptions. There are many reasons for this, but we will provide a simple example.
+코틀린에는 Checked 익셉션이 없다. 여기에는 여러 이유가 있는데, 간단한 예로 살펴보자.
 
 다음은 JDK의 `StringBuilder` 클래스가 구현한 인터페이스 예이다.
 
@@ -59,8 +58,8 @@ Appendable append(CharSequence csq) throws IOException;
 ```
 
 이 시그너처는 무엇을 말할까? 이것은 어딘가에(`StringBuilder`, 어떤 종류의 로그, 콘솔 등) 문자열을 추가할 때마다
-`IOExceptions`을 잡아야 한다고 말한다. 왜? 그것이 IO 연산을 할 수도 있기 때문이다(`Writer`도 `Appendable`를 구현하고 있다)...
-이는 모든 곳에 다음과 같은 코드를 만든다:
+`IOExceptions`을 잡아야 한다고 말한다. 왜? 그것이 IO 연산을 할 수도 있기 때문이다(`Writer`도 `Appendable`를 구현하고 있다).
+이는 모든 곳에 다음과 같이 익셉션을 무시하는 코드를 만든다:
 
 ``` kotlin
 try {
@@ -75,7 +74,7 @@ catch (IOException e) {
 
 Bruce Eckel은 [Does Java need Checked Exceptions?](http://www.mindview.net/Etc/Discussions/CheckedExceptions)에서 다음과 같이 말했다:
 
-> 작은 프로그램에서의 실험 결과 익셉션 규약을 강제해하는 것이 개발 생산성과 코드 품질을 향상시킨다는 결론을 얻었다. 하지만, 대형 소프트웨어 프로젝트에서 경험한 결과는 다른 결론을 말한다. 생산성이 떨어지고 코드 품질에서 거의 향상이 이루어지지 않았다.
+> 작은 프로그램에서의 실험 결과 익셉션 규약을 강제하는 것이 개발 생산성과 코드 품질을 향상시킨다는 결론을 얻었다. 하지만, 대형 소프트웨어 프로젝트에서 경험한 결과는 다른 결론을 말한다. 생산성이 떨어지고 코드 품질에서 거의 향상이 이루어지지 않았다.
 
 다음은 이와 관련된 다른 논의이다:
 
@@ -108,7 +107,7 @@ val s = person.name ?: fail("Name required")
 println(s)     // 이 시점에 's'가 초기화된 것을 안다
 ```
 
-Nothing 타입을 만나는 또 다른 경우는 타입 추론이다. Nothing의 nullable 가능 타입인 `Nothing?`은
+Nothing 타입을 만나는 또 다른 경우는 타입 추론이다. Nothing의 null 가능 타입인 `Nothing?`은
 정확하게 `null` 한 가지 값만 가진다. `null`을 사용해서 추론할 타입의 값을 초기화하면
 더 구체적인 타입을 결정할 수 있는 다른 정보가 없기 때문에 컴파일러는 `Nothing?` 타입으로 유추한다: 
 
@@ -120,4 +119,4 @@ val l = listOf(null)   // 'l'은 `List<Nothing?> 타입을 가짐
 
 ## 자바 상호운용성
 
-익센션의 자바 상호운용성에 대한 내용은 [자바 상호운용 섹션](java-interop.html)에서 확인할 수 있다.
+익센션의 자바 상호운용성에 대한 내용은 [자바 상호운용](java-interop.html)에서 확인할 수 있다.

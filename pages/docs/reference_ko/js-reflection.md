@@ -9,12 +9,12 @@ title: "JavaScript Reflection"
 
 At this time, JavaScript does not support the full Kotlin reflection API. The only supported part of the API
 is the `::class` syntax which allows you to refer to the class of an instance, or the class corresponding to the given type.
-The value of a `::class` expression is a stripped-down [KClass](/api/latest/jvm/stdlib/kotlin.reflect/-k-class/)
-implementation that only supports the [simpleName](/api/latest/jvm/stdlib/kotlin.reflect/-k-class/simple-name.html) and
-[isInstance](/api/latest/jvm/stdlib/kotlin.reflect/-k-class/is-instance.html) members.
+The value of a `::class` expression is a stripped-down [KClass](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/)
+implementation that only supports the [simpleName](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/simple-name.html) and
+[isInstance](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/is-instance.html) members.
 
-In addition to that, you can use [KClass.js](/api/latest/jvm/stdlib/kotlin.js/js.html) to access the
-[JsClass](/api/latest/jvm/stdlib/kotlin.js/-js-class/index.html) instance corresponding to the class.
+In addition to that, you can use [KClass.js](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/js.html) to access the
+[JsClass](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-js-class/index.html) instance corresponding to the class.
 The `JsClass` instance itself is a reference to the constructor function.
 This can be used to interoperate with JS functions that expect a reference to a constructor.
 

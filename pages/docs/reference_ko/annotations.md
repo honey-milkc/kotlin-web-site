@@ -17,14 +17,14 @@ annotation class Fancy
 
 애노테이션 클래스에 메타-애노테이션을 붙여서 애노테이션에 추가 속성을 지정할 수 있다:
 
-  * [`@Target`](/api/latest/jvm/stdlib/kotlin.annotation/-target/index.html)은 
+  * [`@Target`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-target/index.html)은 
     애노테이션을 어떤 요소에(클래스, 함수, 프로퍼티, 식 등) 적용할 수 있는지 지정한다.
-  * [`@Retention`](/api/latest/jvm/stdlib/kotlin.annotation/-retention/index.html)은
+  * [`@Retention`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-retention/index.html)은
     애노테이션을 컴파일한 클래스 파일에 보관할지, 런타임에 리플렉션을 통해서 접근할 수 있는지를 지정한다.
-    (기본값은 둘 다 true이다) 
-  * [`@Repeatable`](/api/latest/jvm/stdlib/kotlin.annotation/-repeatable/index.html)은
+    (기본값은 둘 다 true이다.) 
+  * [`@Repeatable`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-repeatable/index.html)은
     한 요소의 같은 애노테이션을 여러 번 적용하는 것을 허용한다.
-  * [`@MustBeDocumented`](/api/latest/jvm/stdlib/kotlin.annotation/-must-be-documented/index.html)은 
+  * [`@MustBeDocumented`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-must-be-documented/index.html)은 
     애노테이션이 공개 API에 속하며 생성한 API 문서에 클래스나 메서드 시그너처를 포함시켜야 함을 지정한다.
 
 ``` kotlin
@@ -84,7 +84,7 @@ annotation class Special(val why: String)
  * 다른 애노테이션
  * 위에서 열거한 타입의 배열
 
-추가 파라미터는 nullable 타입일 수 없는데, 왜냐면 JVM은 애노테이션 속성의 값으로 `null`을 저장하는 것을 지원하지 않기 때문이다.
+추가 파라미터는 null 가능 타입일 수 없는데, 왜냐면 JVM은 애노테이션 속성의 값으로 `null`을 저장하는 것을 지원하지 않기 때문이다.
 
 다른 애노테이션의 파라미터로 애노테이션을 사용할 경우, 해당 애노테이션의 이름에 @ 문자를 접두어로 붙이지 않는다.
 
@@ -98,7 +98,7 @@ annotation class Deprecated(
 @Deprecated("This function is deprecated, use === instead", ReplaceWith("this === other"))
 ```
 
-애노테이션의 인자로 클래스를 사용하고 싶다면, 코틀린 클래스([KClass](/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html))를 사용한다.
+애노테이션의 인자로 클래스를 사용하고 싶다면, 코틀린 클래스([KClass](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html))를 사용한다.
 코틀린 컴파일러는 이를 자동으로 자바 클래스로 변환하므로, 자바 코드에서 애노테이션과 인자를 사용할 수 있다.
 
 ``` kotlin
@@ -112,8 +112,8 @@ annotation class Ann(val arg1: KClass<*>, val arg2: KClass<out Any?>)
 
 ### 람다
 
-람다에도 애노테이션을 사용할 수 있다. 람다의 몸체에 생성된 `invoke()` 메서드에 적용된다.
-병렬 제어를 위한 애노테이션을 사용하는 [Quasar](http://www.paralleluniverse.co/quasar/)와 같은
+람다에도 애노테이션을 사용할 수 있다. 람다의 몸체에 생성한 `invoke()` 메서드에 적용된다.
+병렬 제어를 위해 애노테이션을 사용하는 [Quasar](http://www.paralleluniverse.co/quasar/)와 같은
 프레임워크에서 이를 유용하게 사용한다.
 
 ``` kotlin
@@ -136,7 +136,7 @@ class Example(@field:Ann val foo,    // 자바 필드에 적용
               @param:Ann val quux)   // 자바 생성자 파라미터에 적용
 ```
 
-전체 파일에 애노테이션을 적용하기 위해 같은 구문을 사용할 수 있다.
+파일에 애노테이션을 적용하기 위해 같은 구문을 사용할 수 있다.
 이를 위해 파일의 최상단에 패키지 디렉티브 이전에 또는 기본 패키지면 모든 임포트 이전에 
 적용 대상으로 `file`을 가진 애노테이션을 붙인다:
 
@@ -203,7 +203,7 @@ class Tests {
 }
 ```
 
-자바에서 작성한 애노테이션는 파라미터의 순서를 정의하지 않기 때문에
+자바에서 작성한 애노테이션은 파라미터의 순서를 정의하지 않기 때문에
 인자를 전달하기 위해 일반적인 함수 호출 구문을 사용할 수 없다.
 대신 이름을 가진 인자 구문을 사용해야 한다:
 
@@ -220,7 +220,7 @@ public @interface Ann {
 @Ann(intValue = 1, stringValue = "abc") class C
 ```
 
-자바와 같이 `value` 파라미터는 특별한 경우이다. `value` 파라미터의 값은 이름 없이 지정할 수 있다:
+자바와 같이 `value` 파라미터는 특별하다. `value` 파라미터의 값은 이름 없이 지정할 수 있다:
 
 ``` java
 // Java

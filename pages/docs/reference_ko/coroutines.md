@@ -21,7 +21,7 @@ title: "코루틴"
 라이브러리가 사용자 코드의 관련 부분을 콜백으로 감싸고, 관련 이벤트를 구독하고, 다른 쓰레드로 실행 스케줄을 잡지만(심지어 다른 머신에서),
 코드는 마치 순차적으로 실행하는 것처럼 단순한 형태를 유지한다.
 
-코틀린의 코루틴을 이용해서 다른 언어에서 사용할 수 있는 다양한 비동기 기법을 라이브러리로 구현할 수 있다.
+다른 언어에서 사용할 수 있는 다양한 비동기 기법을 코틀린의 코루틴을 이용해서 라이브러리로 구현할 수 있다.
 이런 라이브러리에는 C#과 ECMAScript에서 온
 [`async`/`await`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions), 
 Go에서 온 [채널](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#channels)과 [`select`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#select-expression),
@@ -34,7 +34,7 @@ C#과 파이썬에서 온 [제너레이터/`yield`](#generators-api-in-kotlincor
 쓰레드 블로킹은 비싸다. 특히 부하가 높은 상황에서는 상대적으로 작은 개수의 쓰레드만 실질적으로 사용되기 때문에
 그 쓰레드 중 하나를 블록킹하면 일부 중요한 작업을 지연시키게 된다. 
 
-반면에 코루틴 서스펜션은 거의 비용이 없다. 컨텍스트 스위치나 OS와 관련된 다른 것이 필요없다.
+반면에 코루틴 서스펜션은 비용이 거의 없다. 컨텍스트 스위치나 OS와 관련된 다른 것이 필요없다.
 그 기반하에 사용자 라이브러리는 높은 수준으로 서스펜션을 제어할 수 있다.
 우리는 라이브러리 작성자로서 우리 요구에 따라 어떤 서스펜션이 발생하고 최적화/로그/가로채기할지 결정할 수 있다.
 
@@ -53,7 +53,7 @@ suspend fun doSomething(foo: Foo): Bar {
 ```
 
 이런 함수를 *서스펜딩 함수(suspending function)*라고 부르는데, 이 함수를 호출하면 코루틴을 연기하기 때문이다(라이브러리는
-함수 호출에 대한 결과가 이미 사용가능하면, 서스펜션없이 진행할지 여부를 결정할 수 있다.) 
+함수 호출에 대한 결과가 이미 사용가능하면, 서스펜션 없이 진행할지 여부를 결정할 수 있다). 
 서스펜딩 함수는 일반 함수와 같은 방법으로 파라미터와 리턴 값을 가질 수 있다.
 하지만 서스펜딩 함수는 코루틴이나 다른 서스펜딩 함수에서만 호출할 수 있다.
 사실 코루틴을 시작하려면, 적어도 한 개의 서스펜딩 함수가 있어야 하며
@@ -76,7 +76,7 @@ async {
 
 > **주의:** 현재, 서스펜딩 함수 타입은 상위 타입으로 사용할 수 없고, 익명 서스펜딩 함수는 지원하지 않는다.
 
-공통점을 계속보면, `await()`는 서스펜딩 함수일 수 있다(그래서 `aync {}` 블록 안에서 호출가능함),
+공통점을 계속 보면, `await()`는 서스펜딩 함수일 수 있다(그래서 `aync {}` 블록 안에서 호출가능함),
 이는 특정 계산이 끝나고 그 결과를 리턴할 때까지 코루틴을 연기한다:
 
 ``` kotlin
@@ -117,17 +117,17 @@ class Derived: Base {
 이는 사용자가 확장할 수 있는 다른 API와 [DSL](type-safe-builders.html)의 생성을 가능하게 한다.
 어떤 경우에 라이브러리 제작자는 사용자가 서스펜딩 코루틴의 *새로운 방법*을 추가하는 것을 금지해야 할 때가 있다.
 
-이럴 때 [`@RestrictsSuspension`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-restricts-suspension/index.html) 애노테이션을 사용한다. 
+이럴 때 [`@RestrictsSuspension`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-restricts-suspension/index.html) 애노테이션을 사용한다. 
 리시버 클래스나 인터페이스 `R`에 이 애노테이션을 붙이면,
 모든 서스펜딩 확장은 `R`의 멤버나 `R`에 대한 다른 확장으로 위임해야 한다.
 확장이 무한하게 다른 확장에 위임할 수 없기 때문에(프로그램이 끝나지 않는다),
 이는 모든 서스펜션이 `R` 멤버의 호출을 통해서 일어나는 것을 보장하며, 이를 통해 라이브러리 제작자는 완전히 제어할 수 있다.
 
 이는 모든 서스펜션을 라이브러리에 종속된 방식으로 처리하는 상대적으로 _드문_ 경우이다.
-예를 들어 [아래]#generators-api-in-kotlincoroutines)에서 설명하는 
-[`buildSequence()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html) 함수로 제너레이터를 구현할 때,
+예를 들어 [아래](#generators-api-in-kotlincoroutines)에서 설명하는 
+[`buildSequence()`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html) 함수로 제너레이터를 구현할 때,
 코루틴의 서스펜딩 호출이 다른 함수가 아닌 반드시 `yield()`나 `yieldAll()`로 끝나야 할 필요가 있다.
-왜냐면 [`SequenceBuilder`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html)는
+왜냐면 [`SequenceBuilder`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html)는
 `@RestrictsSuspension`을 달았기 때문이다.
 
 ``` kotlin
@@ -137,7 +137,7 @@ public abstract class SequenceBuilder<in T> {
 }
 ```
  
-[Github에서](https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/src/kotlin/coroutines/experimental/SequenceBuilder.kt)
+[깃헙에서](https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/src/kotlin/coroutines/experimental/SequenceBuilder.kt)
 소스를 참고하자.   
 
 ## 코루틴의 내부 작동
@@ -162,13 +162,13 @@ public abstract class SequenceBuilder<in T> {
 ## 코루틴의 실험 상태
 
 코루틴 설계는 [실험 단계](compatibility.html#experimental-features)로 앞으로 바뀔 수 있다.
-코틀린 1.1에서 코루틴을 컴파일할 때 기본적으로 *The feature "coroutines" is experimental*라는 경고를 출력한다.
+코틀린 1.1에서 코루틴을 컴파일할 때 기본적으로 *The feature "coroutines" is experimental*이라는 경고를 출력한다.
 이 경고를 없애고 싶으면 [opt-in 플래그](/docs/diagnostics/experimental-coroutines.html)를 지정하면 된다.
 최종적으로 설계가 끝나고 실험 상태에서 승격되면 마지막 API를 `kotlin.coroutines`로 옮기고,
 하위호환성을 위해 실험용 패키지는 (아마도 별도 아티팩트로 분리해서) 유지할 것이다.
 
 **중요 사항**: 라이브러리 제작자는 같은 규칙을 따를 것을 권한다. 코루틴 기반 API를 노출하는 패키지에는
-"experimental"(예 `com.example.experimental`)를 추가해서 라이브러리의 바이너리 호환성을 유지하자.
+"experimental"(예 `com.example.experimental`)을 추가해서 라이브러리의 바이너리 호환성을 유지하자.
 최종 API를 릴리즈할 때 다음 과정을 따른다:
  * 모든 API를 `com.example`에 복사한다(experimental 접미사없이),
  * 하위 호환성을 위해 experimental 패키지를 유지한다. 
@@ -188,12 +188,12 @@ public abstract class SequenceBuilder<in T> {
 
 저수준 API는 상대적으로 작고 고수준 라이브러리를 작성하는 것 외에 다른 용도로 사용하면 안 된다.
 저수준 API는 두 개의 주요 패키지로 구성된다:
-- [`kotlin.coroutines.experimental`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/index.html)는 다음과 같은 주요 타입과 기본 요소를 가짐 
-  - [`createCoroutine()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/create-coroutine.html),
-  - [`startCoroutine()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/start-coroutine.html),
-  - [`suspendCoroutine()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/suspend-coroutine.html);
-- [`kotlin.coroutines.experimental.intrinsics`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/index.html) 
-  [`suspendCoroutineOrReturn`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/suspend-coroutine-or-return.html)과 같은
+- [`kotlin.coroutines.experimental`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/index.html)는 다음과 같은 주요 타입과 기본 요소를 가짐 
+  - [`createCoroutine()`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/create-coroutine.html)
+  - [`startCoroutine()`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/start-coroutine.html)
+  - [`suspendCoroutine()`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/suspend-coroutine.html)
+- [`kotlin.coroutines.experimental.intrinsics`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/index.html) 
+  [`suspendCoroutineOrReturn`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/suspend-coroutine-or-return.html)과 같은
   저수준의 본질적인 요소 가짐
  
 이들 API에 대한 자세한 사용법은 [여기](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md)를 참고한다.
@@ -203,8 +203,8 @@ public abstract class SequenceBuilder<in T> {
 ### `kotlin.coroutines`의 제너레이터 API
   
   `kotlin.coroutines.experimental`의 유일한 "어플리케이션 수준" 함수는 다음과 같다:
-- [`buildSequence()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html)
-- [`buildIterator()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-iterator.html)
+- [`buildSequence()`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html)
+- [`buildIterator()`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-iterator.html)
 
 이들 함수는 시퀀스와 관련이 있어서 `kotlin-stdlib`에 들어가 있다. 사실 이들 함수는(여기서는 `buildSequence()`로 제한할 수 있다) _제너레이터_를 구현해서
 lazy 시퀀스를 싼 비용으로 구축할 수 있는 방법을 제공한다.
@@ -244,7 +244,7 @@ fun main(args: Array<String>) {
 그 시퀀스를 반복할 때 이터레이터의 각 단계마다 다음 숫자를 생성하는 코루틴의 다른 부분을 실행한다.
 그래서 이 시퀀스로부터 유한한 숫자 목록을 취할 수 있다.
 예를 들어 `fibonacciSeq.take(8).toList()`의 결과는 `[1, 1, 2, 3, 5, 8, 13, 21]`이 된다.
-그리고 코루틴은 충분히 싸서 실제로 쓸모 있게 만든다.
+그리고 코루틴은 구현이 가벼워서 실제로 쓸모 있게 만든다.
 
 이런 시퀀스가 실제로 지연되는지 보기 위해, `buildSequence()` 호출 안에 디버그 문구를 출력해보자:
   
@@ -274,7 +274,7 @@ fun main(args: Array<String>) {
    
 위 코드를 실행하면 처음 세 개의 요소를 출력한다. 생성 루프에서 `STEP`과 숫자가 교차로 출력된다.
 이는 계산이 실제로 지연됨을 의미한다.
-`1`을 출력하기 위해 `START` 출려과 함께 첫 번째 `yield(i)`까지만 실행한다.
+`1`을 출력하기 위해 `START` 출력과 함께 첫 번째 `yield(i)`까지만 실행한다.
 그리고 `2`를 출력하기 위해 다음 `yield(i)`까지 진행하고 `STEP`을 출력한다. `3`도 같으며
 다음 `STEP`을(또한 `END`를) 출력하지 않는다. 왜냐면 시퀀스의 다음 요소를 요청하지 않았기 때문이다.
 
@@ -335,10 +335,10 @@ fun main(args: Array<String>) {
 이 라이브러리는 다음을 다룬다:
  * `kotlinx-coroutines-core`를 이용한 플랫폼에 무관한 비동기 프로그래밍
    * 이 모듈은 Go와 같은 채널을 포함하며 `select`와 다른 편리한 프리미티브를 지원한다.
-   * 이 라이브러리에 대한 종합적인 안내는 [여기](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md)에서 확인할 수 있다.
+   * [여기](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md)에서 이 라이브러리에 대한 종합적인 안내를 확인할 수 있다.
  * JDK 8의 `CompletableFuture`에 기반한 API: `kotlinx-coroutines-jdk8`
  * 자바 7 또는 상위 버전의 API에 기반한 논블로킹 IO (NIO): `kotlinx-coroutines-nio`
  * Swing 지원(`kotlinx-coroutines-swing`)과 JavaFx 지원(`kotlinx-coroutines-javafx`)
- * RxJava 지원: `kotlinx-coroutines-rx`.
+ * RxJava 지원: `kotlinx-coroutines-rx`
 
 이 라이브러리는 공통의 작업을 쉽게 만들어주는 편리한 API를 제공하고, 코루틴 기반 라이브러리를 작성하는 방법을 보여주는 완전한 예제도 제공한다.

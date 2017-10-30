@@ -11,10 +11,11 @@
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <style>
+          @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
           * {
             padding: 0;
             margin: 0;
-            font-family: 'Malgun Gothic';
+            font-family: 'Nanum Gothic';
           }
 
           .book-toc-title {

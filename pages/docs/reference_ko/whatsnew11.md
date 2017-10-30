@@ -411,7 +411,7 @@ fun main(args: Array<String>) {
 
 ### DSL에서 암묵적 리시버를 위한 범위 제어
 
-[`@DslMarker`](/api/latest/jvm/stdlib/kotlin/-dsl-marker/index.html) 애노테이션은 DSL 컨텍스트의 바깥 범위에서 리시버 사용을 제한한다.
+[`@DslMarker`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-dsl-marker/index.html) 애노테이션은 DSL 컨텍스트의 바깥 범위에서 리시버 사용을 제한한다.
 기준이 되는 [HTML 빌더 예제](type-safe-builders.html)를 보자:
 
 ``` kotlin

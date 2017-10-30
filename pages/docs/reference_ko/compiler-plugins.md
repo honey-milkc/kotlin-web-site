@@ -8,11 +8,11 @@ title: "컴파일러 플러그인"
 
 ## all-open 컴파일러 플러그인
 
-코틀린은 기본적으로 클래스와 멤버가 `final`이다. 이는 `open`인 클래스를 요구하는 스프링 AOP와 같은 프레임워크나 라이브러리를 사용할 때 불편하다.
+코틀린은 기본적으로 클래스와 멤버가 `final`이다. 이는 `open`인 클래스를 요구하는 스프링 AOP와 같은 프레임워크나 라이브러리를 사용할 때 불편을 준다.
 `all-open` 컴파일러 플러그인은 그런 프레임워크의 요구에 코틀린을 맞추고
-`open` 키워드를 직접 사용하지 않아도 클래스에 특정 애노테이션을 붙이고 멤버를 open으로 만든다.    
+`open` 키워드를 직접 사용하지 않아도 클래스에 특정 애노테이션을 붙이고 멤버를 open으로 만든다.
 예를 들어 스프링을 사용할 때 모든 클래스를 open으로 만들 필요가 없다.
-단지 클래스에 `@Configuration`나 `@Service`와 같은 특정 애노테이션만 붙이면 된다.
+단지 클래스에 `@Configuration`이나 `@Service`와 같은 특정 애노테이션만 붙이면 된다.
 `all-open` 플러그인은 이 애노테이션을 지정하는 것을 허용한다.
 
 그레이들, 메이븐, IDE를 위한 all-open 플러그인을 제공한다.
@@ -48,7 +48,7 @@ allOpen {
 }
 ```
 
-클래스(또는 그 상위타입)에 `com.my.Annotation`이 붙이면, 클래스 그 자체와 클래스의 모든 멤버가 open이 된다.
+클래스(또는 그 상위타입)에 `com.my.Annotation`을 붙이면, 클래스 그 자체와 클래스의 모든 멤버가 open이 된다.
 
 또한 메타-애노테이션에도 동작한다:
 
@@ -121,15 +121,15 @@ plugins {
 
 메이븐 예제는 위와 유사하다.
 
-플러그인은 다음 애노테이션을 지정한다. 
+플러그인은 
 [`@Component`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html), 
 [`@Async`](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/Async.html), 
 [`@Transactional`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html), 
-[`@Cacheable`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/cache/annotation/Cacheable.html). 
+[`@Cacheable`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/cache/annotation/Cacheable.html) 애노테이션을 지정한다. 
 메타 애노테이션 지원 덕에 `@Configuration`, `@Controller`, `@RestController`, `@Service`, `@Repository`를 
 붙인 클래스는 자동으로 open이 된다. 왜냐면 이들 애노테이션이 `@Component`를 가진 메타 애노테이션이기 때문이다.
 
-물론, 한 프로젝트에서 `kotlin-allopen`과 `kotlin-spring`를 사용할 수 있다.
+물론, 한 프로젝트에서 `kotlin-allopen`과 `kotlin-spring`을 사용할 수 있다.
 [start.spring.io](http://start.spring.io/#!language=kotlin)를 사용하면
 `kotlin-spring` 플러그인이 기본으로 활성화된다.
 
@@ -138,7 +138,7 @@ plugins {
 
 no-arg 플러그인은 지정한 애노테이션을 가진 클래스에 인자 없는 생성자를 추가로 생성한다.
 생성한 생성자는 조작했기(synthetic) 때문에 자바나 코틀린에서 직접 호출할 수 없지만
-리플레션으로 호출할 수는 있다.
+리플렉션으로 호출할 수는 있다.
 코틀린이나 자바 관점에서 `data` 클래스는 인자 없는 생성자가 없지만 
 JPA에서 `data` 클래스의 인스턴스를 생성할 수 있다([아래의](compiler-plugins.html#kotlin-jpa-compiler-plugin)
 `kotlin-jpa` 설명을 보자).
@@ -177,7 +177,7 @@ noArg {
 ```
 
 플러그인이 생성하는 인자 없는 생성자가 초기화 로직을 수행하도록 하려면 `invokeInitializers` 옵션을 활성화한다.
-코틀린 1.1.3-2부터 앞으로 해결할
+코틀린 1.1.3-2부터 앞으로 해결해야 할
 [`KT-18667`](https://youtrack.jetbrains.com/issue/KT-18667)와 
 [`KT-18668`](https://youtrack.jetbrains.com/issue/KT-18668) 때문에
 기본으로 비활성화되었다:
@@ -198,13 +198,13 @@ noArg {
 
     <configuration>
         <compilerPlugins>
-            <!-- Or "jpa" for JPA support -->
+            <!-- 또는 JPA를 지원하려면 "jpa" 사용 -->
             <plugin>no-arg</plugin>
         </compilerPlugins>
 
         <pluginOptions>
             <option>no-arg:annotation=com.my.Annotation</option>
-            <!-- Call instance initializers in the synthetic constructor -->
+            <!-- 인조 생성자에서 인스턴스 초기화를 호출  -->
             <!-- <option>no-arg:invokeInitializers=true</option> -->
         </pluginOptions>
     </configuration>
@@ -219,14 +219,12 @@ noArg {
 </plugin>
 ```
 
+### kotlin-jpa 컴파일러 플러그인
 {:#kotlin-jpa-compiler-plugin}
 
-### kotlin-jpa 컴파일러 플러그인
-
-이 플러그인은 
+이 플러그인은 인자 없는 생성자를 생성해야 할 마커로
 [`@Entity`](http://docs.oracle.com/javaee/7/api/javax/persistence/Entity.html)와 
-[`@Embeddable`](http://docs.oracle.com/javaee/7/api/javax/persistence/Embeddable.html)을
-인자없는 생성자를 생성해야 할 마커로 사용한다.
+[`@Embeddable`](http://docs.oracle.com/javaee/7/api/javax/persistence/Embeddable.html)을 사용한다.
 그레이들에서 플러그인을 추가하는 방법은 다음과 같다: 
 
 ``` groovy

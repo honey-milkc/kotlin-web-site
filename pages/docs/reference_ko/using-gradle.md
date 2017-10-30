@@ -8,7 +8,7 @@ title: "그레이들 사용하기"
 
 그레이들에서 코틀린을 빌드하려면 [*kotlin-gradle* 플러그인을 설정](#plugin-and-versions)하고
 프로젝트에 [그 플러그인을 적용](#targeting-the-jvm)하고, [*kotlin-stdlib* 의존](#configuring-dependencies)을 추가해야 한다.
-인텔리J IDEA의 Tools \| Kotlin \| 메뉴의 Configure Kotlin in Project 메뉴를 실행하면 자동으로 이를 처리해준다.
+인텔리J IDEA의 Tools \| Kotlin \| Configure Kotlin in Project 메뉴를 실행하면 자동으로 이를 처리해준다.
 
 ## 플러그인과 버전
 {:#plugin-and-versions}
@@ -169,7 +169,7 @@ compile "org.jetbrains.kotlin:kotlin-stdlib-jre7"
 compile "org.jetbrains.kotlin:kotlin-stdlib-jre8"
 ```
 
-[코틀린 리플렉션](/api/latest/jvm/stdlib/kotlin.reflect.full/index.html)이나 테스팅 도구를 사용하면
+[코틀린 리플렉션](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html)이나 테스팅 도구를 사용하면
 다음 의존을 추가로 설정한다:
 
 ``` groovy
@@ -179,7 +179,7 @@ testCompile "org.jetbrains.kotlin:kotlin-test-junit"
 ```
 
 코틀린 1.1.2부터 `org.jetbrains.kotlin` 그룹에 속한 의존은 적용한 플러그인에서 가져온 버전을 기본으로 사용한다.
-`compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"`와 같이 완전한 의존 표기를 사용해서 버전을 수동으로 제공할 수 있다.
+`compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"`과 같이 완전한 의존 표기를 사용해서 버전을 수동으로 제공할 수 있다.
 
 ## 애노테이션 처리
 

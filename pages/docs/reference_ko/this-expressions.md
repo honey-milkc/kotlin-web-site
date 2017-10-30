@@ -24,9 +24,9 @@ title: "this 식"
 `this@label` 형식을 사용한다. 여기서 `@label`은 *this*{: .keyword }가 속한 범위를 의미하는 [라벨](returns.html)이다:
 
 ``` kotlin
-class A { // 자동 라벨(implicit label) @A
-    inner class B { // 자동 라벨(implicit label) @B
-        fun Int.foo() { // 자동 라벨(implicit label) @foo
+class A { // 암묵적으로 @A 라벨 사용
+    inner class B { // 암묵적으로 @B 라벨 사용
+        fun Int.foo() { // 암묵적으로 @foo 라벨 사용
             val a = this@A // A의 this
             val b = this@B // B의 this
 

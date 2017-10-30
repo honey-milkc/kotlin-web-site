@@ -8,7 +8,7 @@ title: "범위"
 # 범위
 
 범위(range) 식은 연산자 형식이 `..`인 `rangeTo` 함수로 구성한다.
-`..`는 *in*{: .keyword }과 *!in*{: .keyword }을 보완한다.
+`..`은 *in*{: .keyword }과 *!in*{: .keyword }을 보완한다.
 모든 비교가능한 타입에 대해 범위를 정의할 수 있는데, 정수 기본 타입의 경우 구현을 최적화한다.
 다음은 범위의 사용 예이다:
 
@@ -18,7 +18,7 @@ if (i in 1..10) { // 1 <= i && i <= 10과 동일
 }
 ```
 
-정수 타입 범위(`IntRange`, `LongRange`, `CharRange`)는 추가로 반복할 수 있는 특징이 있다.
+정수 타입 범위(`IntRange`, `LongRange`, `CharRange`)는 반복할 수 있는 추가 특징이 있다.
 컴파일러는 추가 오버헤드없이 정수 타입 범위를 동일한 자바의 인덱스 기반 *for*{: .keyword }-루프로 변환한다:
 
 ``` kotlin
@@ -33,7 +33,7 @@ for (i in 4..1) print(i) // 아무것도 출력하지 않음
 for (i in 4 downTo 1) print(i) // "4321" 출력
 ```
 
-1씩 간격이 아닌 다른 간격으로 숫자를 반복할 수 있나? 물론 가능하다. `step()`를 사용하면 된다:
+1씩 간격이 아닌 다른 간격으로 숫자를 반복할 수 있나? 물론 가능하다. `step()`을 사용하면 된다:
 
 ``` kotlin
 for (i in 1..4 step 2) print(i) // "13" 출력
@@ -74,7 +74,7 @@ for (int i = first; i != last; i += step) {
 
 정수 타입에서 `..` 연산자는 `ClosedRange<T>`와 `*Progression`를 구현한 객체를 생성한다.
 예를 들어, `IntRange`는 `ClosedRange<Int>`를 구현했고, `IntProgression`를 상속하므로
-`IntProgression`에 정의한 모든 오퍼레이션이 `IntRange`에서 사용가능하다..
+`IntProgression`에 정의한 모든 오퍼레이션을 `IntRange`에서 사용가능하다..
 `downTo()`와 `step()` 함수의 결과는 항상 `*Progression`이다.
 
 Progression의 컴페니언 오브젝트가 제공하는 `fromClosedRange` 함수를 사용해서 Progression을 생성한다:
@@ -92,7 +92,7 @@ Progression의 `last` 요소는 양수 `step`에 대해서는 `end` 값보다 �
 
 ### `rangeTo()`
 
-정수 타입의 `rangeTo()` 연산자는 단순히 `*Range` 생서자를 호출한다:
+정수 타입의 `rangeTo()` 연산자는 단순히 `*Range` 생성자를 호출한다:
 
 ``` kotlin
 class Int {

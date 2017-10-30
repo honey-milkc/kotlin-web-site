@@ -81,5 +81,5 @@ val name: String
 val ordinal: Int
 ```
 
-enum 상수는 또한 [Comparable](/api/latest/jvm/stdlib/kotlin/-comparable/index.html) 인터페이스를 구현하고 있어서
+enum 상수는 또한 [Comparable](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html) 인터페이스를 구현하고 있어서
 enum 클래스에 정의된 순서를 기준으로 비교할 수 있다.

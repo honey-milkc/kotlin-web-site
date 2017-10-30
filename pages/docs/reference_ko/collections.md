@@ -38,7 +38,7 @@ assert(strings.size == 3)
 생성한다.
  
 성능이 중요하지 않은 코드에서는 간단한 
-[이디엄](idioms.html#read-only-map)인 `mapOf(a to b, c to d)`을 사용해서 맵을 생성할 수 있다.
+[이디엄](idioms.html#read-only-map)인 `mapOf(a to b, c to d)`를 사용해서 맵을 생성할 수 있다.
 
 `readOnlyView` 변수는 같은 리스트를 가리키고 하부 리스트를 변경할 때 바뀐다는 것에 주목하자.
 만약 리스트에 존재하는 유일한 참조가 읽기 전용 타입이면, 콜렉션이 완전히 불변이라고 간주할 수 있다.

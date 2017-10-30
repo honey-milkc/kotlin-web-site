@@ -124,7 +124,7 @@ title: "키워드와 연산자"
 
 컴파일러는 특정한 문맥에서 다음 식별자를 정의하며, 다른 문백에서는 일반 식별자로 사용할 수 있다:
 
- * `field`: 프로퍼티 접근자에서 [프로퍼티의 Backing 필드](properties.html#backing-fields)를 참조하기 위해 사용 
+ * `field`: 프로퍼티 접근자에서 [프로퍼티의 지원 필드](properties.html#backing-fields)를 참조하기 위해 사용 
  * `it`: 람다 안에서 [명시적 선언 없이 파라미터에 접근하기 위해](lambdas.html#it-implicit-name-of-a-single-parameter) 사용
  
  
@@ -146,11 +146,11 @@ title: "키워드와 연산자"
  * `[`, `]` - [인덱스기반 접근 연산자](operator-overloading.html#indexed) (`get`과 `set` 호출로 변환)
  * `!!` : [식이 null이 아님을 단언한다](null-safety.html#the--operator)
  * `?.` : [안전한 호출](null-safety.html#safe-calls) 수행 (리시버가 null이 아니면 메서드를 호출하거나 프로퍼티에 접근)
- * `?:` : 왼쪽 값이 null인면 오른쪽 값을 취한다([엘비스 연산자](null-safety.html#elvis-operator))
+ * `?:` : 왼쪽 값이 null이면 오른쪽 값을 취한다([엘비스 연산자](null-safety.html#elvis-operator))
  * `::` : [멤버 레퍼런스](reflection.html#function-references)나 [클래스 레퍼런스](reflection.html#class-references) 생성
  * `..` : [범위](ranges.html) 생성 
  * `:` : 선언에서 타입과 이름을 구분
- * `?` : 타입을 [nullable](null-safety.html#nullable-types-and-non-null-types)로 표시 
+ * `?` : 타입을 [null 가능](null-safety.html#nullable-types-and-non-null-types)으로 표시 
  * `->`
      - [람다 식](lambdas.html#lambda-expression-syntax)의 파라미터와 몸체를 분리
      - [함수 타입](lambdas.html#function-types)에서 파라미터와 리턴 타입 선언을 분리

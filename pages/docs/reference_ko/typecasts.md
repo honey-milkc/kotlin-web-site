@@ -92,9 +92,9 @@ when (x) {
 val x: String = y as String
 ```
 
-x는 [nullable](null-safety.html)이 아니기 때문에 *null*{: .keyword }을 `String` 타입으로 변환할 수 없다.
+x는 [null이 가능](null-safety.html)하지 않기 때문에 *null*{: .keyword }을 `String` 타입으로 변환할 수 없다.
 예를 들어, `y`가 null이면 위 코드는 익셉션을 던진다.
-자바의 변환 세만틱에 맞추려면, 다음과 같이 변환 연산자의 오른쪽에 nullable 타입이 와야 한다:
+자바의 변환 세만틱에 맞추려면, 다음과 같이 변환 연산자의 오른쪽에 null 가능 타입이 와야 한다:
 
 ``` kotlin
 val x: String? = y as String?
@@ -109,4 +109,4 @@ val x: String? = y as String?
 ``` kotlin
 val x: String? = y as? String
 ```
-*as?*{: .keyword }의 오른쪽이 null이 아닌 `String` 타입이지만 타입 변환 결과는 nullable이다.
+*as?*{: .keyword }의 오른쪽이 null이 아닌 `String` 타입이지만 타입 변환 결과는 null 가능 타입이다.

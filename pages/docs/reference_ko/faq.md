@@ -9,8 +9,8 @@ title: FAQ
 
 ### 코틀린은 무엇인가?
 
-코틀린은 OSS 정적 타입 프로그래밍 언어로서, JVM, 안드로이드 자바스크립트와 네이티비를 대상으로 한다.
-코틀린은 [JetBrains](http://www.jetbrains.com)이 개발한다.
+코틀린은 OSS 정적 타입 프로그래밍 언어로서, JVM, 안드로이드, 자바스크립트, 네이티비를 대상으로 한다.
+코틀린은 [JetBrains](http://www.jetbrains.com)가 개발한다.
 2010년에 프로젝트를 시작했고 초기부터 오픈 소스였다.
 첫 번째 공식 1.0 버전은 2016년 2월에 나왔다. 
 
@@ -30,7 +30,7 @@ title: FAQ
 
 ### 코틀린이 자바 프로그래밍 언어에 비해 주는 장점은 무엇인가?
 
-코틀린은 더 간결하다. 대략적인 측정 결과 코드 줄 수에서 거의 40%를 줄여준다. 또한 타입에 더 안전하다. 예를 들어, non-nullable 타입은 어플리케이션에서
+코틀린은 더 간결하다. 대략적인 측정 결과 코드 줄 수를 거의 40% 줄여준다. 또한 타입에 더 안전하다. 예를 들어, null 불가 타입은 어플리케이션에서
 NPE를 줄여준다 스마트 변환, 고차 함수, 확장 함수, 리시버를 가진 람다를 포함한 다른 특징은
 표현력 좋은 코드를 작성하는 능력을 제공하며 또한 DSL 작성을 촉진한다.
  
@@ -38,14 +38,14 @@ NPE를 줄여준다 스마트 변환, 고차 함수, 확장 함수, 리시버를
 
 그렇다. 코틀린은 자바 프로그래밍 언어와 100% 호환되며, 기존 코드베이스를 코틀린에 알맞게 사용할 수 있도록 하는 것에 중점을 뒀다.
 쉽게 자바에서 코틀린 코드를 호출할 수 있고 코틀린에서 자바 코드를 호출할 수 있다.
-이는 매우 쉽고 저위험으로 코를린을 적용할 수 있게 해준다. 또한 자바에서 코틀린으로 자동으로 변환해주는 도구를 IDE에 탑재해서 기존 코드의 마이그레이션을 단순하게 할 수 있다.
+이는 적은 위험으로 매우 쉽게 코를린을 적용할 수 있게 해준다. 또한 자바를 코틀린으로 자동 변환해주는 도구를 IDE에 탑재해서 기존 코드를 간단하게 마이그레이션할 수 있다.
 
 ### 코틀린을 어디에 쓸 수 있나?
 
 서버사이드, 클라이언트 사이드 웹과 안드로이드 등 모든 종류의 개발에서 코틀린을 사용할 수 있고,
 임베디드 시스템, 맥OS, iOS와 같은 다른 플랫폼을 지원하기 위한
-코틀린/네이티브도 현재 작업중에 있다. 어디에 사용할 수 있는 몇 가지만 말해보면,
-사람들은 모바일과 서버 사이드 어플리케이션, 자바 스크립트와 JavaFX를 위한 클라이언트 사이드, 데이터 과학에 코틀린을 사용하고 있다.
+코틀린/네이티브도 현재 작업 중에 있다. 어디에 사용하고 있는지 몇 가지만 말해보면,
+모바일과 서버 사이드 어플리케이션, 자바 스크립트와 JavaFX를 위한 클라이언트 사이드, 데이터 과학에 코틀린을 사용하고 있다.
 
 ### 안드로이드 개발에 코틀린을 사용할 수 있나?
 
@@ -72,7 +72,7 @@ AMD나 CommonJS 같은 기존의 모듈 시스템과 호환된다.
 
 ### 네이티브 개발에 코틀린을 사용할 수 있나?
 
-현재 코틀린/네이티브를 [작업중](https://blog.jetbrains.com/kotlin/tag/native/)이다. 코틀린/네이티브는 코틀린을 JVM 없이 실행할 수 있는 네이티브 코드로 컴파일한다.
+현재 코틀린/네이티브를 [작업 중](https://blog.jetbrains.com/kotlin/tag/native/)이다. 코틀린/네이티브는 코틀린을 JVM 없이 실행할 수 있는 네이티브 코드로 컴파일한다.
 테크놀러지 프리뷰 릴리즈가 있는데 아직 제품으로 준비된 상태는 아니며, 1.0 버전에서는 모든 플랫폼을 지원할 예정은 아니다.
 [코틀린/네이브티 소개 블로그 포스트](https://blog.jetbrains.com/kotlin/2017/04/kotlinnative-tech-preview-kotlin-without-a-vm/)에서
 더 많은 정보를 확인할 수 있다.
@@ -86,7 +86,7 @@ AMD나 CommonJS 같은 기존의 모듈 시스템과 호환된다.
 ### 코틀린을 지원하는 빌드 도구는?
 
 JVM 영역에서는 [그레이들](using-gradle.html), [메이븐](using-maven.html), 
-[앤트](using-ant.html), [코발트](http://beust.com/kobalt/home/index.html) 등 주요 빌드 도구가 지원한다.
+[앤트](using-ant.html), [코발트](http://beust.com/kobalt/home/index.html) 등 주요 빌드 도구를 지원한다.
 클라이언트 사이드 자바스크립트 대상으로 사용가능한 빌드 도구도 있다. 
 
 ### 코틀린은 무엇으로 컴파일되나?
@@ -106,7 +106,7 @@ JVM을 대상으로 할 때, 코틀린은 자바와 호환되는 바이트코드
  
 ### 어떤 회사에서 코틀린을 사용하나?
  
-코틀린을 회사는 너무 많아서 나열할 수 없다. 블로그나 깃헙 리포지토리, 토크로 코틀린 사용을 공개적으로 선언한 회사에는
+코틀린을 회사는 너무 많아서 나열할 수 없다. 블로그나 깃헙 리포지토리, 발표를 통해 코틀린 사용을 공개적으로 선언한 회사에는
 [Square](https://medium.com/square-corner-blog/square-open-source-loves-kotlin-c57c21710a17),
 [Pinterest](https://www.youtube.com/watch?v=mDpnc45WwlI),
 [Basecamp](https://m.signalvnoise.com/how-we-made-basecamp-3s-android-app-100-kotlin-35e4e1c0ef12)가 있다.
@@ -116,18 +116,18 @@ JVM을 대상으로 할 때, 코틀린은 자바와 호환되는 바이트코드
 코틀린은 주로 젯브레인의 엔지니어 팀이 개발한다(현재 40명 이상 참여). 언어 설계를 이끄는 사람은 [Andrey Breslav](https://twitter.com/abreslav)이다.
 핵심 팀 외에 깃헙에 100명 이상의 외부 공헌자가 존재한다. 
 
-### 코틀린에 대해서 어디서 더 배울 수 있나?
+### 어디서 코틀린을 더 배울 수 있나?
 
-시작하기 가장 좋은 출발점은 [코틀린 웹사이트](https://kotlinlang.org)이다. 거기서 컴파일러를 다운로드 받을 수 있고,
+가장 좋은 출발점은 [코틀린 웹사이트](https://kotlinlang.org)이다. 거기서 컴파일러를 다운로드 받을 수 있고,
 [온라인으로 시도](https://try.kotlinlang.org)할 수 있고, 또한 [레퍼런스 문서](index.html)와
 [튜토리얼](http://kotlinlang.org/docs/tutorials/index.html), 자료를 구할 수 있다.
 
 ### 코틀린에 대한 책이 있나?
 
-코틀린 팀 멤버인 Dmitry Jemerov and Svetlana Isakova가 쓴 [Kotlin in Action](https://www.manning.com/books/kotlin-in-action),
+코틀린 팀 멤버인 Dmitry Jemerov와 Svetlana Isakova가 쓴 [Kotlin in Action](https://www.manning.com/books/kotlin-in-action),
 안드로이드 개발자를 대상으로 한 [Kotlin for Android Developers](https://leanpub.com/kotlin-for-android-developers) 등
 이미 코틀린에 대한 [책이 여러 개](/docs/books.html) 있다.  
-
+
 ### 코틀린을 배울 수 있는 온라인 강좌가 존재하나?
 
 Kevin Jones의 [Pluralsight Kotlin Course](https://www.pluralsight.com/courses/kotlin-getting-started),

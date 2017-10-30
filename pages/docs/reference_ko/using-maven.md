@@ -36,11 +36,9 @@ description: "이 튜토리얼은 코틀린 코드를 포함한 어플리케이�
 
 JDK 7이나 JDK 8이 대상이라면 코틀린 표준 라이브러리의 확장 버전을 사용할 수 있다.
 확장 버전은 JDK 새 버전에 들어간 API를 위해 추가한 확장 함수를 포함한다.
-`kotlin-stdlib` 대신 사용할 JDK 버전에 따라 다음 의존 중 하나를 사용한다:
-JDK 7이나 JDK 8을 `kotlin-stdlib-jre7` 또는 `kotlin-stdlib-jre8`을 사용한다. 
+`kotlin-stdlib` 대신 사용할 JDK 버전에 따라 `kotlin-stdlib-jre7` 또는 `kotlin-stdlib-jre8`을 의존 중 하나를 사용한다.
 
-
-[코틀린 리플렉션](/api/latest/jvm/stdlib/kotlin.reflect.full/index.html)이나 테스팅 도구를 사용할 경우
+[코틀린 리플렉션](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html)이나 테스팅 도구를 사용할 경우
 리플렉션 라이브러리를 위한 아티팩트 ID는 `kotlin-reflect`이고 테스트 라이브러리를 위한 아티팩트 ID는 
 `kotlin-test`와 `kotlin-test-junit`이다.
 
@@ -83,7 +81,7 @@ JDK 7이나 JDK 8을 `kotlin-stdlib-jre7` 또는 `kotlin-stdlib-jre8`을 사용�
 
 ## 코틀린과 자바 소스 컴파일
 
-자바와 코틀린을 함께 사용하는 코드를 컴파일하려면 자바 컴파일러보다 코틀린 컴파일러는 먼저 호출해야 한다.
+자바와 코틀린을 함께 사용하는 코드를 컴파일하려면 자바 컴파일러보다 코틀린 컴파일러를 먼저 호출해야 한다.
 메이븐 관점에서는 다음과 같이 pom.xml 파일에서 maven-compiler-plugin 위에 코틀린 플러그인을 위치시켜서
 maven-compiler-plugin보다 kotlin-maven-plugin을 먼저 실행해야 함을 의미한다:
 
@@ -163,7 +161,7 @@ maven-compiler-plugin보다 kotlin-maven-plugin을 먼저 실행해야 함을 �
 
 ## 애노테이션 처리
 
-[코틀린 애노테이션 처리 도구](kapt.html) (`kapt`)의 설명을 참고한다.
+[코틀린 애노테이션 처리 도구](kapt.html) (`kapt`) 설명을 참고한다.
 
 ## Jar 파일
 
@@ -216,7 +214,7 @@ maven-compiler-plugin보다 kotlin-maven-plugin을 먼저 실행해야 함을 �
 </plugin>
 ```
 
-이 독립 jar 파일을 JRE에 바로 전달하면 어플리케이션을 실행할 수 있다:
+이 독립 jar 파일을 JRE에 전달하면 어플리케이션을 실행할 수 있다:
 
 ``` bash
 java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
@@ -266,7 +264,7 @@ java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 ## 컴파일러 옵션 지정
 
-컴파일러를 위한 추가 옵션을 메이븐 플러그인 노드의 `<configuration>` 요소에 태그로 지정할 수 있다:
+컴파일러를 위한 추가 옵션을 메이븐 <plugin> 노드의 `<configuration>` 요소에 태그로 지정할 수 있다:
 
 ``` xml
 <plugin>
