@@ -144,16 +144,16 @@ println(files?.size ?: "empty")
 ### null이면 문장 실행
 
 ``` kotlin
-val values = ...
-val email = values["email"] ?: throw IllegalStateException("Email is missing!")
+val data = ...
+val email = data["email"] ?: throw IllegalStateException("Email is missing!")
 ```
 
 ### null이 아니면 실행
 
 ``` kotlin
-val value = ...
+val data = ...
 
-value?.let {
+data?.let {
     ... // null이 아닌 블록 실행
 }
 ```
@@ -161,9 +161,9 @@ value?.let {
 ### null이 아니면 null 가능 값 매핑
 
 ``` kotlin
-val value = ...
+val data = ...
 
-val mapped = value?.let { transformValue(it) } ?: defaultValueIfValueIsNull
+val mapped = data?.let { transformData(it) } ?: defaultValueIfDataIsNull
 ```
 
 ### when 문장에서 리턴
