@@ -13,7 +13,7 @@ title: "함수: infix, vararg, tailrec"
 
 ``` kotlin
 fun double(x: Int): Int {
-    return 2*x
+    return 2 * x
 }
 ```
 
@@ -147,7 +147,6 @@ reformat(str, wordSeparator = '_')
 fun foo(vararg strings: String) { /* ... */ }
 
 foo(strings = *arrayOf("a", "b", "c"))
-foo(strings = "a") // 단일 값에는 필요 없다
 ```
 
 자바 함수를 호출할 때에는 이름 가진 인자 구문을 사용할 수 없다. 왜냐면 자바 바이트코드가 함수 파라미터의 이름을
@@ -360,7 +359,7 @@ private fun findFixPoint(): Double {
     var x = 1.0
     while (true) {
         val y = Math.cos(x)
-        if (x == y) return y
+        if (x == y) return x
         x = y
     }
 }

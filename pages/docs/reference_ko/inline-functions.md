@@ -35,7 +35,7 @@ finally {
 컴파일러가 이렇게 하도록 만들려면, `lock()` 함수에 `inline` 수식어를 붙이면 된다:
 
 ``` kotlin
-inline fun lock<T>(lock: Lock, body: () -> T): T {
+inline fun <T> lock(lock: Lock, body: () -> T): T {
     // ...
 }
 ```
