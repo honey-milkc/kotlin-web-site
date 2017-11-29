@@ -60,8 +60,12 @@ reference:
           title: Kotlin for Android
         - url: /docs/reference/js-overview.html
           title: Kotlin for JavaScript
+        - url: /docs/reference/native-overview.html
+          title: Kotlin/Native
         - url: /docs/reference/whatsnew11.html
           title: What's New in 1.1
+        - url: /docs/reference/whatsnew12.html
+          title: What's New in 1.2
 
     - title: Getting Started
       description: Get familiar with the basics of Kotlin including operations, coding conventions and idioms.
@@ -157,7 +161,7 @@ reference:
         - url: /docs/reference/type-aliases.html
           title: Type Aliases
         - url: /docs/reference/multiplatform.html
-          title: Multiplatform Projects (preview)
+          title: Multiplatform Projects
 
 
     - title: Core Libraries
@@ -476,3 +480,10 @@ tutorials:
       content:
         - url: /docs/tutorials/kotlin-and-ci.html
           title: Setting up Kotlin on TeamCity
+
+    - title: Education
+      content:
+        - url: /docs/tutorials/edu-tools-learner.html
+          title: Learning Kotlin with EduTools plugin
+        - url: /docs/tutorials/edu-tools-educator.html
+          title: Teaching Kotlin with EduTools plugin

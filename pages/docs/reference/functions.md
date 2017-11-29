@@ -13,7 +13,7 @@ Functions in Kotlin are declared using the *fun*{: .keyword } keyword:
 
 ``` kotlin
 fun double(x: Int): Int {
-    return 2*x
+    return 2 * x
 }
 ```
 
@@ -138,7 +138,6 @@ When a function is called with both positional and named arguments, all the posi
 fun foo(vararg strings: String) { /* ... */ }
 
 foo(strings = *arrayOf("a", "b", "c"))
-foo(strings = "a") // Not required for a single value
 ```
 
 Note that the named argument syntax cannot be used when calling Java functions, because Java bytecode does not
@@ -340,7 +339,7 @@ private fun findFixPoint(): Double {
     var x = 1.0
     while (true) {
         val y = Math.cos(x)
-        if (x == y) return y
+        if (x == y) return x
         x = y
     }
 }
