@@ -435,7 +435,7 @@ fun main(args: Array<String>) {
 
 JS 타입 가진 배열은 `IntArray`, `DoubleArray`와 같은 코틀린 원시 타입 배열을
 [자바스크립트 타입 가진 배열](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays)로
-변환하는 JS 타입드 배열 지원을 기본으로 사용한다. 이는 앞서 선택 기능이었다. 
+변환하는 JS 타입드 배열 지원을 기본으로 사용한다. 이는 앞서 선택(opt-in) 기능이었다. 
 
 ## 도구
 

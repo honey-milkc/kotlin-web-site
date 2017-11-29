@@ -234,6 +234,8 @@ public @interface AnnWithValue {
 @AnnWithValue("abc") class C
 ```
 
+### 배열 타입 애노테이션 파라미터
+
 자바의 `value` 인자가 배열 타입이면, 코틀린에서 `vararg` 파라미터가 된다:
 
 ``` java
@@ -248,7 +250,7 @@ public @interface AnnWithArrayValue {
 @AnnWithArrayValue("abc", "foo", "bar") class C
 ```
 
-배열 타입을 가진 다른 인자의 경우 `arrayOf`를 직접 사용해야 한다:
+배열 타입을 가진 다른 인자의 경우 배열 리터럴 구문(코틀린 1.2부터 지원)을 사용하거나 `arrayOf`를 사용해야 한다:
 
 ``` java
 // Java
@@ -258,9 +260,16 @@ public @interface AnnWithArrayMethod {
 ```
 
 ``` kotlin
-// Kotlin
-@AnnWithArrayMethod(names = arrayOf("abc", "foo", "bar")) class C
+// 코틀린 1.2+:
+@AnnWithArrayMethod(names = ["abc", "foo", "bar"]) 
+class C
+
+// 이전 코틀린 버전:
+@AnnWithArrayMethod(names = arrayOf("abc", "foo", "bar")) 
+class D
 ```
+
+### 애노테이션 인스턴스의 프로퍼티 접근
 
 애노테이션 인스턴스의 값은 코틀린 코드에 프로퍼티로 노출된다:
 

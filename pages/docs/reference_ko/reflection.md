@@ -130,7 +130,7 @@ var y = 1
 
 fun main(args: Array<String>) {
     ::y.set(2)
-    println(y) // prints "2"
+    println(y) // "2" 출력
 }
 ```      
 
@@ -245,5 +245,7 @@ val matches: (Regex, CharSequence) -> Boolean = Regex::matches
 
 ``` kotlin
 val prop = "abc"::length
-println(prop.get())   // prints "3"
+println(prop.get())   // "3" 출력
 ```
+
+코틀린 1.2부터 명시적으로  `this`를 리시버로 지정하지 않아도 된다. `this::foo`와 `::foo`는 동일하다.
