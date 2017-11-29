@@ -32,6 +32,8 @@ class Bar {}
 * `internal`로 선언하면, 같은 [모듈](#modules)에서 접근 가능하다.
 * `protected`는 최상위 선언에 사용할 수 없다.
 
+주의: 다른 패키지에서 최상위 선언에 접근하려면 그것을 [임포트](packages.html#imports)해야 한다.
+
 예제:
 
 ``` kotlin

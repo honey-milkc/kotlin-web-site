@@ -318,7 +318,7 @@ sort(listOf(HashMap<Int, String>())) // 에러: HashMap<Int, String>는
 
 ``` kotlin
 fun <T> cloneWhenGreater(list: List<T>, threshold: T): List<T>
-    where T : Comparable,
+    where T : Comparable<T>,
           T : Cloneable {
   return list.filter { it > threshold }.map { it.clone() }
 }

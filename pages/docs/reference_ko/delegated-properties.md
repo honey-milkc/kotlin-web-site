@@ -53,7 +53,7 @@ println(e.p)
 
 이 코드는 다음을 출력한다:
 
-``` kotlin
+```
 Example@33a17727, thank you for delegating ‘p’ to me!
 ```
 
@@ -66,7 +66,7 @@ e.p = "NEW"
 
 이 코드는 다음을 출력한다.
  
-``` kotlin
+```
 NEW has been assigned to ‘p’ in Example@33a17727.
 ```
 
