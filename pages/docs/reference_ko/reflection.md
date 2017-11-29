@@ -110,12 +110,11 @@ println(strings.filter(oddLength)) // "[a, abc]" 출력
 코틀린에서 1급 객체로서 프로퍼티에 접근할 때에도 `::` 연산자를 사용한다:
 
 ``` kotlin
-var x = 1
+val x = 1
 
 fun main(args: Array<String>) {
     println(::x.get()) // "1" 출력
-    ::x.set(2)
-    println(x)         // "2" 출력
+    println(::x.name)  // "x" 출력
 }
 ```
 
@@ -124,7 +123,16 @@ fun main(args: Array<String>) {
 더 자세한 정보는 [`KProperty` 클래스 문서](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html)를 참고한다.
 
 수정 가능한 프로퍼티, 예를 들어 `var y = `에 대해 `::y`는 
-`set()` 함수를 가진 [`KMutableProperty<Int>`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html) 타입의 값을 리턴한다.
+`set()` 함수를 가진 [`KMutableProperty<Int>`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html) 타입의 값을 리턴한다:
+
+``` kotlin
+var y = 1
+
+fun main(args: Array<String>) {
+    ::y.set(2)
+    println(y) // prints "2"
+}
+```      
 
 파라미터가 없는 함수가 필요한 곳에 프로퍼티 레퍼런스를 사용할 수 있다:
  
