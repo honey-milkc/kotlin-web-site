@@ -55,8 +55,8 @@ title: "키워드와 연산자"
  * `true`: [불리언 타입](basic-types.html#booleans)의 'true' 값을 지정
  * `try`: [익셉션 처리 블록을 시작](exceptions.html)
  * `typealias`: [타입 별칭](type-aliases.html)을 선언
- * `val`: 읽기 전용 [프로퍼티](properties.html)나 [로컬 변수](basic-syntax.html#defining-local-variables)를 선언
- * `var` 수정 가능 [프로퍼티](properties.html)나 [로컬 변수](basic-syntax.html#defining-local-variables)를 선언
+ * `val`: 읽기 전용 [프로퍼티](properties.html)나 [로컬 변수](basic-syntax.html#defining-variables)를 선언
+ * `var` 수정 가능 [프로퍼티](properties.html)나 [로컬 변수](basic-syntax.html#defining-variables)를 선언
  * `when`: [when 식](control-flow.html#when-expression) 시작(주어진 브랜치 중 하나 실행)
  * `while`: [while 루프](control-flow.html#while-loops) (전위조건을 가진 루프)
 
@@ -92,6 +92,7 @@ title: "키워드와 연산자"
 
 다음 토큰은 선언의 수식어 목록에서 키워드로 사용하며, 다른 문맥에서는 식별자로 사용할 수 있다:
 
+ * `actual`: [멀티 플랫폼 프로젝트](multiplatform.html)에서 플랫폼에 특정한 구현을 표시 
  * `abstract`: 클래스나 멤버를 [추상](classes.html#abstract-classes)으로 표시
  * `annotation`: [애노테이션 클래스](annotations.html) 선언
  * `companion`: [컴페니언 오브젝트](object-declarations.html#companion-objects) 선언
@@ -99,13 +100,14 @@ title: "키워드와 연산자"
  * `crossinline`: [인라인 함수에 전달한 람다에서 비-로컬 리턴](inline-functions.html#non-local-returns) 금지 
  * `data`: 컴파일러가 [클래스를 위한 canonical 멤버를 생성하도록](data-classes.html) 지시
  * `enum`: [열거형](enum-classes.html) 선언
+ * `expect`: 플랫폼 모듈에서 구현할 거로 기대하는 [플랫폼에 특정한](multiplatform.html) 선언을 표시
  * `external`: 선언을 코틀린이 아닌 구현으로 표시([JNI](java-interop.html#using-jni-with-kotlin)로 접근 가능하거나 [자바스크립트](js-interop.html#external-modifier)에 구현한 것) 
  * `final`: [멤버 오버라이딩](classes.html#overriding-methods) 금지
  * `infix`: [중위 표기법](functions.html#infix-notation) 함수 호출 허용
  * `inline`: [호출 위치에서 전달한 함수와 람다를 인라인하도록](inline-functions.html) 컴파일러에게 말함
  * `inner`: [중첩 클래스](nested-classes.html)에서 외부 클래스의 인스턴스 참조를 허용
  * `internal`: 선언을 [현재 모듈에 보이도록](visibility-modifiers.html) 표시
- * `lateinit`: [생성자 밖에서 non-null 프로퍼티를](properties.html#late-initialized-properties) 초기화하는 것을 허용
+ * `lateinit`: [생성자 밖에서 non-null 프로퍼티를](properties.html#late-initialized-properties-and-variables) 초기화하는 것을 허용
  * `noinline`: [인라인 함수에 전달한 람다를 인라인하지](inline-functions.html#noinline) 않음
  * `open`: [클래스 상속 또는 멤버 오버라이딩](classes.html#inheritance)을 허용
  * `operator`: 함수를 [연사자 오버로딩이나 컨벤션 구현으로](operator-overloading.html) 표시
