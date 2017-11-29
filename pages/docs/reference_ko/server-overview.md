@@ -36,7 +36,7 @@ title: "서버 사이드를 위한 코틀린"
    JSP나 FreeMarker와 같은 전통적인 템플릿 시스템에 대한 대안으로 사용한다.
 
  * JDBC를 통한 직접 접근 외에 JPA, 자바 드라이버를 통한 NoSQL 데이터베이스 사용 등의 영속성 기술을 사용할 수 있다.
-   JPA의 경우 [kotlin-jpa 컴파일러 플러그인](compiler-plugins.html#kotlin-jpa-compiler-plugin)을 사용하면
+   JPA의 경우 [kotlin-jpa 컴파일러 플러그인](compiler-plugins.html#jpa-support)을 사용하면
    코틀린으로 컴파일한 클래스를 프레임워크의 요구에 맞출 수 있다. 
 
 ## 코틀린 서버 사이드 어플리케이션 배포

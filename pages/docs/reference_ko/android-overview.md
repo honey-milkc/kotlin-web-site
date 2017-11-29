@@ -44,7 +44,7 @@ title: "안드로이드를 위한 코틀린"
 
 ## 다음 단계
 
-* [안드로이드 스튜디오 3.0 프리뷰](https://developer.android.com/studio/preview/index.html)를 다운받아 설치한다. 이 버전은 코틀린을 기본으로 지원한다.
+* [안드로이드 스튜디오 3.0](https://developer.android.com/studio/index.html)를 다운받아 설치한다. 이 버전은 코틀린을 기본으로 지원한다.
 * [안드로이드와 코틀린 시작하기](http://kotlinlang.org/docs/tutorials/kotlin-android.html) 튜토리얼을 보고 첫 번째 코틀린 애플리케이션을 만들어본다.
 * 언어에 대한 더 자세한 소개는 이 사이트의 [레퍼런스 문서](index.html)와 [코틀린 콘](http://kotlinlang.org/docs/tutorials/koans.html)에서 확인할 수 있다.
 * [Kotlin for Android Developers](https://leanpub.com/kotlin-for-android-developers)은 또 다른 좋은 자료이다.
