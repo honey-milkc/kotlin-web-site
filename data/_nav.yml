@@ -246,11 +246,11 @@ reference_ko:
           title: 안드로이드를 위한 코틀린
         - url: /docs/reference_ko/js-overview.html
           title: 자바스크립트를 위한 코틀린
-        - url: /docs/reference/native-overview.html
+        - url: /docs/reference_ko/native-overview.html
           title: 코틀린/네이티브
         - url: /docs/reference_ko/whatsnew11.html
           title: 코틀린 1.1의 새로운 점
-        - url: /docs/reference/whatsnew12.html
+        - url: /docs/reference_ko/whatsnew12.html
           title: 코틀린 1.2의 새로운 점
 
     - title: 시작하기
@@ -353,7 +353,7 @@ reference_ko:
     - title: 핵심 라이브러리
       content:
         - url: /api/latest/jvm/stdlib/index.html
-          title: Standard Library
+          title: 표준 라이브러리
         - url: /api/latest/kotlin.test/index.html
           title: kotlin.test
 
@@ -405,9 +405,9 @@ reference_ko:
         - url: /docs/reference_ko/using-maven.html
           title: 메이븐 사용하기
         - url: /docs/reference_ko/using-ant.html
-          title: Using Ant
+          title: 앤드 사용하기
         - url: /docs/reference_ko/kotlin-osgi.html
-          title: Kotlin and OSGi
+          title: 코틀린과 OSGi
         - url: /docs/reference_ko/compiler-plugins.html
           title: 컴파일러 플러그인
 
