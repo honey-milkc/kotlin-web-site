@@ -36,7 +36,7 @@ description: "이 튜토리얼은 코틀린 코드를 포함한 어플리케이�
 
 JDK 7이나 JDK 8이 대상이라면 코틀린 표준 라이브러리의 확장 버전을 사용할 수 있다.
 확장 버전은 JDK 새 버전에 들어간 API를 위해 추가한 확장 함수를 포함한다.
-`kotlin-stdlib` 대신 사용할 JDK 버전에 따라 `kotlin-stdlib-jre7` 또는 `kotlin-stdlib-jre8`을 의존 중 하나를 사용한다.
+`kotlin-stdlib` 대신 사용할 JDK 버전에 따라 `kotlin-stdlib-jdk7` 또는 `kotlin-stdlib-jdk8`을 의존 중 하나를 사용한다(Kotlin 1.1.x의 경우, `kotlin-stdlib-jre7`와 `kotlin-stdlib-jre8` 사용).
 
 [코틀린 리플렉션](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html)이나 테스팅 도구를 사용할 경우
 리플렉션 라이브러리를 위한 아티팩트 ID는 `kotlin-reflect`이고 테스트 라이브러리를 위한 아티팩트 ID는 

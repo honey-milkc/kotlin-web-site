@@ -165,9 +165,11 @@ JDK 7이나 JDK 8이 대상이라면 코틀린 표준 라이브러리의 확장 
 `kotlin-stdlib` 대신 다음 의존 중 하나를 사용한다:
 
 ``` groovy
-compile "org.jetbrains.kotlin:kotlin-stdlib-jre7"
-compile "org.jetbrains.kotlin:kotlin-stdlib-jre8"
+compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 ```
+
+코틀린 1.1.x에서는 대신 `kotlin-stdlib-jre7`과 `kotlin-stdlib-jre8`을 사용한다.
 
 [코틀린 리플렉션](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html)이나 테스팅 도구를 사용하면
 다음 의존을 추가로 설정한다:

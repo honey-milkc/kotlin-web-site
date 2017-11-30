@@ -17,7 +17,7 @@ description: "이 튜토리얼은 코틀린 코드를 포함한 어플리케이�
 
 이 태스크는 *kotlin-ant.jar* 라이브러리에 정의되어 있다.
 이 파일은 [코틀린 컴파일러]({{site.data.releases.latest.url}})의 *lib* 폴더에 있다.
-
+앤트 1.9+ 버전이 필요하다.
 
 ## 코틀린 소스만 있는 경우의 JVM 대상
 
