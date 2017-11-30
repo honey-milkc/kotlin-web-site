@@ -121,14 +121,14 @@ non-null 타입을 선택하면 컴파일러는 할당 위치에 단언을 생�
 컴파일러는 다음을 포함한 여러 널가능성 애노테이션을 지원한다: 
 
   * [JetBrains](https://www.jetbrains.com/idea/help/nullable-and-notnull-annotations.html)
-(`@Nullable` and `@NotNull` from the `org.jetbrains.annotations` package)
+(`org.jetbrains.annotations` 패키지의 `@Nullable`과 `@NotNull`)
   * Android (`com.android.annotations` and `android.support.annotations`)
-  * JSR-305 (`javax.annotation`)
+  * JSR-305 (`javax.annotation`, 아래에서 자세히 설명)
   * FindBugs (`edu.umd.cs.findbugs.annotations`)
   * Eclipse (`org.eclipse.jdt.annotation`)
   * Lombok (`lombok.NonNull`).
 
-전체 목록은 [코틀린 컴파일러 소스 코드](https://github.com/JetBrains/kotlin/blob/master/core/descriptor.loader.java/src/org/jetbrains/kotlin/load/java/JvmAnnotationNames.kt)에서
+전체 목록은 [코틀린 컴파일러 소스 코드](https://github.com/JetBrains/kotlin/blob/master/core/descriptors.jvm/src/org/jetbrains/kotlin/load/java/JvmAnnotationNames.kt)에서
 찾을 수 있다.
 
 ### JSR-305 지원
@@ -166,8 +166,11 @@ public @interface MyNullable {
 }
 
 interface A {
-    @MyNullable String foo(@MyNonnull String x); // `fun foo(x: String): String?`로 보임
-    String bar(List<@MyNonnull String> x);       // `fun bar(x: List<String>!): String!`로 보임
+    @MyNullable String foo(@MyNonnull String x); 
+    // 코틀린에서 (strict 모드): `fun foo(x: String): String?`
+    
+    String bar(List<@MyNonnull String> x);       
+    // 코틀린에서 (strict 모드): `fun bar(x: List<String>!): String!`
 }
 ```
 
@@ -181,6 +184,7 @@ interface A {
 * `ElementType.METHOD` : 메서드 리턴 타입 대상
 * `ElementType.PARAMETER` : 밸류 파라미터 대상
 * `ElementType.FIELD` : 필드 대상
+* `ElementType.TYPE_USE` (1.1.60 부터) : 타입 인자를 포함한 모든 타입, 타입 파라미터의 상위 한계, 와일드카드 타입 대상 
 
 타입 자체에 널가능성 애노테이션이 없을 때 기본 널가능성을 사용하며,
 타입 용도와 일치하는 `ElementType`을 가진 @TypeQualifierDefault을 붙인 가장 안쪽을 둘러싼 요소가 기본 널가능성을 결정한다.
@@ -192,7 +196,7 @@ public @interface NonNullApi {
 }
 
 @Nonnull(when = When.MAYBE)
-@TypeQualifierDefault({ElementType.METHOD, ElementType.PARAMETER})
+@TypeQualifierDefault({ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE_USE})
 public @interface NullableApi {
 }
 
@@ -202,12 +206,18 @@ interface A {
  
     @NotNullApi // 인터페이스로부터 기본을 오버라이딩
     String bar(String x, @Nullable String y); // fun bar(x: String, y: String?): String 
-    
+
+    // `@NullableApi`가 `TYPE_USE` 요소 타입을 갖기 때문에
+    // The List<String> 타입 인자는 nullable로 보인다: 
+    String baz(List<String> x); // fun baz(List<String?>?): String?
+
     // The type of `x` 파라미터 타입은 플랫폼으로 남는다.
-    // 이유는 널가능성 애노테이션 값을 UNKNOWN으로 표시했기 때문이다.
+    // 이유는 널가능성 애노테이션 값을 명시적으로 UNKNOWN으로 표시했기 때문이다.
     String qux(@Nonnull(when = When.UNKNOWN) String x); // fun baz(x: String!): String?
 }
 ```
+
+> 주의: 이 예제의 타입은 strict 모드를 활성화할 때만 적용되며, 그렇지 않을 경우 플랫폼 타입으로 남는다. [`@UnderMigration` 애노테이션](#undermigration-annotation-since-1160)과 [컴파일러 설정](#compiler-configuration) 절을 참고한다.
 
 패키지 수준의 기본 널가능성 또한 지원한다:
 
@@ -217,18 +227,77 @@ interface A {
 package test;
 ```
 
+#### `@UnderMigration` 애노테이션 (1.1.60 부터 지원)
+
+`@UnderMigration` 애노테이션은 (별도 아티팩트인 `kotlin-annotations-jvm`에서 제공) 
+라이브러리 유지보수 담당자가 널가능성 타입 한정자를 마이그레이션 상태로 정의하고 싶을 때 사용할 수 있다. 
+
+`@UnderMigration(status = ...)`의 status 값은 애노테이션이 붙은 타입을 코틀린에서 알맞지 않게 사용한 경우
+(예, `@MyNullable`이 붙은 타입 값을 non-null에 사용) 
+컴파일러가 이를 어떻게 처리할지 지정한다.   
+
+* `MigrationStatus.STRICT` : 일반 널가능성 애노테이션처럼 애노테이션이 동작하게 하고(예를 들어, 잘못 사용하면 에러를 발생한다)
+애노테이션을 적용한 선언의 타입을 코틀린에서 볼 수 있기 때문에 해당 타입에 작용한다.
+
+* `MigrationStatus.WARN` : 잘못 사용하면 에러 대신 컴파일 경고를 발생하지만, 애노테이션이 붙은 타입은 플랫폼 타입으로 남는다.
+
+* `MigrationStatus.IGNORE` : 널가능성 애노테이션을 완전히 무시한다.
+
+라이브러리 유지보수 담당자는 `@UnderMigration`의 status를 타입 한정자 별명과 타입 한정자 디폴트에 추가할 수 있다. 
+
+```java
+@Nonnull(when = When.ALWAYS)
+@TypeQualifierDefault({ElementType.METHOD, ElementType.PARAMETER})
+@UnderMigration(status = MigrationStatus.WARN)
+public @interface NonNullApi {
+}
+
+// 클래스에서 타입은 non-null이지만, `@NonNullApi`에 `@UnderMigration(status = MigrationStatus.WARN)`을
+// 붙였으므로 경고만 발생한다.
+@NonNullApi 
+public class Test {}
+```
+
+주의: 널가능성 애노테이션의 마이그레이션 상태는 타입 한정자 별칭에 의해 상속되지 않지만,
+디폴트 타입 한정자에서 그것을 적용한다. 
+
+만약 디폴트 타입 한정자가 타입 한정자 별명을 사용하고 둘 다 `@UnderMigration`이라면,
+디폴트 타입 한정자의 상태를 사용한다.
+
 #### 컴파일러 설정
 
-다음 값 중 하나를 갖는 `-Xjsr305` 컴파일러 플래그를 추가해서 JSR-305 검사를 설정할 수 있다:
+다음 옵션을 갖는 `-Xjsr305` 컴파일러 플래그를 추가(및 조합)해서 JSR-305 검사를 설정할 수 있다:
 
-* `-Xjsr305=strict`은 JSR-305 애노테이션을 일반 널가능성 애노테이션으로 동작하게 만들고, 애노테이션 타입을 알맞게 사용하지 않으면 에러를 발생한다.
+* `-Xjsr305={strict|warn|ignore}`은 `@UnderMigration`이 아닌 애노테이션의 동작을 설정한다.  
+커스텀 널가능성 한정자(특히 `@TypeQualifierDefault`)는 이미 많은 알려진 라이브러리에 퍼져 있으며,
+사용자는 JSR-305 지원을 포함하는 코틀린 버전으로 업데이트 할 때 매끄럽게 마이그레이션해야 할 수도 있다.
+코틀린 1.1.60부터 이 플래그는 오직 `@UnderMigration`이 아닌 애노테이션에만 영향을 준다.
 
-* `-Xjsr305=warn`은 알맞지 않은 사용에 대해 에러 대신 컴파일 경고를 낸다.
+* `-Xjsr305=under-migration:{strict|warn|ignore}` (1.1.60 부터)은 `@UnderMigration` 애노테이션의 동작을 정의한다.
+사용자는 라이브러리의 마이그레이션 상태에 다른 뷰를 가질 수 있다.
+공식적인 마이그레이션 상태가 'WARN'인 동안 에러를 발생하길 원할 수도 있고,
+마이그레이션이 끝날 때가지 에러 발생을 미루고 싶을 수도 있다.
 
-* `-Xjsr305=ignore`는 컴파일러가 JSR-305 널가능성 애노테이션을 완전히 무시하게 한다.
+* `-Xjsr305=@<fq.name>:{strict|warn|ignore}` (1.1.60 부터) 은 애노테이션의 완전한 클래스 이름이
+`<fq.name>`인 애노테이션의 동작을 정의한다. 각 애노테이션별로 설정할 수 있다.
+이는 특정 라이브러리를 위한 마이그레이션 상태를 관리할 때 유용하다.
 
-코틀린 1.1.50+/1.2 버전의 기본 동작은 `-Xjsr305=warn`과 같다. `strict` 값은 실험적으로만 고려해야 한다(향후에 더 다양한 검사를
-추가할 것이다).
+`strict`, `warn`, `ignore` 값의 의미는 `MigrationStatus`의 값과 같으며,
+오직 `strict` 모드의 경우, 애노테이션을 붙인 선언의 타입을 코틀린에서 볼 수 있기 때문에 해당 타입에 영향을 준다.
+
+> 주의: 내장된 JSR-305 애노테이션인 
+[`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html), 
+[`@Nullable`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nullable.html),
+[`@CheckForNull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/CheckForNull.html)는
+항상 활성화되며, 컴파일러 설정에 `-Xjsr305` 플래그를 추가했는지 여부에 상관없이
+애노테이션을 붙인 선언의 타입을 코틀린에서 볼 수 있기 때문에 해당 타입에 영향을 준다.
+
+예를 들어, 컴파일러 인자에 `-Xjsr305=ignore -Xjsr305=under-migration:ignore -Xjsr305=@org.library.MyNullable:warn`를 추가하면
+컴파일러는 `@org.library.MyNullable`을 붙인 타입을 잘못 사용한 것에 대해 경고를 발생하지만
+다른 JSR-305 애노테이션은 무시한다.
+
+코틀린 1.1.50+/1.2 버전의 기본 동작은 [`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html), [`@Nullable`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nullable.html), [`@CheckForNull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/CheckForNull.html)를
+제외하면 `-Xjsr305=warn`과 같다. `strict` 값은 실험적으로만 고려해야 한다(향후에 더 다양한 검사를 추가할 것이다).
 
 ## 매핑된 타입
 {:#mapped-types}

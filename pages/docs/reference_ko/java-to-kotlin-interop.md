@@ -134,7 +134,7 @@ class JavaClient {
 }
 ```
 
-[초기화 지연](properties.html#late-initialized-properties) 프로퍼티 또한 필드로 노출할 수 있다.
+[초기화 지연](properties.html#late-initialized-properties-and-variables) 프로퍼티 또한 필드로 노출할 수 있다.
 필드는 `lateinit` 프로퍼티의 setter와 동일한 가시성을 갖는다.
 
 ## 정적 필드
@@ -166,7 +166,7 @@ Key.COMPARATOR.compare(key1, key2);
 // Key 클래스에 public static final 필드
 ```
 
-객체나 컴페니언 오브젝트의 [초기화 지연](properties.html#late-initialized-properties) 프로퍼티는
+객체나 컴페니언 오브젝트의 [초기화 지연](properties.html#late-initialized-properties-and-variables) 프로퍼티는
 프로퍼티 setter와 같은 가시성을 갖는 정적 지원 필드를 갖는다.
 
 ``` kotlin
